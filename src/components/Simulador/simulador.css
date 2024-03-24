@@ -1,0 +1,61 @@
+.contenedormes {
+    text-align: center; 
+  }
+  #m1,#m2,#m3 {
+      height: 75px;
+      width: 40px;
+      font-size: 40px;
+      line-height: 75px;
+      text-align: center;
+      font-weight: bold;
+      background: #000;
+      color: #68D317;
+  }
+  #slot,#slot1,#slot2,#slot3,#slot4 {
+/*            border: 1px solid;*/
+      height: 75px;
+      width: 40px;
+      font-size: 40px;
+      line-height: 75px;
+      text-align: center;
+      font-weight: bold;
+      background: #000;
+      color: #68D317;
+  }
+  #resultado {
+      height: 26px;
+      width: 76px;
+      border: 1px solid #aaa;
+      padding: 2px 5px;
+  }
+  .contenedor {
+    text-align: center; /* Alinea horizontalmente los elementos */
+  }
+
+  .item {
+   /* border: 1px solid black;
+    padding: 10px;*/
+    display: inline-block; 
+/*          margin: 5px; */
+    vertical-align: middle; 
+    transform: translateY(20px);
+  }
+  #slot{
+      border-bottom-left-radius: 15px;
+      border-top-left-radius: 15px;
+  }
+
+  #slot3{
+      border-bottom-right-radius:  15px;
+      border-top-right-radius: 15px;
+  }
+
+  #m1{
+      border-bottom-left-radius: 15px;
+      border-top-left-radius: 15px;
+  }
+
+  #m3{
+      border-bottom-right-radius:  15px;
+      border-top-right-radius: 15px;
+  }
