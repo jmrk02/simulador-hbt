@@ -12,6 +12,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import { esLocale } from 'date-fns/locale/es'; // Importa el idioma español
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import Input from '@mui/material/Input';
+import { set } from 'date-fns';
+import TextField from '@mui/material/TextField';
 
 
 export default function Animacion() {
@@ -34,6 +37,13 @@ export default function Animacion() {
   const num3 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const num4 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+  const inv1 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv2 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv3 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv4 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv5 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+
   const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
 
   const [meses1, setMeses1] = useState('M');
@@ -44,6 +54,14 @@ export default function Animacion() {
   const [numero2, setNumero2] = useState('0');
   const [numero3, setNumero3] = useState('0');
   const [numero4, setNumero4] = useState('0');
+
+
+  const [numeroInv1, setNumeroInv1] = useState('1');
+  const [numeroInv2, setNumeroInv2] = useState('1');
+  const [numeroInv3, setNumeroInv3] = useState('1');
+  const [numeroInv4, setNumeroInv4] = useState('1');
+  const [numeroInv5, setNumeroInv5] = useState('1');
+
 
   const [fecha, setFecha] = useState(null);
 
@@ -58,8 +76,21 @@ export default function Animacion() {
   const [isAnimatingN4, setIsAnimatingN4] = useState(false);
 
 
+  const [isAnimatingInv1, setIsAnimatingInv1] = useState(false);
+  const [isAnimatingInv2, setIsAnimatingInv2] = useState(false);
+
+  const [isAnimatingInv3, setIsAnimatingInv3] = useState(false);
+  const [isAnimatingInv4, setIsAnimatingInv4] = useState(false);
+  const [isAnimatingInv5, setIsAnimatingInv5] = useState(false);
+  const [isAnimatingInv6, setIsAnimatingInv6] = useState(false);
+
+
+  const [isInversion, setIsInversion] = useState('');
+
+
   const [digitos, setDigitos] = useState([]);
   const [digitosMes, setDigitosMes] = useState([]);
+  const [digitosInversion, setDigitosInversion] = useState([]);
 
   const velocidad = 100;
 
@@ -73,36 +104,36 @@ export default function Animacion() {
     let number3 = 0;
     let number4 = 0;
 
-   let interval1, interval2, interval3, interval4, interval5, interval6, interval7;
+
+    let numInv1 = 0;
+    let numInv2 = 0;
+    let numInv3 = 0;
+    let numInv4 = 0;
+    let numInv5 = 0;
 
 
-  
+
+    let interval1, interval4, interval5, interval6, interval7;
+
+    let interval8, interval9, interval10, interval11, interval12;
+
+
+    // Animacion meses
     if (isAnimatingM1) {
       interval1 = setInterval(() => {
         index1 = (index1 + 1) % mes1.length;
-        setMeses1(mes1[index1]);
-      }, velocidad);
-    }
-
-    if (isAnimatingM2) {
-      interval2 = setInterval(() => {
         index2 = (index2 + 1) % mes2.length;
-        setMeses2(mes2[index2]);
-      }, velocidad);
-    }
-
-    if (isAnimatingM3) {
-      console.log('valor mes 3', meses3)
-      
-      interval3 = setInterval(() => {
         index3 = (index3 + 1) % mes3.length;
-        console.log(index3);
+
+
+        setMeses1(mes1[index1]);
+        setMeses2(mes2[index2]);
         setMeses3(mes3[index3]);
+
       }, velocidad);
-      
     }
 
-
+    //animacion numeros
     if (isAnimatingN1) {
       interval4 = setInterval(() => {
         number1 = (number1 + 1) % num1.length;
@@ -122,11 +153,12 @@ export default function Animacion() {
     }
 
     if (isAnimatingN3) {
-      interval3 = setInterval(() => {
+      interval6 = setInterval(() => {
         number3 = (number3 + 1) % num3.length;
         setNumero3(num3[index3]);
       }, velocidad);
     }
+
     if (isAnimatingN4) {
       interval7 = setInterval(() => {
         number4 = (number4 + 1) % num4.length;
@@ -135,52 +167,71 @@ export default function Animacion() {
     }
 
 
+    //animacion inversion
+    if (isAnimatingInv1) {
+      interval8 = setInterval(() => {
+        numInv1 = (numInv1 + 1) % inv1.length;
+        setNumeroInv1(inv1[numInv1]);
+      }, velocidad);
+    }
 
-    // return () => clearInterval(interval);
+    if (isAnimatingInv2) {
+      interval9 = setInterval(() => {
+        numInv2 = (numInv2 + 1) % inv2.length;
+        setNumeroInv2(inv2[numInv2]);
+      }, velocidad);
+    }
+
+    if (isAnimatingInv3) {
+      interval10 = setInterval(() => {
+        numInv3 = (numInv3 + 1) % inv3.length;
+        setNumeroInv3(inv3[numInv3]);
+      }, velocidad);
+    }
+
+    if (isAnimatingInv4) {
+      interval11 = setInterval(() => {
+        numInv4 = (numInv4 + 1) % inv4.length;
+        setNumeroInv4(inv4[numInv4]);
+      }, velocidad);
+    }
+
+    if (isAnimatingInv5) {
+      interval12 = setInterval(() => {
+        numInv5 = (numInv5 + 1) % inv5.length;
+        setNumeroInv5(inv5[numInv5]);
+      }, velocidad);
+    }
+
+
+
+
     return () => {
       clearInterval(interval1);
-      clearInterval(interval2);
-      clearInterval(interval3);
 
       clearInterval(interval4);
       clearInterval(interval5);
       clearInterval(interval6);
       clearInterval(interval7);
 
+      clearInterval(interval8);
+      clearInterval(interval9);
+      clearInterval(interval10);
+      clearInterval(interval11);
+      clearInterval(interval12);
+
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAnimatingM1, isAnimatingM2, isAnimatingM3, isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4])
+  }, [isAnimatingM1, isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4, isAnimatingInv1, isAnimatingInv2, isAnimatingInv3, isAnimatingInv4, isAnimatingInv5])
 
   useEffect(() => {
-    console.log('digito cero', digitos[0])
-    console.log('digito uno', digitos[1])
-    console.log('digito dos', digitos[2])
-    console.log('digito tres', digitos[3])
-
-    console.log('digito MES', digitosMes[0])
-    console.log('digito MES', digitosMes[1])
-    console.log('digito MES 3', digitosMes[2])
 
 
     if (digitosMes[0] === meses1) {
-      console.log('primer letra del mes igual')
       setIsAnimatingM1(false)
-      setIsAnimatingM2(false)
-      setIsAnimatingM3(false)
     }
 
-    // if (digitosMes[1] === meses2) {
-    //   console.log('primer segunda del mes igual')
-    //   setIsAnimatingM2(false)
-    // }
-
-    // console.log('tipo de varible1', typeof(digitosMes[2]))
-    // console.log('tipo de varible2', typeof(meses3))
-    // if (digitosMes[2] === meses3) {
-    //   console.log('primer tercera del mes igual')
-    //   setIsAnimatingM3(false)
-    // }
 
     if (parseInt(numero1) === digitos[0]) {
       console.log('primer digito igual')
@@ -200,24 +251,46 @@ export default function Animacion() {
       setIsAnimatingN4(false)
     }
 
+    if (parseInt(numeroInv1) === digitosInversion[0]) {
+      setIsAnimatingInv1(false)
+    }
+    if (parseInt(numeroInv2) === digitosInversion[1]) {
+      setIsAnimatingInv2(false)
+    }
+    if (parseInt(numeroInv3) === digitosInversion[2]) {
+      setIsAnimatingInv3(false)
+    }
+    if (parseInt(numeroInv4) === digitosInversion[3]) {
+      setIsAnimatingInv4(false)
+    }
+    if (parseInt(numeroInv5) === digitosInversion[4]) {
+      setIsAnimatingInv5(false)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ meses1, numero1, numero2, numero3, numero4])
+  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2, numeroInv4, numeroInv5])
 
   const handleAnimation = () => {
-    // setIsAnimating(!isAnimating);
-    setIsAnimatingM1(!isAnimatingM1);
-    setIsAnimatingM2(!isAnimatingM2);
-    setIsAnimatingM3(!isAnimatingM3);
 
-    setIsAnimatingN1(!isAnimatingN1);
-    setIsAnimatingN2(!isAnimatingN2);
-    setIsAnimatingN3(!isAnimatingN3);
-    setIsAnimatingN4(!isAnimatingN4);
+    if(fecha){
+      setIsAnimatingM1(!isAnimatingM1);
+
+      setIsAnimatingN1(!isAnimatingN1);
+      setIsAnimatingN2(!isAnimatingN2);
+      setIsAnimatingN3(!isAnimatingN3);
+      setIsAnimatingN4(!isAnimatingN4);
+    }
+    
+
+    setIsAnimatingInv1(!isAnimatingInv1);
+    setIsAnimatingInv2(!isAnimatingInv2);
+    setIsAnimatingInv3(!isAnimatingInv3);
+    setIsAnimatingInv4(!isAnimatingInv4);
+    setIsAnimatingInv5(!isAnimatingInv5);
 
   };
 
   const handleDate = (date) => {
-    console.log(date)
+    console.log('date', date)
     const mes = date["$M"];
     const ano = date["$y"];
 
@@ -226,18 +299,21 @@ export default function Animacion() {
 
     if (updateFecha !== null) {
       const { year, month } = updateFecha;
-      console.log('year', year.toString().split(''))
-      setDigitos(year.toString().split('').map(i => parseInt(i, 10)))
-      console.log('month', month.toString().split(''))
-
-      setDigitosMes(meses[month].toString().split(''))
-      console.log('digitos', digitos)
-      console.log('digitosMes', meses[month].toString().split(''))
-      // digitos = year.toString().split('').map(digito => parseInt(digito, 10));
+      setDigitos(year.toString().split('').map(i => parseInt(i, 10)));
+      setDigitosMes(meses[month].toString().split(''));
     }
 
   }
 
+
+  const handleNumeroInversion = (num) => {
+    setIsInversion(num.target.value);
+    setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
+  }
+
+  const openCalendar = () => {
+    console.log('abrir calendario')
+  }
 
   return (
     <div className="bg-paper py-5">
@@ -251,7 +327,8 @@ export default function Animacion() {
           </Typography>
           <Grid container justifyContent="center" spacing={2}>
             <Grid item xs={12} sm={12} container justifyContent="center" className="box_simulator_time p-3 pb-2 mb-3 rounded rounded-4"  >
-              <Grid item xs={12} sm={3}>
+              {/* MES */}
+              <Grid item xs={12} sm={3} onClick={openCalendar}>
                 <Grid item xs={12} sm={12} className="box_digits">
                   <Grid container spacing={1} alignItems="center">
                     <Grid item xs={4}>
@@ -277,6 +354,8 @@ export default function Animacion() {
                   </Typography>
                 </Grid>
               </Grid>
+
+              {/* ANO */}
               <Grid item xs={12} sm={3}>
                 <Grid item xs={12} sm={12} className="box_digits">
                   <Grid container spacing={1} alignItems="center">
@@ -308,6 +387,8 @@ export default function Animacion() {
                   </Typography>
                 </Grid>
               </Grid>
+
+              {/* INVERSION */}
               <Grid item xs={12} sm={4}>
                 <Grid item xs={12} sm={12} className="box_digits">
                   <Grid container spacing={1} alignItems="center">
@@ -316,15 +397,14 @@ export default function Animacion() {
                         S/
                       </Typography>
                     </Grid>
-
                     <Grid item sm={2} >
                       <Typography variant="h6" component="div" className="box_digit">
-                        0
+                        {numeroInv1}
                       </Typography>
                     </Grid>
                     <Grid item sm={2} >
                       <Typography variant="h6" component="div" className="box_digit">
-                        0
+                        {numeroInv2}
                       </Typography>
                     </Grid>
                     <Grid item sm={1} >
@@ -334,12 +414,17 @@ export default function Animacion() {
                     </Grid>
                     <Grid item sm={2} >
                       <Typography variant="h6" component="div" className="box_digit">
-                        0
+                        {numeroInv3}
                       </Typography>
                     </Grid>
                     <Grid item sm={2} >
                       <Typography variant="h6" component="div" className="box_digit">
-                        0
+                        {numeroInv4}
+                      </Typography>
+                    </Grid>
+                    <Grid item sm={1} >
+                      <Typography variant="h6" component="div" className="box_digit">
+                        {numeroInv5}
                       </Typography>
                     </Grid>
 
@@ -354,25 +439,37 @@ export default function Animacion() {
                 </Grid>
               </Grid>
             </Grid>
+
+            <Grid item xs={12} sm={3}>
+              <LocalizationProvider dateAdapter={AdapterDayjs} >
+                {/* <DatePicker ref={datePickerRef} onChange={handleDate} views={['month', 'year']}
+                 style={{ visibility: 'hidden'  }} /> */}
+                 <MobileDatePicker  onChange={handleDate}
+                    label="Select a date"
+                   
+                    views={['month', 'year']} 
+                />
+              </LocalizationProvider>
+            </Grid>
+
             <Grid item xs={12} sm={3}>
               <Button className='btn hbt-btn-primary' onClick={handleAnimation} >
-                {/* {isAnimating ? 'Simlar ahora' : 'ver más'} */}
                 Simular ahora
-              
               </Button>
             </Grid>
-            <Grid item xs={12} sm={12}>
 
+            <Grid item xs={12} sm={3}>
+              <TextField
+                label="Ingrese un número"
+                type='number'
+                value={isInversion}
+                onChange={handleNumeroInversion}
+                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', maxLength: 6 }}
+              />
+              {/* <Input value={isInversion} label="ingrese un numero" onChange={handleNumeroInversion}/> */}
             </Grid>
-          </Grid>
 
-          <Grid>
-            <LocalizationProvider dateAdapter={AdapterDayjs} >
-              {/* <DatePicker onChange={handleDate} views={['month', 'year']} /> */}
-              <DatePicker ref={datePickerRef} onChange={handleDate} views={['month','year']} style={{ display: 'none' }} />
-            </LocalizationProvider>
           </Grid>
-
         </div>
       </Container>
     </div>
