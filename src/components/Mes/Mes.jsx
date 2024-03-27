@@ -540,7 +540,7 @@ export default function Animacion() {
                     </Grid>
                     <Grid item sm={1.5} >
                       <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv4}
+                        {numeroInv5}
                       </Typography>
                     </Grid>
                
