@@ -3,43 +3,32 @@ import './Mes.scss'
 
 import { Container, Typography, Button, Grid } from '@mui/material';
 
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { esLocale } from 'date-fns/locale/es'; // Importa el idioma español
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import Input from '@mui/material/Input';
-import { set } from 'date-fns';
+import "dayjs/locale/es";
+
 import TextField from '@mui/material/TextField';
 
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Unstable_Grid2';
-import { experimentalStyled as styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Unstable_Grid2';
+import { makeStyles } from '@mui/styles';
 
-
-
-// const useStyles = makeStyles((theme) => ({
-//   textFieldContainer: {
-//     position: 'relative',
-//   },
-//   textField: {
-//     position: 'absolute',
-//     zIndex: 1,
-//   },
-// }));
-
+const useStyles = makeStyles({
+  root: {
+    '& .MuiInputBase-input': {
+      color: 'white', // Cambia el color del texto
+      fontSize: '1.25rem',
+      marginRight: '1px solid #FFF',
+      textAlign: 'center',
+      marginRight: '5px', // Ajusta el valor según sea necesario para la separación deseada
+      fontWeight: 'bold', 
+      with: '-webkit-fill-available',
+    },
+  },
+});
 
 export default function Animacion() {
 
-  // const classes = useStyles();
+  const classes = useStyles();
 
   const [mostrarTextField, setMostrarTextField] = useState(false);
 
@@ -49,16 +38,16 @@ export default function Animacion() {
 
   const num1 = ["0", "1", "3", "4", "5", "6", "7", "8", "9", "2"];
   const num2 = ["1", "3", "4", "5", "6", "7", "8", "9", "2", "0"];
-  const num3 = ["0", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const num4 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const num3 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const num4 = ["9", "0", "1", "2", "3", "4", "5", "6", "7", "8"];
 
   const inv1 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const inv2 = ["1", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   const inv3 = ["1", "2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
   const inv4 = ["1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv5 = ["2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv6 = ["5", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv5 = ["2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  const inv6 = ["5", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
   const inv7 = ["3", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const inv8 = ["2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -87,6 +76,7 @@ export default function Animacion() {
   const [numeroInv6, setNumeroInv6] = useState('-');
   const [numeroInv7, setNumeroInv7] = useState('-');
   const [numeroInv8, setNumeroInv8] = useState('-');
+  const [numeroInv9, setNumeroInv9] = useState('-');
 
 
 
@@ -106,7 +96,11 @@ export default function Animacion() {
   const [showInv3, setShowInv3] = useState(true);
   const [isAnimatingInv1, setIsAnimatingInv1] = useState(false);
   const [isAnimatingInv2, setIsAnimatingInv2] = useState(false);
+
+  const [dosDigitos, setDosDigitos] = useState(true);
   const [isAnimatingInv3, setIsAnimatingInv3] = useState(false);
+  const [tresDigitos, setTresDigitos] = useState(false);
+
 
   const [isAnimatingInv4, setIsAnimatingInv4] = useState(false);
   const [isAnimatingInv5, setIsAnimatingInv5] = useState(false);
@@ -126,11 +120,12 @@ export default function Animacion() {
 
   const [digitos, setDigitos] = useState([]);
   const [digitosMes, setDigitosMes] = useState([]);
-  const [digitosInversion, setDigitosInversion] = useState([]);
+  const [digitosInversion, setDigitosInversion] = useState([null]);
 
   const [abrir, setAbrir] = useState(false);
 
-  const velocidad = 100;
+  const velocidad = 90;
+  const [grid, setGrid] = useState(2);
 
   useEffect(() => {
     let index1 = 0;
@@ -148,13 +143,12 @@ export default function Animacion() {
     let numInv3 = 0;
     let numInv4 = 0;
     let numInv5 = 0;
-
-
+    let numInv6 = 0;
+    let numInv7 = 0;
 
     let interval1, interval2, interval3, interval4, interval5, interval6, interval7;
 
-    let interval8, interval9, interval10, interval11, interval12;
-
+    let interval8, interval9, interval10, interval11, interval12, interval13, interval14, interval15, interval16;
 
     // Animacion meses
     if (isAnimatingM1) {
@@ -247,7 +241,19 @@ export default function Animacion() {
       }, velocidad);
     }
 
+    if (isAnimatingInv6) {
+      interval13 = setInterval(() => {
+        numInv6 = (numInv6 + 1) % inv6.length;
+        setNumeroInv6(inv6[numInv6]);
+      }, velocidad);
+    }
 
+    if (isAnimatingInv7) {
+      interval14 = setInterval(() => {
+        numInv7 = (numInv7 + 1) % inv6.length;
+        setNumeroInv7(inv6[numInv7]);
+      }, velocidad);
+    }
 
 
     return () => {
@@ -265,6 +271,8 @@ export default function Animacion() {
       clearInterval(interval10);
       clearInterval(interval11);
       clearInterval(interval12);
+      clearInterval(interval13);
+      clearInterval(interval14);
 
     };
 
@@ -272,7 +280,7 @@ export default function Animacion() {
   }, [isAnimatingM1, isAnimatingM2, isAnimatingM3,
     isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4,
     isAnimatingInv1, isAnimatingInv2, isAnimatingInv3,
-    isAnimatingInv4, isAnimatingInv5])
+    isAnimatingInv4, isAnimatingInv5, isAnimatingInv6, isAnimatingInv7])
 
   useEffect(() => {
 
@@ -316,8 +324,14 @@ export default function Animacion() {
     if (parseInt(numeroInv5) === digitosInversion[4]) {
       setIsAnimatingInv5(false)
     }
+    if (parseInt(numeroInv6) === digitosInversion[5]) {
+      setIsAnimatingInv6(false)
+    }
+    if (parseInt(numeroInv7) === digitosInversion[6]) {
+      setIsAnimatingInv7(false)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2, numeroInv3, numeroInv4, numeroInv5])
+  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2, numeroInv3, numeroInv4, numeroInv5, numeroInv6, numeroInv7])
 
   const handleAnimation = () => {
 
@@ -335,6 +349,8 @@ export default function Animacion() {
     setNumeroInv3('0');
     setNumeroInv4('0');
     setNumeroInv5('0');
+    setNumeroInv6('0');
+    setNumeroInv7('0');
 
     if (fecha) {
       setIsAnimatingM1(!isAnimatingM1);
@@ -354,6 +370,8 @@ export default function Animacion() {
       setIsAnimatingInv3(!isAnimatingInv3);
       setIsAnimatingInv4(!isAnimatingInv4);
       setIsAnimatingInv5(!isAnimatingInv5);
+      setIsAnimatingInv6(!isAnimatingInv6);
+      setIsAnimatingInv7(!isAnimatingInv7);
     }
 
     const valor = parseInt(isInversion);
@@ -388,11 +406,42 @@ export default function Animacion() {
 
 
   const handleNumeroInversion = (num) => {
+
+    // setShowInv6(false);
     setIsInversion(num.target.value);
     setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
-    const cantidad = num.target.value.length;
+    const longitud = num.target.value.length;
 
-    for (let i = 0; i < cantidad; i++) {
+    if (longitud === 5) {
+      setGrid(2)
+      setDosDigitos(true);
+      setTresDigitos(false);
+      setShowInv6(false);
+      setShowInv7(false);
+    }
+    if (longitud === 6) {
+      setGrid(1.5);
+      setDosDigitos(false);
+      setTresDigitos(true);
+      setShowInv6(true);
+      setShowInv7(false);
+    }
+    if (longitud === 7) {
+      const valor = '00' + num.target.value;
+      setGrid(1);
+      setShowInv7(true);
+      setShowInv8(true);
+      setShowInv9(true);
+
+      console.log('valor : ', valor);
+      console.log('longitud: ', valor.length);
+      setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
+
+    }
+
+
+
+    for (let i = 0; i < longitud; i++) {
       switch (i) {
         case 0:
           setNumeroInv1(num.target.value.charAt(i));
@@ -410,8 +459,10 @@ export default function Animacion() {
           setNumeroInv5(num.target.value.charAt(i));
           break;
         case 5:
-          setShowInv6(true);
           setNumeroInv6(num.target.value.charAt(i));
+          break;
+        case 6:
+          setNumeroInv7(num.target.value.charAt(i));
           break;
         // Agregar más casos si es necesario
         default:
@@ -429,7 +480,7 @@ export default function Animacion() {
     setMostrarTextField(!mostrarTextField);
   }
 
-  
+
   return (
     <div className="bg-paper py-5">
       <Container>
@@ -504,116 +555,112 @@ export default function Animacion() {
               </Grid>
 
               {/* INVERSION */}
-              <Grid item xs={12} sm={4} >
-                <Grid item xs={12} sm={12} className="box_digits" onClick={openInversion} style={{ cursor: 'pointer' }}>
-                  <Grid container spacing={1} alignItems="center">
-                    <Grid item sm={2} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        S/
-                      </Typography>
-                    </Grid>
-                    <Grid item sm={1.5} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv1}
-                      </Typography>
-                    </Grid>
-                    <Grid item sm={2} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv2}
-                      </Typography>
-                    </Grid>
-                    <Grid item sm={1} >
-                      <Typography variant="h7" component="div" className="box_digit">
-                        ,
-                      </Typography>
-                    </Grid>
+              <Grid item xs={12} sm={5} >
+                <Grid item xs={12} sm={12} className="box_digits" style={{ cursor: 'pointer' }}>
+                  {!mostrarTextField &&
+                    <Grid container spacing={1} alignItems="center" onClick={openInversion} >
+                      <Grid item sm={1} >
+                        <Typography variant="h6" component="div" className="box_digit">
+                          S
+                        </Typography>
+                      </Grid>
+                      <Grid item sm={grid} >
+                        <Typography variant="h6" component="div" className="box_digit">
+                          {numeroInv1}
+                        </Typography>
+                      </Grid>
+                      <Grid item sm={grid} >
+                        <Typography variant="h6" component="div" className="box_digit">
+                          {numeroInv2}
+                        </Typography>
+                      </Grid>
+                      {dosDigitos && <Grid item sm={1} >
+                        <Typography variant="h7" component="div" className="box_digit">
+                          ,
+                        </Typography>
+                      </Grid>
+                      }
+                      <Grid item sm={grid} >
+                        <Typography variant="h6" component="div" className="box_digit">
+                          {numeroInv3}
+                        </Typography>
+                      </Grid>
+                      {tresDigitos && <Grid item sm={1} >
+                        <Typography variant="h7" component="div" className="box_digit">
+                          ,
+                        </Typography>
+                      </Grid>
+                      }
+                      <Grid item sm={grid} >
+                        <Typography variant="h6" component="div" className="box_digit">
+                          {numeroInv4}
+                        </Typography>
+                      </Grid>
+                      <Grid item sm={1} >
+                        <Typography variant="h6" component="div" className="box_digit">
+                          {numeroInv5}
+                        </Typography>
+                      </Grid>
 
-                    <Grid item sm={2} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv3}
-                      </Typography>
-                    </Grid>
-                    <Grid item sm={2} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv4}
-                      </Typography>
-                    </Grid>
-                    <Grid item sm={1.5} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv5}
-                      </Typography>
-                    </Grid>
-               
-                    {/* {showInv1 && <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv1}
-                      </Typography>
-                    </Grid>}
-                    {showInv2 && <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv2}
-                      </Typography>
-                    </Grid>}
-                    <Grid item sm={1} >
-                      <Typography variant="h7" component="div" className="box_digit">
-                        ,
-                      </Typography>
-                    </Grid>
-                    {showInv3 && <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv3}
-                      </Typography>
-                    </Grid>}
+                      {showInv6 && <Grid item sm={grid} >
+                        <Typography variant="h7" component="div" className="box_digit">
+                          {numeroInv6}
+                        </Typography>
+                      </Grid>}
+                      {showInv7 && <Grid item sm={1} >
+                        <Typography variant="h7" component="div" className="box_digit">
+                          ,
+                        </Typography>
+                      </Grid>}
 
-                    <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv4}
-                      </Typography>
-                    </Grid>
-                    <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv5}
-                      </Typography>
-                    </Grid>
-
-                    {showInv6 && <Grid item sm={1} >
-                      <Typography variant="h7" component="div" className="box_digit">
-                        ,
-                      </Typography>
+                      {showInv7 && <Grid item sm={grid}>
+                        <Typography variant="h7" component="div" className="box_digit">
+                          {numeroInv7}
+                        </Typography>
+                      </Grid>}
+                      {showInv7 && <Grid item sm={grid}>
+                        <Typography variant="h7" component="div" className="box_digit">
+                          {numeroInv8}
+                        </Typography>
+                      </Grid>}
+                      {showInv7 && <Grid item sm={grid}>
+                        <Typography variant="h7" component="div" className="box_digit">
+                          {numeroInv9}
+                        </Typography>
+                      </Grid>}
                     </Grid>}
 
-                    {showInv6 && <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv6}
-                      </Typography>
+                  {mostrarTextField && 
+                    <Grid container spacing={1} alignItems="center">
+                      <Grid item sm={12} xs={12} >
+                        <TextField
+                          autoComplete='off'
+                          className={classes.root}
+                          // onMouseLeave={() => setMostrarTextField(false)} 
+                          // onBlur={() => setMostrarTextField(true)}
+                          value={isInversion}
+                          onChange={handleNumeroInversion}
+                          inputProps={{ maxLength: 5 }}
+                        />
+                      </Grid>
                     </Grid>}
 
-                    {showInv7 && <Grid item sm={1} >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv7}
-                      </Typography>
-                    </Grid>}
-                    {showInv8 && <Grid item sm={1}  >
-                      <Typography variant="h6" component="div" className="box_digit">
-                        {numeroInv8}
-                      </Typography>
-                    </Grid>} */}
-
-                  </Grid>
-                  {/* <DatePicker label={'"month" and "year"'} views={['month', 'year']} /> */}
                 </Grid>
                 <Grid>
                   <Typography variant="h6" className="px-3 py-1 box_red_info">
                     Inversión
                   </Typography>
-                  {mostrarTextField && (
+                  {/* {mostrarTextField && (
                     <TextField
+                      className="textFieldTransition"
+                      label="Inversión"
+                      onBlur={() => setMostrarTextField(false)}
                       value={isInversion}
                       onChange={handleNumeroInversion}
-                      inputProps={{ maxLength: 5 }}
-                      style={{ position: 'absolute', zIndex: 1, marginLeft: '-145px',background: '#f0f0f0' }}
+                      inputProps={{ maxLength: 7 }}
+                      style={{ position: 'absolute', zIndex: 1, marginLeft: '-145px', background: '#f0f0f0' }}
                     />
-                  )}
+                  )} */}
                 </Grid>
               </Grid>
 
@@ -621,14 +668,15 @@ export default function Animacion() {
 
             <Grid container justifyContent="center" spacing={2}>
               <Grid item xs={3} sm={3} style={{ display: 'none' }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} >
-                  <MobileDatePicker
+                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
+                  <MobileDatePicker locale='es'
                     open={abrir}
                     onClose={() => setAbrir(false)}
                     onChange={handleDate}
                     label="Selecciona una fecha"
-                    views={['month', 'year']}
+                    views={[ 'month', 'year']}
                     style={{ display: 'none' }}
+                  // minDate={new Date('2020-01-01')}
                   />
                 </LocalizationProvider>
               </Grid>
@@ -638,15 +686,6 @@ export default function Animacion() {
                   Simular ahora
                 </Button>
               </Grid>
-              {/* 
-              <Grid item xs={3} sm={3}  >
-                <TextField
-                  type='number'
-                  value={isInversion}
-                  onChange={handleNumeroInversion}
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', maxLength: 6 }}
-                />
-              </Grid> */}
             </Grid>
           </Grid>
         </div>

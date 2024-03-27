@@ -35,6 +35,11 @@ $input-placeholder:#CDCED0;
     color: $color-paper;
     background: rgba(206, 19, 54, 0.9);
 }
+
+.textFieldTransition {
+    transition: all 1ms ease;
+    width: max-content; /* Cambia 0.3s al tiempo deseado de la transición */
+}
   
 ::selection {
     color: $color-paper;
@@ -216,7 +221,7 @@ p{
     border-right: 1px solid $color-paper !important;
 }
 
-box_digit_inv{
+.box_digit_inv{
     font-size: 1.875rem !important;
     font-weight: 500 !important;
     padding: 6px 5px;
