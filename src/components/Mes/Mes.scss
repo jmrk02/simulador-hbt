@@ -212,7 +212,14 @@ p{
 .box_digit {
     font-size: 1.875rem !important;
     font-weight: 500 !important;
-    padding: 6px 7px;
+    padding: 6px 5px;
+    border-right: 1px solid $color-paper !important;
+}
+
+box_digit_inv{
+    font-size: 1.875rem !important;
+    font-weight: 500 !important;
+    padding: 6px 5px;
     border-right: 1px solid $color-paper !important;
 }
 .box_digit:last-child {
