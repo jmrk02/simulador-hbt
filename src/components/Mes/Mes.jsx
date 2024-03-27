@@ -35,15 +35,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Animacion() {
 
-  const datePickerRef = React.useRef(null); // Referencia para el DatePicker
 
-  // Función para abrir el calendario
-  const handleCalendarOpen = () => {
-    console.log('abrir calendario')
-    if (datePickerRef.current) {
-      datePickerRef.current.getElementsByTagName('input')[0].click(); // Abre el calendario
-    }
-  };
 
   const mes1 = ["E", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
   const mes2 = ["N", "E", "A", "B", "A", "U", "U", "G", "E", "C", "O", "I"];
@@ -95,6 +87,8 @@ export default function Animacion() {
   const [fecha, setFecha] = useState(null);
 
   const [isAnimatingM1, setIsAnimatingM1] = useState(false);
+  const [isAnimatingM2, setIsAnimatingM2] = useState(false);
+  const [isAnimatingM3, setIsAnimatingM3] = useState(false);
 
   const [isAnimatingN1, setIsAnimatingN1] = useState(false);
   const [isAnimatingN2, setIsAnimatingN2] = useState(false);
@@ -151,7 +145,7 @@ export default function Animacion() {
 
 
 
-    let interval1, interval4, interval5, interval6, interval7;
+    let interval1,interval2,interval3, interval4, interval5, interval6, interval7;
 
     let interval8, interval9, interval10, interval11, interval12;
 
@@ -160,14 +154,21 @@ export default function Animacion() {
     if (isAnimatingM1) {
       interval1 = setInterval(() => {
         index1 = (index1 + 1) % mes1.length;
-        index2 = (index2 + 1) % mes2.length;
-        index3 = (index3 + 1) % mes3.length;
-
-
         setMeses1(mes1[index1]);
-        setMeses2(mes2[index2]);
-        setMeses3(mes3[index3]);
+      }, velocidad);
+    }
 
+    if(isAnimatingM2){
+      interval2 = setInterval(() => {
+        index2 = (index2 + 1) % mes2.length;
+        setMeses2(mes2[index2]);
+      }, velocidad);
+    }
+
+    if(isAnimatingM3){
+      interval3 = setInterval(() => {
+        index3 = (index3 + 1) % mes3.length;
+        setMeses3(mes3[index3]);
       }, velocidad);
     }
 
@@ -184,7 +185,6 @@ export default function Animacion() {
         number2 = (number2 + 1) % num2.length;
         setNumero2(num2[number2]);
         if (parseInt(numero2) === digitos[1]) {
-          setNumero2(digitos[1])
           clearInterval(interval5)
         }
       }, velocidad);
@@ -246,6 +246,8 @@ export default function Animacion() {
 
     return () => {
       clearInterval(interval1);
+      clearInterval(interval2);
+      clearInterval(interval3);
 
       clearInterval(interval4);
       clearInterval(interval5);
@@ -261,7 +263,7 @@ export default function Animacion() {
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAnimatingM1,
+  }, [isAnimatingM1,isAnimatingM2,isAnimatingM3,
     isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4,
     isAnimatingInv1, isAnimatingInv2, isAnimatingInv3,
     isAnimatingInv4, isAnimatingInv5])
@@ -271,6 +273,12 @@ export default function Animacion() {
 
     if (digitosMes[0] === meses1) {
       setIsAnimatingM1(false)
+    }
+    if (digitosMes[1] === meses2) {
+      setIsAnimatingM2(false)
+    }
+    if (digitosMes[2] === meses3) {
+      setIsAnimatingM3(false)
     }
 
     if (parseInt(numero1) === digitos[0]) {
@@ -315,10 +323,10 @@ export default function Animacion() {
     setMeses2('M');
     setMeses3('M');
 
-    setNumero1('0');
-    setNumero2('0');
-    setNumero3('0');
-    setNumero4('0');
+    setNumero1(num1[0]);
+    setNumero2(num2[0]);
+    setNumero3(num3[0]);
+    setNumero4(num4[0]);
 
     setNumeroInv1('0');
     setNumeroInv2('0');
@@ -328,6 +336,8 @@ export default function Animacion() {
 
     if (fecha) {
       setIsAnimatingM1(!isAnimatingM1);
+      setIsAnimatingM2(!isAnimatingM2);
+      setIsAnimatingM3(!isAnimatingM3);
 
       setIsAnimatingN1(!isAnimatingN1);
       setIsAnimatingN2(!isAnimatingN2);
