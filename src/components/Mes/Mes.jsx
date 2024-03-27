@@ -24,18 +24,24 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 // import Grid from '@mui/material/Unstable_Grid2';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+
+
+// const useStyles = makeStyles((theme) => ({
+//   textFieldContainer: {
+//     position: 'relative',
+//   },
+//   textField: {
+//     position: 'absolute',
+//     zIndex: 1,
+//   },
+// }));
 
 
 export default function Animacion() {
 
+  // const classes = useStyles();
 
+  const [mostrarTextField, setMostrarTextField] = useState(false);
 
   const mes1 = ["E", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
   const mes2 = ["N", "E", "A", "B", "A", "U", "U", "G", "E", "C", "O", "I"];
@@ -47,8 +53,8 @@ export default function Animacion() {
   const num4 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   const inv1 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv2 = ["1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv3 = ["1", "2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv2 = ["1", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  const inv3 = ["1", "2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
   const inv4 = ["1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const inv5 = ["2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -145,7 +151,7 @@ export default function Animacion() {
 
 
 
-    let interval1,interval2,interval3, interval4, interval5, interval6, interval7;
+    let interval1, interval2, interval3, interval4, interval5, interval6, interval7;
 
     let interval8, interval9, interval10, interval11, interval12;
 
@@ -158,14 +164,14 @@ export default function Animacion() {
       }, velocidad);
     }
 
-    if(isAnimatingM2){
+    if (isAnimatingM2) {
       interval2 = setInterval(() => {
         index2 = (index2 + 1) % mes2.length;
         setMeses2(mes2[index2]);
       }, velocidad);
     }
 
-    if(isAnimatingM3){
+    if (isAnimatingM3) {
       interval3 = setInterval(() => {
         index3 = (index3 + 1) % mes3.length;
         setMeses3(mes3[index3]);
@@ -263,7 +269,7 @@ export default function Animacion() {
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAnimatingM1,isAnimatingM2,isAnimatingM3,
+  }, [isAnimatingM1, isAnimatingM2, isAnimatingM3,
     isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4,
     isAnimatingInv1, isAnimatingInv2, isAnimatingInv3,
     isAnimatingInv4, isAnimatingInv5])
@@ -282,20 +288,16 @@ export default function Animacion() {
     }
 
     if (parseInt(numero1) === digitos[0]) {
-      console.log('primer digito igual')
       setIsAnimatingN1(false)
     }
 
     if (parseInt(numero2) === digitos[1]) {
-      console.log('segundo digito igual')
       setIsAnimatingN2(false)
     }
     if (parseInt(numero3) === digitos[2]) {
-      console.log('tercer digito igual')
       setIsAnimatingN3(false)
     }
     if (parseInt(numero4) === digitos[3]) {
-      console.log('cuarto digito igual')
       setIsAnimatingN4(false)
     }
 
@@ -355,17 +357,12 @@ export default function Animacion() {
     }
 
     const valor = parseInt(isInversion);
-    console.log('valor', typeof (valor), valor);
     const aumento = 0.05 * valor;
-    console.log('aumento', aumento)
-    // const inversion = valor + aumento;
     setDigitosInversion((valor + aumento).toString().split('').map(i => parseInt(i, 10)));
-    console.log('digitosInversion', digitosInversion)
-
+    setMostrarTextField(false);
   };
 
   const handleDate = (date) => {
-    console.log('date', date)
     const mes = date["$M"];
     const ano = date["$y"];
 
@@ -392,9 +389,8 @@ export default function Animacion() {
 
   const handleNumeroInversion = (num) => {
     setIsInversion(num.target.value);
-    // setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
+    setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
     const cantidad = num.target.value.length;
-    console.log('cantidad', cantidad)
 
     for (let i = 0; i < cantidad; i++) {
       switch (i) {
@@ -428,6 +424,12 @@ export default function Animacion() {
     setAbrir(true);
   }
 
+  const openInversion = () => {
+    console.log('click')
+    setMostrarTextField(!mostrarTextField);
+  }
+
+  
   return (
     <div className="bg-paper py-5">
       <Container>
@@ -441,7 +443,7 @@ export default function Animacion() {
           <Grid justifyContent="center" >
             <Grid item xs={12} sm={12} container justifyContent="center" className="box_simulator_time p-3 pb-2 mb-3 rounded rounded-4"  >
               {/* MES */}
-              <Grid item xs={12} sm={3} onClick={openCalendar}>
+              <Grid item xs={12} sm={3} onClick={openCalendar} style={{ cursor: 'pointer' }}>
                 <Grid item xs={12} sm={12} className="box_digits">
                   <Grid container spacing={1} alignItems="center">
                     <Grid item xs={4}>
@@ -469,7 +471,7 @@ export default function Animacion() {
               </Grid>
 
               {/* ANO */}
-              <Grid item xs={12} sm={3} onClick={openCalendar}>
+              <Grid item xs={12} sm={3} onClick={openCalendar} style={{ cursor: 'pointer' }}>
                 <Grid item xs={12} sm={12} className="box_digits">
                   <Grid container spacing={1} alignItems="center">
                     <Grid item xs={3}>
@@ -502,15 +504,47 @@ export default function Animacion() {
               </Grid>
 
               {/* INVERSION */}
-              <Grid item xs={12} sm={5}>
-                <Grid item xs={12} sm={12} className="box_digits">
+              <Grid item xs={12} sm={4} >
+                <Grid item xs={12} sm={12} className="box_digits" onClick={openInversion} style={{ cursor: 'pointer' }}>
                   <Grid container spacing={1} alignItems="center">
                     <Grid item sm={2} >
                       <Typography variant="h6" component="div" className="box_digit">
                         S/
                       </Typography>
                     </Grid>
-                    {showInv1 && <Grid item sm={1} >
+                    <Grid item sm={1.5} >
+                      <Typography variant="h6" component="div" className="box_digit">
+                        {numeroInv1}
+                      </Typography>
+                    </Grid>
+                    <Grid item sm={2} >
+                      <Typography variant="h6" component="div" className="box_digit">
+                        {numeroInv2}
+                      </Typography>
+                    </Grid>
+                    <Grid item sm={1} >
+                      <Typography variant="h7" component="div" className="box_digit">
+                        ,
+                      </Typography>
+                    </Grid>
+
+                    <Grid item sm={2} >
+                      <Typography variant="h6" component="div" className="box_digit">
+                        {numeroInv3}
+                      </Typography>
+                    </Grid>
+                    <Grid item sm={2} >
+                      <Typography variant="h6" component="div" className="box_digit">
+                        {numeroInv4}
+                      </Typography>
+                    </Grid>
+                    <Grid item sm={1.5} >
+                      <Typography variant="h6" component="div" className="box_digit">
+                        {numeroInv4}
+                      </Typography>
+                    </Grid>
+               
+                    {/* {showInv1 && <Grid item sm={1} >
                       <Typography variant="h6" component="div" className="box_digit">
                         {numeroInv1}
                       </Typography>
@@ -563,7 +597,7 @@ export default function Animacion() {
                       <Typography variant="h6" component="div" className="box_digit">
                         {numeroInv8}
                       </Typography>
-                    </Grid>}
+                    </Grid>} */}
 
                   </Grid>
                   {/* <DatePicker label={'"month" and "year"'} views={['month', 'year']} /> */}
@@ -572,12 +606,20 @@ export default function Animacion() {
                   <Typography variant="h6" className="px-3 py-1 box_red_info">
                     Inversión
                   </Typography>
+                  {mostrarTextField && (
+                    <TextField
+                      value={isInversion}
+                      onChange={handleNumeroInversion}
+                      inputProps={{ maxLength: 5 }}
+                      style={{ position: 'absolute', zIndex: 1, marginLeft: '-145px',background: '#f0f0f0' }}
+                    />
+                  )}
                 </Grid>
               </Grid>
 
             </Grid>
 
-            <Grid container style={{ margin: '1rem' }} justifyContent="center" spacing={2}>
+            <Grid container justifyContent="center" spacing={2}>
               <Grid item xs={3} sm={3} style={{ display: 'none' }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                   <MobileDatePicker
@@ -596,21 +638,16 @@ export default function Animacion() {
                   Simular ahora
                 </Button>
               </Grid>
-
-              <Grid item xs={3} sm={3} style={{ display: 'none' }}  >
+              {/* 
+              <Grid item xs={3} sm={3}  >
                 <TextField
-                  label="Ingrese un número"
                   type='number'
                   value={isInversion}
                   onChange={handleNumeroInversion}
                   inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', maxLength: 6 }}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
-
-
-
-
           </Grid>
         </div>
       </Container>
