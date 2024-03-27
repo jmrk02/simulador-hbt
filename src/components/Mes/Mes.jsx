@@ -16,9 +16,21 @@ import Input from '@mui/material/Input';
 import { set } from 'date-fns';
 import TextField from '@mui/material/TextField';
 
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 // import Grid from '@mui/material/Unstable_Grid2';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+// import Grid from '@mui/material/Unstable_Grid2';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 
 export default function Animacion() {
@@ -38,21 +50,21 @@ export default function Animacion() {
   const mes3 = ["E", "B", "R", "R", "Y", "N", "L", "O", "P", "T", "V", "C"];
 
   const num1 = ["0", "1", "3", "4", "5", "6", "7", "8", "9", "2"];
-  const num2 = ["1", "3", "4", "5", "6", "7", "8", "9", "2","0"];
-  const num3 = ["0","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const num2 = ["1", "3", "4", "5", "6", "7", "8", "9", "2", "0"];
+  const num3 = ["0", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const num4 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   const inv1 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv2 = ["1","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv3 = ["1","2","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv2 = ["1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv3 = ["1", "2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-  const inv4 = ["1","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv5 = ["2","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv6 = ["5","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv4 = ["1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv5 = ["2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv6 = ["5", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-  const inv7 = ["3","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv8 = ["2","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const inv9 = ["6","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv7 = ["3", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv8 = ["2", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const inv9 = ["6", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 
   const meses = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
@@ -116,7 +128,7 @@ export default function Animacion() {
   const [digitosMes, setDigitosMes] = useState([]);
   const [digitosInversion, setDigitosInversion] = useState([]);
 
-  const [abrir, setAbrir] = useState(false);  
+  const [abrir, setAbrir] = useState(false);
 
   const velocidad = 100;
 
@@ -249,10 +261,10 @@ export default function Animacion() {
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAnimatingM1, 
-    isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4, 
+  }, [isAnimatingM1,
+    isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4,
     isAnimatingInv1, isAnimatingInv2, isAnimatingInv3,
-     isAnimatingInv4, isAnimatingInv5])
+    isAnimatingInv4, isAnimatingInv5])
 
   useEffect(() => {
 
@@ -260,7 +272,6 @@ export default function Animacion() {
     if (digitosMes[0] === meses1) {
       setIsAnimatingM1(false)
     }
-
 
     if (parseInt(numero1) === digitos[0]) {
       console.log('primer digito igual')
@@ -296,7 +307,7 @@ export default function Animacion() {
       setIsAnimatingInv5(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2,numeroInv3, numeroInv4, numeroInv5])
+  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2, numeroInv3, numeroInv4, numeroInv5])
 
   const handleAnimation = () => {
 
@@ -311,11 +322,11 @@ export default function Animacion() {
 
     setNumeroInv1('0');
     setNumeroInv2('0');
-    setNumeroInv3('0'); 
+    setNumeroInv3('0');
     setNumeroInv4('0');
     setNumeroInv5('0');
 
-    if(fecha){
+    if (fecha) {
       setIsAnimatingM1(!isAnimatingM1);
 
       setIsAnimatingN1(!isAnimatingN1);
@@ -323,9 +334,9 @@ export default function Animacion() {
       setIsAnimatingN3(!isAnimatingN3);
       setIsAnimatingN4(!isAnimatingN4);
     }
-    
 
-    if(digitosInversion.length > 0){
+
+    if (digitosInversion.length > 0) {
       setIsAnimatingInv1(!isAnimatingInv1);
       setIsAnimatingInv2(!isAnimatingInv2);
       setIsAnimatingInv3(!isAnimatingInv3);
@@ -334,8 +345,8 @@ export default function Animacion() {
     }
 
     const valor = parseInt(isInversion);
-    console.log('valor', typeof(valor), valor);
-    const aumento = 0.05*valor;
+    console.log('valor', typeof (valor), valor);
+    const aumento = 0.05 * valor;
     console.log('aumento', aumento)
     // const inversion = valor + aumento;
     setDigitosInversion((valor + aumento).toString().split('').map(i => parseInt(i, 10)));
@@ -417,7 +428,7 @@ export default function Animacion() {
           <Typography variant="P" paragraph>
             Elige un periodo y monto de inversión para visualizar gráficamente tu rentabilidad potencial.
           </Typography>
-          <Grid  justifyContent="center" >
+          <Grid justifyContent="center" >
             <Grid item xs={12} sm={12} container justifyContent="center" className="box_simulator_time p-3 pb-2 mb-3 rounded rounded-4"  >
               {/* MES */}
               <Grid item xs={12} sm={3} onClick={openCalendar}>
@@ -526,14 +537,14 @@ export default function Animacion() {
                         ,
                       </Typography>
                     </Grid>}
-                    
+
                     {showInv6 && <Grid item sm={1} >
                       <Typography variant="h6" component="div" className="box_digit">
                         {numeroInv6}
                       </Typography>
                     </Grid>}
-                    
-                     {showInv7 && <Grid item sm={1} >
+
+                    {showInv7 && <Grid item sm={1} >
                       <Typography variant="h6" component="div" className="box_digit">
                         {numeroInv7}
                       </Typography>
@@ -553,36 +564,42 @@ export default function Animacion() {
                   </Typography>
                 </Grid>
               </Grid>
+
             </Grid>
 
-            <Grid item xs={12} sm={3} style={{ display: 'none' }}>
-              <LocalizationProvider dateAdapter={AdapterDayjs} >
-                  <MobileDatePicker  
+            <Grid container style={{ margin: '1rem' }} justifyContent="center" spacing={2}>
+              <Grid item xs={3} sm={3} style={{ display: 'none' }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                  <MobileDatePicker
                     open={abrir}
                     onClose={() => setAbrir(false)}
                     onChange={handleDate}
                     label="Selecciona una fecha"
                     views={['month', 'year']}
-                    style={{ display: 'none'  }}
+                    style={{ display: 'none' }}
+                  />
+                </LocalizationProvider>
+              </Grid>
+
+              <Grid item xs={3} sm={3}>
+                <Button className='btn hbt-btn-primary' onClick={handleAnimation} >
+                  Simular ahora
+                </Button>
+              </Grid>
+
+              <Grid item xs={3} sm={3} style={{ display: 'none' }}  >
+                <TextField
+                  label="Ingrese un número"
+                  type='number'
+                  value={isInversion}
+                  onChange={handleNumeroInversion}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', maxLength: 6 }}
                 />
-              </LocalizationProvider>
+              </Grid>
             </Grid>
 
-            <Grid item xs={12} sm={3}>
-              <Button className='btn hbt-btn-primary' onClick={handleAnimation} >
-                Simular ahora
-              </Button>
-            </Grid>
 
-            <Grid item xs={12} sm={3}  >
-              <TextField
-                label="Ingrese un número"
-                type='number'
-                value={isInversion}
-                onChange={handleNumeroInversion} 
-                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', maxLength: 6 }}
-              />
-            </Grid>
+
 
           </Grid>
         </div>
