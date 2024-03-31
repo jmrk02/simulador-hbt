@@ -1,13 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 import { useMediaQuery, useTheme } from "@mui/material";
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importar los estilos CSS de Bootstrap
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import React from 'react';
-
+import "bootstrap/dist/css/bootstrap.min.css"; // Importar los estilos CSS de Bootstrap
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import React, { useEffect } from "react";
 
 import Header from "./Components/header";
-import {BeforeAfter} from "./Components/beforeAfter/BeforeAfter";
+import { BeforeAfter } from "./Components/beforeAfter/BeforeAfter";
 import imagenAntigua from "./assets/img/HeroSection-old.png";
 import imagenNueva from "./assets/img/HeroSection-new.png";
 import imagenAntiguaMobile from "./assets/img/mobile-habi-old.png";
@@ -33,7 +32,6 @@ function App() {
       <StcResultado />
       <StcFormulario />
       <Footer />
-
     </div>
   );
 }
