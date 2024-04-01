@@ -10,16 +10,16 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Importar los estilos CSS de Bo
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import React, { useEffect } from "react";
 
-import Header from "./Components/header";
-import { BeforeAfter } from "./Components/beforeAfter/BeforeAfter";
+import Header from "./components/header/index";
+import { BeforeAfter } from "./components/beforeAfter/BeforeAfter";
 import imagenAntigua from "./assets/img/HeroSection-old.png";
 import imagenNueva from "./assets/img/HeroSection-new.png";
 import imagenAntiguaMobile from "./assets/img/mobile-habi-old.png";
 import imagenNuevaMobile from "./assets/img/mobile-habi.png";
-import Simulator from "./Components/simulator";
-import StcResultado from "./Components/stcResultado";
-import StcFormulario from "./Components/stcFormulario";
-import Footer from "./Components/footer";
+// import Simulator from "./Components/simulator";
+import StcResultado from "./components/stcResultado";
+import StcFormulario from "./components/stcFormulario/index";
+import Footer from "./components/footer/index";
 
 function App() {
   const theme = useTheme();
@@ -33,7 +33,7 @@ function App() {
         beforeImage={screenMobile ? imagenAntiguaMobile : imagenAntigua}
         afterImage={screenMobile ? imagenNuevaMobile : imagenNueva}
       />
-      <Simulator />
+      {/* <Simulator /> */}
       <Prueba />
       <StcResultado />
       <StcFormulario />
