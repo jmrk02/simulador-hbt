@@ -1,0 +1,29 @@
+/**********FOOTER************/
+footer {
+    background-color: #333536;
+    color: #FFF;
+    font-size: 0.75rem;
+    padding-top: 10rem !important;
+  }
+  
+  footer .logo {
+    width: 140px;
+  }
+  
+  footer .copyright {
+    text-align: right;
+  }
+  
+@media only screen and (max-width: 768px) {
+  /**********FOOTER************/
+  footer {
+    padding-top: 9rem !important;
+  }
+  footer,
+  footer .copyright {
+    text-align: center;
+  }
+  footer .copyright {
+    margin-top: 2rem;
+  }
+}

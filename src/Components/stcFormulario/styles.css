@@ -1,0 +1,81 @@
+/**********SECTION FORM************/
+.stc-hbt-form {
+    margin-bottom: -50px;
+    z-index: 10;
+    position: relative;
+  }
+  
+  .stc-hbt-form .container {
+    background-image: url(../../assets/img/path-form.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-position-y: 0px;
+    background-size: cover;
+    height: 450px;
+  }
+  
+  .stc-hbt-form h3 {
+    font-weight: 400 !important;
+  }
+  
+  .stc-hbt-form h3 em {
+    font-style: normal !important;
+    font-weight: 600 !important;
+  }
+  
+  .stc-hbt-form p {
+    font-size: 1rem !important;
+  }
+  
+  img.img-form-habi {
+    max-width: 500px !important;
+    left: -30px;
+    position: relative;
+  }
+  
+  .coin,
+  .coin-horizontal {
+    width: 70px;
+    height: 70px;
+    /*
+    background-color: gold;
+    border-radius: 50%;
+    */
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .coin:hover {
+    /*transform: scale(1.1) rotate(5deg);*/
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(43deg) rotateZ(0deg) skew(0deg, 0deg);
+  }
+  
+  .coin-horizontal:hover {
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(43deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  }
+  
+@media only screen and (max-width: 768px) {
+  /**********SECTION FORM************/
+  .stc-hbt-form .container {
+    height: auto !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  .stc-hbt-form .d-flex {
+    flex-wrap: wrap-reverse !important;
+  }
+  .stc-hbt-form .form-content {
+    width: 100%;
+  }
+  .img-form-habi {
+    margin-bottom: -50px;
+  }
+  .bg-form {
+    margin-top: -80px;
+  }
+  img.img-form-habi {
+    max-width: none;
+    left: auto;
+    position: relative;
+  }
+}
