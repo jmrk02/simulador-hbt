@@ -11,6 +11,7 @@ import "dayjs/locale/es";
 import TextField from '@mui/material/TextField';
 
 import { makeStyles } from '@mui/styles';
+import { set } from 'immutable';
 
 const useStyles = makeStyles({
   root: {
@@ -19,8 +20,7 @@ const useStyles = makeStyles({
       fontSize: '1.25rem',
       marginRight: '1px solid #FFF',
       textAlign: 'center',
-      marginRight: '5px', // Ajusta el valor según sea necesario para la separación deseada
-      fontWeight: 'bold', 
+      fontWeight: 'bold',
       with: '-webkit-fill-available',
     },
   },
@@ -91,9 +91,6 @@ export default function Animacion() {
   const [isAnimatingN3, setIsAnimatingN3] = useState(false);
   const [isAnimatingN4, setIsAnimatingN4] = useState(false);
 
-  const [showInv1, setShowInv1] = useState(true);
-  const [showInv2, setShowInv2] = useState(true);
-  const [showInv3, setShowInv3] = useState(true);
   const [isAnimatingInv1, setIsAnimatingInv1] = useState(false);
   const [isAnimatingInv2, setIsAnimatingInv2] = useState(false);
 
@@ -112,8 +109,7 @@ export default function Animacion() {
   const [isAnimatingInv8, setIsAnimatingInv8] = useState(false);
   const [isAnimatingInv9, setIsAnimatingInv9] = useState(false);
   const [showInv7, setShowInv7] = useState(false);
-  const [showInv8, setShowInv8] = useState(false);
-  const [showInv9, setShowInv9] = useState(false);
+
 
   const [isInversion, setIsInversion] = useState('');
 
@@ -138,13 +134,14 @@ export default function Animacion() {
     let number4 = 0;
 
 
-    let numInv1 = 0;
-    let numInv2 = 0;
-    let numInv3 = 0;
-    let numInv4 = 0;
-    let numInv5 = 0;
-    let numInv6 = 0;
-    let numInv7 = 0;
+    let numInv1,numInv2,numInv3,numInv4,numInv5,numInv6,numInv7,numInv8,numInv9 = 0;
+    // let numInv2 = 0;
+    // let numInv3 = 0;
+    // let numInv4 = 0;
+    // let numInv5 = 0;
+    // let numInv6 = 0;
+    // let numInv7,num = 0;
+    // let numInv8 = 0;
 
     let interval1, interval2, interval3, interval4, interval5, interval6, interval7;
 
@@ -250,10 +247,25 @@ export default function Animacion() {
 
     if (isAnimatingInv7) {
       interval14 = setInterval(() => {
-        numInv7 = (numInv7 + 1) % inv6.length;
-        setNumeroInv7(inv6[numInv7]);
+        numInv7 = (numInv7 + 1) % inv7.length;
+        setNumeroInv7(inv7[numInv7]);
       }, velocidad);
     }
+
+    if (isAnimatingInv8) {
+      interval15 = setInterval(() => {
+        numInv8 = (numInv8 + 1) % inv8.length;
+        setNumeroInv8(inv8[numInv8]);
+      }, velocidad);
+    }
+
+    if (isAnimatingInv9) {
+      interval16 = setInterval(() => {
+        numInv9 = (numInv9 + 1) % inv9.length;
+        setNumeroInv9(inv9[numInv9]);
+      }, velocidad);
+    }
+
 
 
     return () => {
@@ -273,6 +285,8 @@ export default function Animacion() {
       clearInterval(interval12);
       clearInterval(interval13);
       clearInterval(interval14);
+      clearInterval(interval15);
+      clearInterval(interval16);
 
     };
 
@@ -280,7 +294,7 @@ export default function Animacion() {
   }, [isAnimatingM1, isAnimatingM2, isAnimatingM3,
     isAnimatingN1, isAnimatingN2, isAnimatingN3, isAnimatingN4,
     isAnimatingInv1, isAnimatingInv2, isAnimatingInv3,
-    isAnimatingInv4, isAnimatingInv5, isAnimatingInv6, isAnimatingInv7])
+    isAnimatingInv4, isAnimatingInv5, isAnimatingInv6, isAnimatingInv7,isAnimatingInv8,isAnimatingInv9])
 
   useEffect(() => {
 
@@ -330,8 +344,14 @@ export default function Animacion() {
     if (parseInt(numeroInv7) === digitosInversion[6]) {
       setIsAnimatingInv7(false)
     }
+    if(parseInt(numeroInv8) === digitosInversion[7]){
+      setIsAnimatingInv8(false)
+    }
+    if(parseInt(numeroInv9) === digitosInversion[8]){
+      setIsAnimatingInv9(false)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2, numeroInv3, numeroInv4, numeroInv5, numeroInv6, numeroInv7])
+  }, [meses1, numero1, numero2, numero3, numero4, numeroInv1, numeroInv2, numeroInv3, numeroInv4, numeroInv5, numeroInv6, numeroInv7,numeroInv8,numeroInv9])
 
   const handleAnimation = () => {
 
@@ -372,6 +392,8 @@ export default function Animacion() {
       setIsAnimatingInv5(!isAnimatingInv5);
       setIsAnimatingInv6(!isAnimatingInv6);
       setIsAnimatingInv7(!isAnimatingInv7);
+      setIsAnimatingInv8(!isAnimatingInv8);
+      setIsAnimatingInv9(!isAnimatingInv9);
     }
 
     const valor = parseInt(isInversion);
@@ -407,62 +429,99 @@ export default function Animacion() {
 
   const handleNumeroInversion = (num) => {
 
-    // setShowInv6(false);
-    setIsInversion(num.target.value);
-    setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
-    const longitud = num.target.value.length;
-
-    if (longitud === 5) {
-      setGrid(2)
-      setDosDigitos(true);
-      setTresDigitos(false);
-      setShowInv6(false);
-      setShowInv7(false);
+    let numero = num.target.value;
+    setIsInversion(num.target.value)
+    let longitud = num.target.value.length;
+    if (longitud > 0) {
+      switch (longitud) {
+        case 4:
+          numero = '0' + num.target.value;
+          longitud = numero.length
+          setGrid(2);
+          setDosDigitos(true);
+          setTresDigitos(false);
+          setShowInv6(false);
+          setShowInv7(false);
+          break;
+        case 5:
+          // setIsInversion(numero)
+          setGrid(2)
+          setDosDigitos(true);
+          setTresDigitos(false);
+          setShowInv6(false);
+          setShowInv7(false);
+          break;
+        case 6:
+          // setIsInversion(numero)
+          setGrid(1.5);
+          setDosDigitos(false);
+          setTresDigitos(true);
+          setShowInv6(true);
+          setShowInv7(false);
+          break;
+        case 7:
+          // setIsInversion(numero)
+          numero = '00' + num.target.value;
+          console.log(numero.length)
+          longitud = numero.length
+          setGrid(0.5);
+          setShowInv7(true);
+          // setShowInv8(true);
+          // setShowInv9(true);
+          break;
+        case 8:
+          // setIsInversion(numero)
+          numero = '0' + num.target.value;
+          longitud = numero.length
+          console.log(numero.length)
+          setGrid(1);
+          setShowInv7(true);
+          // setShowInv8(true);
+          // setShowInv9(true);
+          break;
+        default:
+          break;
+      }
+    } else {
+      numero = '';
     }
-    if (longitud === 6) {
-      setGrid(1.5);
-      setDosDigitos(false);
-      setTresDigitos(true);
-      setShowInv6(true);
-      setShowInv7(false);
-    }
-    if (longitud === 7) {
-      const valor = '00' + num.target.value;
-      setGrid(1);
-      setShowInv7(true);
-      setShowInv8(true);
-      setShowInv9(true);
 
-      console.log('valor : ', valor);
-      console.log('longitud: ', valor.length);
-      setDigitosInversion(num.target.value.toString().split('').map(i => parseInt(i, 10)));
-
-    }
-
-
+    console.log(numero.toString().split('').map(i => parseInt(i, 10)))
+    setDigitosInversion(numero.toString().split('').map(i => parseInt(i, 10)));
+    
 
     for (let i = 0; i < longitud; i++) {
       switch (i) {
         case 0:
-          setNumeroInv1(num.target.value.charAt(i));
+          console.log('numero 1', numero.charAt(i))
+
+          setNumeroInv1(numero.charAt(i));
           break;
         case 1:
-          setNumeroInv2(num.target.value.charAt(i));
+          setNumeroInv2(numero.charAt(i));
           break;
         case 2:
-          setNumeroInv3(num.target.value.charAt(i));
+          setNumeroInv3(numero.charAt(i));
           break;
         case 3:
-          setNumeroInv4(num.target.value.charAt(i));
+          setNumeroInv4(numero.charAt(i));
           break;
         case 4:
-          setNumeroInv5(num.target.value.charAt(i));
+          setNumeroInv5(numero.charAt(i));
           break;
         case 5:
-          setNumeroInv6(num.target.value.charAt(i));
+          setNumeroInv6(numero.charAt(i));
           break;
         case 6:
-          setNumeroInv7(num.target.value.charAt(i));
+          setNumeroInv7(numero.charAt(i));
+          break;
+        case 7:
+          console.log('numero 7', numero.charAt(i))
+          setNumeroInv8(numero.charAt(i));
+          break;
+        case 8:
+          console.log('numero 8', numero.charAt(i))
+          setNumeroInv9(numero.charAt(i));
           break;
         // Agregar más casos si es necesario
         default:
@@ -559,9 +618,9 @@ export default function Animacion() {
                 <Grid item xs={12} sm={12} className="box_digits" style={{ cursor: 'pointer' }}>
                   {!mostrarTextField &&
                     <Grid container spacing={1} alignItems="center" onClick={openInversion} >
-                      <Grid item sm={1} >
+                      <Grid item sm={2} >
                         <Typography variant="h6" component="div" className="box_digit">
-                          S
+                          S/
                         </Typography>
                       </Grid>
                       <Grid item sm={grid} >
@@ -630,17 +689,17 @@ export default function Animacion() {
                       </Grid>}
                     </Grid>}
 
-                  {mostrarTextField && 
+                  {mostrarTextField &&
                     <Grid container spacing={1} alignItems="center">
                       <Grid item sm={12} xs={12} >
                         <TextField
                           autoComplete='off'
                           className={classes.root}
-                          // onMouseLeave={() => setMostrarTextField(false)} 
+                          onMouseLeave={() => setMostrarTextField(false)}
                           // onBlur={() => setMostrarTextField(true)}
                           value={isInversion}
                           onChange={handleNumeroInversion}
-                          inputProps={{ maxLength: 5 }}
+                          inputProps={{ maxLength: 9 }}
                         />
                       </Grid>
                     </Grid>}
@@ -674,9 +733,8 @@ export default function Animacion() {
                     onClose={() => setAbrir(false)}
                     onChange={handleDate}
                     label="Selecciona una fecha"
-                    views={[ 'month', 'year']}
+                    views={['month', 'year']}
                     style={{ display: 'none' }}
-                  // minDate={new Date('2020-01-01')}
                   />
                 </LocalizationProvider>
               </Grid>
