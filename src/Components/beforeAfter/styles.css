@@ -95,7 +95,14 @@
 
 /*********************************************************
 *********************************************************/
-.wrap-before,
+.wrap-before{
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0px;
+  padding: 0 4rem;
+}
 .wrap-after{
   width: 100vw;
   height: 100%;
