@@ -114,8 +114,18 @@
 .wrap-after {
   text-align: right;
 }
+.wrap-before .description{
+    width: 30% !important;
+}
 .wrap-after .description {
   width: 100% !important;
+  padding-left: 70%;
+}
+.wrap-before .description h3{
+  font-size: 2rem !important;
+}
+.wrap-after .description h3{
+  font-size: 2.1875rem !important;
 }
 .wrap-before .description h3{
   font-family: "joystixmonospace";
@@ -126,14 +136,29 @@
 
 .wrap-before .description p{
   font-size: 1rem;
+  line-height: 1.5rem;
   font-family: "Roboto Slab";
 }
 .wrap-before .description span{
   color: #CE1335;
 }
-
+.wrap-after .description p{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .wrap-after h3,
 .wrap-after p{
   color: #FFF !important;
 }
 
+
+
+@media only screen and (max-width: 768px) {
+  .wrap-before .description {
+    width: 100% !important;
+  }
+  .wrap-after .description {
+    width: 100% !important;
+    padding-left: 0%;
+  }
+}

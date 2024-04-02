@@ -53,7 +53,9 @@
   .coin-horizontal:hover {
     transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(43deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
   }
-  
+  .succes-message{
+    width: 120px !important;
+  }
 @media only screen and (max-width: 768px) {
   /**********SECTION FORM************/
   .stc-hbt-form .container {

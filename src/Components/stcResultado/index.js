@@ -243,8 +243,8 @@ const StcResultado = () => {
                   </a>
                   <div className="d-block d-none d-lg-block">
                     <span className="disclaimer">
-                      *La rentabilidad es un factor que{" "}
-                      <a href="#">se evalúa anualmente y puede variar.</a>
+                      * La rentabilidad es un factor que{" "}
+                      <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y puede variar.</a>
                     </span>
                   </div>
                 </div>
@@ -394,8 +394,8 @@ const StcResultado = () => {
                   </a>
                   <div className="d-block d-none d-lg-block">
                     <span className="disclaimer">
-                      *La rentabilidad es un factor que{" "}
-                      <a href="#">se evalúa anualmente y puede variar.</a>
+                      * La rentabilidad es un factor que{" "}
+                      <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y puede variar.</a>
                     </span>
                   </div>
                 </div>
@@ -545,8 +545,8 @@ const StcResultado = () => {
                   </a>
                   <div className="d-block d-none d-lg-block">
                     <span className="disclaimer">
-                      *La rentabilidad es un factor que{" "}
-                      <a href="#">se evalúa anualmente y puede variar.</a>
+                      * La rentabilidad es un factor que{" "}
+                      <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y puede variar.</a>
                     </span>
                   </div>
                 </div>
@@ -635,8 +635,8 @@ const StcResultado = () => {
           </div>
           <div className="d-lg-none text-center">
             <span className="disclaimer">
-              *La rentabilidad es un factor que{" "}
-              <a href="#">se evalúa anualmente y varía.</a>
+              * La rentabilidad es un factor que{" "}
+              <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y varía.</a>
             </span>
           </div>
         </div>

@@ -7,8 +7,9 @@ import coin2 from "../../assets/img/coin2.png"
 import coin3 from "../../assets/img/coin3.png"
 import coin4 from "../../assets/img/coin4.png"
 import habierror from "../../assets/img/habi-error-icon.png"
-import habisuccess from "../../assets/img/habi-success-icon.png"
 import soundcoin from "../../assets/img/coin-sound.mp3"
+import "animate.css"
+import { DotLottiePlayer } from "@dotlottie/player-component"
 
 const Header = () => {
 
@@ -51,7 +52,7 @@ const Header = () => {
                         <div className="bg-form bg-paper p-4 border border-1 rounded-4">
                             {/* FORMULARIO INVERTIR */}
                             <div className="form" id="formulario-invertir">
-                                <h3 className="mb-2">¡Empieza a invertir<br/>
+                                <h3 className="mb-2 animate__animated animate__bounce">¡Empieza a invertir<br/>
                                 <em>hoy mismo!</em></h3>
                                 <p>Descubre tu potencial de ganancia en Inversiones, completa los siguientes datos por favor.</p>
 
@@ -92,9 +93,8 @@ const Header = () => {
 
                             {/* PERTENECE A HABITAT
                             <div className="message" id="pertenece-hbt">
-                                <img src={habisuccess} alt="icon message"/>
-                                <div id="lottie-animation" style="">
-                                    <dotlottie-player src="https://lottie.host/7d20879b-665c-47a2-983d-316045d7fa47/IVNpqcx1R1.json" background="transparent" speed="0.5" loop autoplay></dotlottie-player>
+                                <div id="lottie-animation" className="succes-message">
+                                    <dotlottie-player src="https://lottie.host/fd03a93c-ba46-4c1f-802a-7cd9ea0b05ce/aY408FnCW5.json" background="transparent" speed="0.5" loop autoplay></dotlottie-player>
                                 </div>
                                 <h3 className="mb-2">¡Ya eres parte de<br/>
                                     <em>AFP Habitat!</em></h3>
