@@ -16,6 +16,7 @@ import dayjs from 'dayjs';
 import { makeStyles } from '@mui/styles';
 import { set } from 'date-fns';
 import { clear } from '@testing-library/user-event/dist/clear';
+import { position } from 'stylis';
 
 const useStyles = makeStyles({
     root: {
@@ -67,6 +68,7 @@ function Prueba() {
     const [positionN2, setPositionN2] = useState(0);
     const [positionN3, setPositionN3] = useState(0);
     const [positionN4, setPositionN4] = useState(0);
+    const [terminado,setTerminado] = useState(false);
     const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88.5]
 
     const [mostrarTextField, setMostrarTextField] = useState(false);
@@ -171,11 +173,12 @@ function Prueba() {
 
     };
 
-    useEffect(() => {
-        if (positionN3 === posicionesAno.indexOf(19.5) && positionN4 === posicionesAno.indexOf(39)) {
-            setTexto(!texto);
-        }
-    }, [positionM1, positionN1, positionN2, positionN3, positionN4, positionINV1, positionINV2, positionINV3, positionINV4, positionINV5, positionINV6, positionINV7, positionINV8, positionINV9,]);
+    // useEffect(() => {
+    //     if(!runningN3){
+    //         console.log('runningN3', runningN3)
+    //         setTexto(false)
+    //     }
+    // },[])
 
     //EFECTO AÑO
     useEffect(() => {
@@ -185,8 +188,8 @@ function Prueba() {
             let contador1 = 0;
             animationIntervalN1 = setInterval(() => {
                 setPositionN1((prevPosition) => {
-                    console.log(digitosAno[0])
-                    console.log(posicionesAno.indexOf(prevPosition))
+                    // console.log(digitosAno[0])
+                    // console.log(posicionesAno.indexOf(prevPosition))
                     if (posicionesAno.indexOf(prevPosition) === 2) {
                         setRunningN1(false);
                         clearInterval(animationIntervalN1);
@@ -194,9 +197,9 @@ function Prueba() {
                         if (contador1 === 9) {
                             contador1 = 0;
                         }
-                        console.log('prevPosition N1', prevPosition)
+                        // console.log('prevPosition N1', prevPosition)
                         const nextPosition = posicionesAno[contador1];
-                        console.log('nextPosition N1', nextPosition)
+                        // console.log('nextPosition N1', nextPosition)
 
                         contador1++;
                         return nextPosition;
@@ -250,6 +253,7 @@ function Prueba() {
                 setPositionN4((prevPosition) => {
                     if (posicionesAno.indexOf(prevPosition) === 4) {
                         setRunningN4(false);
+                        setTerminado(true);
                         clearInterval(animationIntervalN4);
                     } else {
                         if (cont4 === 9) {
@@ -261,6 +265,10 @@ function Prueba() {
                     }
                 });
             }, velocidad);
+        }
+
+        if(!runningN1 && !runningN2 && !runningN3 && !runningN4 && terminado){
+            setTexto(!texto)
         }
 
         return () => {
@@ -489,7 +497,7 @@ function Prueba() {
             animationIntervalInv8 = setInterval(() => {
                 setPositionINV8((prevPosition) => {
                     if (posicionesAno.indexOf(prevPosition) === digitosInversion[7]) {
-                        console.log('posicionesAno.indexOf(prevPosition)', posicionesAno.indexOf(prevPosition))
+                        // console.log('posicionesAno.indexOf(prevPosition)', posicionesAno.indexOf(prevPosition))
                         setRunningInv8(false);
                         clearInterval(animationIntervalInv8);
                         contador8 = 0;
@@ -542,7 +550,7 @@ function Prueba() {
     }
 
     const handleDate = (date) => {
-        console.log('date', date)   
+        // console.log('date', date)   
         
 
         if(date === null){
@@ -702,7 +710,7 @@ function Prueba() {
         }
 
         const digitos = numero.toString().split('').map(i => parseInt(i, 10));
-        console.log('digitos', digitos)
+        // console.log('digitos', digitos)
         setDigitosInversion(digitos);
         setPositionINV1(posicionesAno[digitos[0]]);
         setRunningInv1(false);
