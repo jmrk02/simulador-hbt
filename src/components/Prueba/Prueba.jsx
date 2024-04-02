@@ -67,8 +67,8 @@ function Prueba() {
     const [positionN3, setPositionN3] = useState(0);
     const [positionN4, setPositionN4] = useState(0);
     const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88.5]
-
-
+                        //0    1   2    3    4    5    6    7    8    9
+                       
     const [mostrarTextField, setMostrarTextField] = useState(false);
     const [positionINV1, setPositionINV1] = useState(0);
     const [positionINV2, setPositionINV2] = useState(0);
@@ -119,6 +119,13 @@ function Prueba() {
     const [coma5Dig, setComa5Dig] = useState(true);
     const [coma6Dig, setComa6Dig] = useState(false);
 
+    
+    const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
+    const [texto, setTexto] = useState(true);
+    const inputPropsInversion = {
+        maxLength: 8 
+    }
+
     const toggleAnimation = () => {
 
         setPositionN1(0);
@@ -162,7 +169,11 @@ function Prueba() {
 
     };
 
-
+    useEffect(() => {
+        if(positionN3 === posicionesAno.indexOf(19.5) && positionN4 === posicionesAno.indexOf(39)){
+            setTexto(!texto);
+        }
+    }, [positionM1,positionN1,positionN2,positionN3,positionN4,positionINV1,positionINV2,positionINV3,positionINV4,positionINV5,positionINV6,positionINV7,positionINV8,positionINV9,]);
 
     //EFECTO AÑO
     useEffect(() => {
@@ -333,6 +344,7 @@ function Prueba() {
     useEffect(() => {
         let animationIntervalInv1, animationIntervalInv2, animationIntervalInv3, animationIntervalInv4, animationIntervalInv5;
         let animationIntervalInv6, animationIntervalInv7, animationIntervalInv8, animationIntervalInv9;
+        let digitosTotal = digitosInversion.length;
         if (runningInv1) {
             let contador1 = 0;
             animationIntervalInv1 = setInterval(() => {
@@ -341,7 +353,7 @@ function Prueba() {
                         setRunningInv1(false);
                         clearInterval(animationIntervalInv1);
                     } else {
-                        if (contador1 === 9) {
+                        if (contador1 === 10) {
                             contador1 = 0;
                         }
                         const nextPosition = posicionesAno[contador1];
@@ -360,7 +372,7 @@ function Prueba() {
                         setRunningInv2(false);
                         clearInterval(animationIntervalInv2);
                     } else {
-                        if (contador2 === 9) {
+                        if (contador2 === 10) {
                             contador2 = 0;
                         }
                         const nextPosition = posicionesAno[contador2];
@@ -379,7 +391,7 @@ function Prueba() {
                         setRunningInv3(false);
                         clearInterval(animationIntervalInv3);
                     } else {
-                        if (contador3 === 9) {
+                        if (contador3 === 10) {
                             contador3 = 0;
                         }
                         const nextPosition = posicionesAno[contador3];
@@ -398,7 +410,7 @@ function Prueba() {
                         setRunningInv4(false);
                         clearInterval(animationIntervalInv4);
                     } else {
-                        if (contador4 === 9) {
+                        if (contador4 === 10) {
                             contador4 = 0;
                         }
                         const nextPosition = posicionesAno[contador4];
@@ -416,8 +428,11 @@ function Prueba() {
                     if (posicionesAno.indexOf(prevPosition) === digitosInversion[4]) {
                         setRunningInv5(false);
                         clearInterval(animationIntervalInv5);
+                        if(digitosTotal > contador5+1){
+                            setTexto(!texto);
+                        }
                     } else {
-                        if (contador5 === 9) {
+                        if (contador5 === 10) {
                             contador5 = 0;
                         }
                         const nextPosition = posicionesAno[contador5];
@@ -426,6 +441,7 @@ function Prueba() {
                     }
                 });
             }, velocidad);
+
         }
 
         if (runningInv6) {
@@ -436,7 +452,7 @@ function Prueba() {
                         setRunningInv6(false);
                         clearInterval(animationIntervalInv6);
                     } else {
-                        if (contador6 === 9) {
+                        if (contador6 === 10) {
                             contador6 = 0;
                         }
                         const nextPosition = posicionesAno[contador6];
@@ -454,8 +470,9 @@ function Prueba() {
                     if (posicionesAno.indexOf(prevPosition) === digitosInversion[6]) {
                         setRunningInv7(false);
                         clearInterval(animationIntervalInv7);
+                        contador7 = 0;
                     } else {
-                        if (contador7 === 9) {
+                        if (contador7 === 10) {
                             contador7 = 0;
                         }
                         const nextPosition = posicionesAno[contador7];
@@ -470,10 +487,12 @@ function Prueba() {
             animationIntervalInv8 = setInterval(() => {
                 setPositionINV8((prevPosition) => {
                     if (posicionesAno.indexOf(prevPosition) === digitosInversion[7]) {
+                        console.log('posicionesAno.indexOf(prevPosition)', posicionesAno.indexOf(prevPosition))
                         setRunningInv8(false);
                         clearInterval(animationIntervalInv8);
+                        contador8 = 0;
                     } else {
-                        if (contador8 === 9) {
+                        if (contador8 === 10) {
                             contador8 = 0;
                         }
                         const nextPosition = posicionesAno[contador8];
@@ -526,8 +545,8 @@ function Prueba() {
         const updateFecha = { month: mes, year: ano };
         console.log('updateFecha', updateFecha)
         if (updateFecha !== null) {
+            
             const { year, month } = updateFecha;
-
             setDigitosMes(month);
             setPositionM1(posicionMes[month]);
             const anos = year.toString().split('').map(i => parseInt(i, 10));
@@ -536,19 +555,55 @@ function Prueba() {
             setPositionN2(posicionesAno[anos[1]]);
             setPositionN3(posicionesAno[anos[2]]);
             setPositionN4(posicionesAno[anos[3]]);
-
-
+            if(isInversion.length > 0){
+                setHabilitarSimulacion(true);
+            }
+            
         }
     }
 
     const handleNumeroInversion = (num) => {
         let numero = num.target.value;
-        console.log('numero1', numero)
         setIsInversion(numero);
         let longitud = numero.length;
-        console.log('longitud1', longitud)
         let grid = 2;
         switch (longitud) {
+            case 1:
+                longitud = numero.length;
+                grid = 12 / (longitud + 1)
+                setGridMayor(5);
+                setGrid(grid);
+                setComa4Dig(false);
+                setComa5Dig(false);
+                setComa6Dig(false);
+                setShowMillon(false);
+                setShowMillon1(false);
+                setShowMillon2(false);
+                break;
+            case 2:
+                longitud = numero.length;
+                grid = 12 / (longitud + 1)
+                setGridMayor(5);
+                setGrid(grid);
+                setComa4Dig(false);
+                setComa5Dig(false);
+                setComa6Dig(false);
+                setShowMillon(false);
+                setShowMillon1(false);
+                setShowMillon2(false);
+                break;
+            case 3:
+                longitud = numero.length;
+                grid = 12 / (longitud + 1)
+                setGridMayor(5);
+                setGrid(grid);
+                setComa4Dig(false);
+                setComa5Dig(false);
+                setComa6Dig(false);
+                setShowMillon(false);
+                setShowMillon1(false);
+                setShowMillon2(false);
+                break;
             case 4:
                 longitud = numero.length;
                 grid = 12 / (longitud + 2)
@@ -628,18 +683,33 @@ function Prueba() {
         }
 
         const digitos = numero.toString().split('').map(i => parseInt(i, 10));
-
+        console.log('digitos', digitos)
         setDigitosInversion(digitos);
         setPositionINV1(posicionesAno[digitos[0]]);
+        setRunningInv1(false);
         setPositionINV2(posicionesAno[digitos[1]]);
+        setRunningInv2(false);
         setPositionINV3(posicionesAno[digitos[2]]);
+        setRunningInv3(false);
         setPositionINV4(posicionesAno[digitos[3]]);
+        setRunningInv4(false);
         setPositionINV5(posicionesAno[digitos[4]]);
+        setRunningInv5(false);
         setPositionINV6(posicionesAno[digitos[5]]);
+        setRunningInv6(false);
         if (longitud >= 7) {
             setPositionINV7(posicionesAno[digitos[6]]);
+            setRunningInv7(false);
             setPositionINV8(posicionesAno[digitos[7]]);
+            setRunningInv8(false);
             setPositionINV9(posicionesAno[digitos[8]]);
+            setRunningInv9(false);
+        }
+
+        if(longitud > 0 && digitosMes > 0){
+            setHabilitarSimulacion(true);
+        }else{
+            setHabilitarSimulacion(false);
         }
     }
 
@@ -738,7 +808,7 @@ function Prueba() {
                         </Grid>
                         {/* INVERSION */}
                         <Grid item xs={12} sm={gridMayor} >
-                            <Tooltip title="Monto mínimo 1,000" placement="bottom" arrow
+                            <Tooltip title="Monto mínimo 1,000" placement="bottom" arrow 
                                 slotProps={{
                                     popper: {
                                         modifiers: [{
@@ -897,7 +967,7 @@ function Prueba() {
                                                     onBlur={() => setMostrarTextField(true)}
                                                     value={isInversion}
                                                     onChange={handleNumeroInversion}
-                                                    inputProps={{ maxLength: 8 }}
+                                                    inputProps={inputPropsInversion}
                                                     fullWidth
                                                 />
                                             </Grid>
@@ -931,24 +1001,13 @@ function Prueba() {
                             </LocalizationProvider>
                         </Grid>
                         <Grid item xs={3} sm={3}>
-                            <Tooltip title="Ingrese valores"
-                                slotProps={{
-                                    popper: {
-                                        modifiers: [{
-                                            options: {
-                                                name: 'offset',
-                                                offset: [0, -14],
-                                            },
-                                        }]
-                                    }
-                                }}>
+                         
                                 <Button className='btn hbt-btn-primary'
                                     onClick={toggleAnimation}
-                                //disabled={!botonHabilitar}
+                                    disabled={!habiliarSimulacion}
                                 >
-                                    Simular ahora
+                                    {texto ? 'Simular ahora': 'Ver más'}
                                 </Button>
-                            </Tooltip>
                         </Grid>
                     </Grid>
                 </div>
