@@ -808,7 +808,7 @@ function Prueba() {
                         </Grid>
                         {/* INVERSION */}
                         <Grid item xs={12} sm={gridMayor} >
-                            <Tooltip title="Monto mínimo 1,000" placement="bottom" arrow 
+                            <Tooltip title="" placement="bottom" arrow 
                                 slotProps={{
                                     popper: {
                                         modifiers: [{
