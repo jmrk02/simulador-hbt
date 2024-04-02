@@ -11,3 +11,437 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/************************SASS STYLES**********************/
+/***********************COLORS******/
+/***********************HABITAT STYLES******/
+::-moz-selection { /* Code for Firefox */
+  color: #FFF;
+  background: rgba(206, 19, 54, 0.9);
+}
+
+::selection {
+  color: #FFF;
+  background: rgba(206, 19, 54, 0.9);
+}
+
+body {
+  font-family: "Roboto", sans-serif !important;
+  color: #333536 !important;
+  background-color: #F6F8F9 !important;
+}
+
+a {
+  color: #ff002e !important;
+  text-decoration: none !important;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #BF0029 !important;
+}
+
+.mt-n1 {
+  margin-top: -0.25rem !important;
+}
+
+.mt-n2 {
+  margin-top: -0.5rem !important;
+}
+
+.mt-n3 {
+  margin-top: -1rem !important;
+}
+
+.mt-n4 {
+  margin-top: -2rem !important;
+}
+
+.mt-n5 {
+  margin-top: -3rem !important;
+}
+
+/******TYPOGRAPHY******/
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 6rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 7.002rem;
+}
+
+h2 {
+  font-size: 3.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 4.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.5rem;
+}
+
+h4 {
+  font-size: 2.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.62438rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+  font-style: normal;
+  line-height: 2.001rem;
+}
+
+h6 {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+.subtitle1 {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.75rem;
+}
+
+.subtitle2 {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.37375rem;
+}
+
+.body1 {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.body2 {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25125rem;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.245rem;
+  text-transform: uppercase;
+  color: #646667;
+}
+
+.overline {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.995rem;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: #333;
+}
+
+.hr {
+  border-top: 1px solid #c7c7c7 !important;
+}
+
+.btn {
+  border-radius: 2rem !important;
+  color: #FFF;
+  padding: 0.5rem 1.5rem !important;
+}
+
+.hbt-btn-primary {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  color: #FFF !important;
+  background-color: #CE1335 !important;
+}
+
+.hbt-btn-primary:hover {
+  background-color: #BF0029 !important;
+  color: #FFF !important;
+}
+
+.hbt-btn-secondary {
+  background-color: #FFF !important;
+  border: 1px solid #c7c7c7 !important;
+  color: #244E72 !important;
+}
+
+.hbt-btn-secondary:hover {
+  background-color: #F6F8F9 !important;
+}
+
+.hbt-btn-outline {
+  background-color: #FFF !important;
+  border: 1px solid rgba(206, 19, 53, 0.5) !important;
+  color: #CE1335 !important;
+}
+
+.hbt-btn-outline:hover {
+  background-color: rgba(206, 19, 53, 0.04) !important;
+}
+
+.btn-group-mobile {
+  box-shadow: 0px 4px 13px 0px rgba(140, 142, 143, 0.2);
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  background: #D8DADB !important;
+  color: #868788 !important;
+  opacity: 0.99 !important;
+  border-color: #D8DADB !important;
+}
+
+.btn.hbt-btn-outline.disabled {
+  background: #FFF !important;
+  color: #868788 !important;
+  opacity: 0.99 !important;
+  border-color: #D8DADB !important;
+}
+
+.btn-tooltip-icon {
+  background-color: #CE1335 !important;
+  color: #FFF !important;
+}
+
+.btn-tooltip-icon span {
+  font-size: 0.85rem !important;
+}
+
+/******INPUT******/
+label {
+  font-weight: 500;
+}
+
+.form-control,
+.form-select {
+  background-color: #F5F5F5 !important;
+  padding: 0.875rem 1rem !important;
+  border-radius: 1rem !important;
+  border-color: #F5F5F5 !important;
+  color: #333536 !important;
+}
+
+.form-select option[disabled]:first-child,
+.form-select::placeholder,
+.form-control::placeholder {
+  color: #CDCED0 !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #2F6D95 !important;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1) !important;
+}
+
+/***********************BG STYLES******/
+.bg-paper {
+  background-color: #FFF;
+}
+
+.bg-red {
+  background-color: #CE1335;
+}
+
+/***********************ALERTS******/
+.alert {
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.alert.alert-info {
+  background-color: #EBF3FF !important;
+  box-shadow: 0px 4px 13px 0px rgba(27, 29, 39, 0.12) !important;
+  color: #333536;
+}
+
+.alert.alert-success {
+  background-color: #E6F2ED !important;
+  box-shadow: 0px 4px 13px 0px rgba(27, 29, 39, 0.12) !important;
+  color: #333536;
+}
+
+.alert.alert-danger {
+  background-color: #FFF3ED !important;
+  box-shadow: 0px 4px 13px 0px rgba(27, 29, 39, 0.12) !important;
+  color: #333536;
+}
+
+.alert.alert-warning {
+  background-color: #FFFAF0 !important;
+  box-shadow: 0px 4px 13px 0px rgba(27, 29, 39, 0.12) !important;
+  color: #333536;
+}
+
+.alert.alert-info .icons.material-symbols-rounded,
+.alert.alert-info .link-alert {
+  color: #0288D1 !important;
+  text-wrap: nowrap;
+  text-decoration: none !important;
+}
+
+.alert.alert-success .icons.material-symbols-rounded,
+.alert.alert-success .link-alert {
+  color: #2E7D32 !important;
+  text-wrap: nowrap;
+  text-decoration: none !important;
+}
+
+.alert.alert-danger .icons.material-symbols-rounded,
+.alert.alert-danger .link-alert {
+  color: #CE1335 !important;
+  text-wrap: nowrap;
+  text-decoration: none !important;
+}
+
+.alert.alert-warning .icons.material-symbols-rounded,
+.alert.alert-warning .link-alert {
+  color: #ED6C02 !important;
+  text-wrap: nowrap;
+  text-decoration: none !important;
+}
+
+/*****************************************/
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/***********************************************SIMULADOR STYLES***********************************************/
+h3 {
+  font-weight: 400 !important;
+}
+
+h3 em {
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+/**********HERO SECTION************/
+.stc-hero {
+  /*background-image: url(../../assets/img/hero-section.svg);*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  height: 650px;
+}
+
+/**********NAV************/
+header {
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  padding: 20px 0;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.content {
+  margin-top: 80px;
+  height: 1500px; /* Just for demonstration */
+}
+
+.dark {
+  display: none;
+}
+
+.light {
+  display: inline;
+}
+
+.logo .dark,
+.logo .light {
+  width: 140px;
+}
+
+.scroll {
+  background-color: #CE1335;
+}
