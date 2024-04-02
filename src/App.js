@@ -6,12 +6,6 @@ import Prueba from "./components/Prueba/Prueba";
 function App() {
   return (
     <div className="App">
-      {/* <Simulador/> */}
-      <br />
-      {/* <Animacion/> */}
-      {/* <Mes /> */}
-      <br />
-      <br />
       <Prueba />
     </div>
   );
