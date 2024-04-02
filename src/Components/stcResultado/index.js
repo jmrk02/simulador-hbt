@@ -4,58 +4,45 @@ import habimodal from "../../assets/img/habi-v-new.png";
 import lottie from "lottie-web";
 
 const StcResultado = () => {
-  const [animationPlayed, setAnimationPlayed] = useState(false);
+  const [animationPlayedFirst, setAnimationPlayedFirst] = useState(false);
+  const [animationPlayedSecond, setAnimationPlayedSecond] = useState(false);
+  const [animationPlayedThird, setAnimationPlayedThird] = useState(false);
   const [step, setStep] = useState(1);
 
   const handleFound = (step) => {
-    setAnimationPlayed(false);
     setStep(step);
+  };
+
+  const handleStartAnimation = async () => {
+    let animationStep;
+    if (step === 1) {
+      await setAnimationPlayedFirst(true);
+      animationStep = animationPlayedFirst;
+    } else if (step === 2) {
+      await setAnimationPlayedSecond(true);
+      animationStep = animationPlayedSecond;
+    } else {
+      await setAnimationPlayedThird(true);
+      animationStep = animationPlayedThird;
+    }
+    if (!animationStep) {
+      const animation = lottie.loadAnimation({
+        container: document.getElementById(`json-animation-here-${step}`),
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: "https://lottie.host/1b1df540-207e-49e1-819b-042ee1dd1d69/te8cgJPNGC.json",
+      });
+      animation.play();
+    }
   };
 
   useEffect(() => {
     const handleScroll = async () => {
-      console.log("asda");
-
-      const element = document.querySelector(".stc-hbt-resutl-rent");
-      const position = element.getBoundingClientRect();
-      console.log("top", position.top);
-      console.log("bottom", position.bottom);
-      console.log("innerHeight", window.innerHeight);
-      console.log("animationPlayed", animationPlayed);
-
-      if (
-        position.top < window.innerHeight &&
-        position.bottom >= 0 &&
-        animationPlayed === false
-      ) {
-        console.log("REPRODUCIO");
-
-        await setAnimationPlayed(true);
-        console.log("bbbbb", animationPlayed);
-        setTimeout(() => {
-          const animation = lottie.loadAnimation({
-            container: document.getElementById(`json-animation-here-${step}`),
-            renderer: "svg",
-            loop: false,
-            autoplay: false,
-            path: "https://lottie.host/1b1df540-207e-49e1-819b-042ee1dd1d69/te8cgJPNGC.json",
-          });
-          animation.play();
-        }, 1000); // Ajusta el tiempo de espera aquí si es necesario
-      }
+      handleStartAnimation();
     };
-    // if (window.scrollY < window.innerHeight) {
-
-    // }
     handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Limpiar el event listener cuando el componente se desmonta
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [animationPlayed, step]);
+  }, [step]);
 
   return (
     <div className="stc-hbt-resutl-rent py-5">
