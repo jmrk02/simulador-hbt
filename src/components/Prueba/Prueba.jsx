@@ -269,6 +269,8 @@ function Prueba() {
 
         if(!runningN1 && !runningN2 && !runningN3 && !runningN4 && terminado){
             setTexto(!texto)
+
+            // document.getElementById('mes1').classList.add('green');
         }
 
         return () => {
@@ -761,9 +763,11 @@ function Prueba() {
                                 <Grid item xs={12} sm={12} className="box_digits number-container">
                                     <Grid container spacing={1} alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6"
+                                            <Typography
+                                                //id="mes1"
+                                                variant="h6"
                                                 component="div"
-                                                className="box_digit"
+                                                className={`box_digit ${terminado && 'green'}`}
                                                 style={{ transform: `translate3d(0, -${positionM1}%, 0)` }}>
                                                 {meses[0].map((letter, index) => (
                                                     <div key={index}>{letter}</div>
@@ -771,7 +775,7 @@ function Prueba() {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <Typography variant="h6" component="div" className="box_digit" 
+                                            <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`} 
                                             style={{ 
                                                 transform: `translate3d(0, -${positionM1}%, 0)`,
 
@@ -782,7 +786,8 @@ function Prueba() {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionM1}%, 0)` }}>
+                                            <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`} 
+                                            style={{ transform: `translate3d(0, -${positionM1}%, 0)` }}>
                                                 {meses[2].map((letter, index) => (
                                                     <div key={index}>{letter}</div>
                                                 ))}
@@ -802,7 +807,7 @@ function Prueba() {
                             <Grid item xs={12} sm={12} className="box_digits number-container" >
                                 <Grid container spacing={1} alignItems="center">
                                     <Grid item xs={3}>
-                                        <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionN1}%, 0)` }}>
+                                        <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionN1}%, 0)` }}>
                                             {numbers.map((num, index) => (
                                                 <div key={index}>{num}</div>
 
@@ -810,21 +815,21 @@ function Prueba() {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={3}>
-                                        <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionN2}%, 0)` }}>
+                                        <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionN2}%, 0)` }}>
                                             {numbers.map((num, index) => (
                                                 <div key={index}>{num}</div>
                                             ))}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={3} >
-                                        <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionN3}%, 0)` }}>
+                                        <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionN3}%, 0)` }}>
                                             {numbers.map((num, index) => (
                                                 <div key={index}>{num}</div>
                                             ))}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={3} >
-                                        <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionN4}%, 0)` }}>
+                                        <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionN4}%, 0)` }}>
                                             {numbers.map((num, index) => (
                                                 <div key={index}>{num}</div>
                                             ))}
@@ -857,7 +862,7 @@ function Prueba() {
 
                                         <Grid container spacing={1} alignItems="center" onClick={openInversion} >
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit">
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`} >
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>S/</div>
                                                     ))}
@@ -865,7 +870,7 @@ function Prueba() {
                                             </Grid>
                                             {/* DIGITO UNO */}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV1}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV1}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
                                                     ))}
@@ -873,7 +878,7 @@ function Prueba() {
                                             </Grid>
                                             {coma4Dig &&
                                                 <Grid item sm={grid} >
-                                                    <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV1}%, 0)` }}>
+                                                    <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV1}%, 0)` }}>
                                                         {numbers.map((num, index) => (
                                                             <div key={index}>,</div>
                                                         ))}
@@ -882,7 +887,7 @@ function Prueba() {
                                             }
                                             {/* DIGITO DOS */}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV2}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV2}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
                                                     ))}
@@ -890,7 +895,7 @@ function Prueba() {
                                             </Grid>
                                             {coma5Dig &&
                                                 <Grid item sm={grid} >
-                                                    <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV1}%, 0)` }}>
+                                                    <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV1}%, 0)` }}>
                                                         {numbers.map((num, index) => (
                                                             <div key={index}>,</div>
                                                         ))}
@@ -899,7 +904,7 @@ function Prueba() {
                                             }
                                             {/* DIGITO TRES */}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV3}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV3}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
                                                     ))}
@@ -907,7 +912,7 @@ function Prueba() {
                                             </Grid>
                                             {coma6Dig &&
                                                 <Grid item sm={grid} >
-                                                    <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV4}%, 0)` }}>
+                                                    <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV4}%, 0)` }}>
                                                         {numbers.map((num, index) => (
                                                             <div key={index}>,</div>
                                                         ))}
@@ -916,14 +921,14 @@ function Prueba() {
                                             }
                                             {/* DIGITO CUATRO  */}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV4}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV4}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
                                                     ))}
                                                 </Typography>
                                             </Grid>
                                             {showMillon && <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV5}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV5}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>.</div>
                                                     ))}
@@ -931,7 +936,7 @@ function Prueba() {
                                             </Grid>}
                                             {/* DIGITO CINCO */}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV5}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV5}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
 
@@ -939,7 +944,7 @@ function Prueba() {
                                                 </Typography>
                                             </Grid>
                                             {showMillon1 && <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV6}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV6}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>.</div>
 
@@ -948,7 +953,7 @@ function Prueba() {
                                             </Grid>}
                                             {/* DIGITO SEIS */}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV6}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV6}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
 
@@ -956,7 +961,7 @@ function Prueba() {
                                                 </Typography>
                                             </Grid>
                                             {showMillon2 && <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV6}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV6}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>.</div>
 
@@ -964,7 +969,7 @@ function Prueba() {
                                                 </Typography>
                                             </Grid>}
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV7}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV7}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
 
@@ -972,7 +977,7 @@ function Prueba() {
                                                 </Typography>
                                             </Grid>
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV8}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV8}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
                                                     ))}
@@ -980,7 +985,7 @@ function Prueba() {
                                             </Grid>
 
                                             <Grid item sm={grid} >
-                                                <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionINV9}%, 0)` }}>
+                                                <Typography variant="h6" component="div" className={`box_digit ${terminado && 'green'}`}  style={{ transform: `translate3d(0, -${positionINV9}%, 0)` }}>
                                                     {numbers.map((num, index) => (
                                                         <div key={index}>{num}</div>
                                                     ))}
