@@ -68,7 +68,6 @@ function Prueba() {
     const [positionN3, setPositionN3] = useState(0);
     const [positionN4, setPositionN4] = useState(0);
     const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88.5]
-    //0    1   2    3    4    5    6    7    8    9
 
     const [mostrarTextField, setMostrarTextField] = useState(false);
     const [positionINV1, setPositionINV1] = useState(0);
@@ -543,12 +542,16 @@ function Prueba() {
     }
 
     const handleDate = (date) => {
+        console.log('date', date)   
+        
+
+        if(date === null){
+            return;
+        }
         const mes = date["$M"];
         const ano = date["$y"];
         const updateFecha = { month: mes, year: ano };
-        console.log('updateFecha', updateFecha)
         if (updateFecha !== null) {
-
             const { year, month } = updateFecha;
             setDigitosMes(month);
             setPositionM1(posicionMes[month]);
