@@ -173,12 +173,7 @@ function Prueba() {
 
     };
 
-    // useEffect(() => {
-    //     if(!runningN3){
-    //         console.log('runningN3', runningN3)
-    //         setTexto(false)
-    //     }
-    // },[])
+
 
     //EFECTO AÑO
     useEffect(() => {
@@ -761,7 +756,9 @@ function Prueba() {
                                 <Grid item xs={12} sm={12} className="box_digits number-container">
                                     <Grid container spacing={1} alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6"
+                                            <Typography 
+                                                id="mes1"
+                                                variant="h6"
                                                 component="div"
                                                 className="box_digit"
                                                 style={{ transform: `translate3d(0, -${positionM1}%, 0)` }}>
