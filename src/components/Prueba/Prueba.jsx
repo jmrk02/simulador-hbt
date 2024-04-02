@@ -771,7 +771,11 @@ function Prueba() {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <Typography variant="h6" component="div" className="box_digit" style={{ transform: `translate3d(0, -${positionM1}%, 0)` }}>
+                                            <Typography variant="h6" component="div" className="box_digit" 
+                                            style={{ 
+                                                transform: `translate3d(0, -${positionM1}%, 0)`,
+
+                                            }}>
                                                 {meses[1].map((letter, index) => (
                                                     <div key={index}>{letter}</div>
                                                 ))}
@@ -793,7 +797,6 @@ function Prueba() {
                                 </Grid>
                             </Grid>
                         </Tooltip>
-
                         {/* AÑO */}
                         <Grid item xs={12} sm={2.5} onClick={openCalendar} style={{ cursor: 'pointer' }}>
                             <Grid item xs={12} sm={12} className="box_digits number-container" >
@@ -1003,7 +1006,6 @@ function Prueba() {
                                         </Grid>}
                                 </Grid>
                             </Tooltip>
-
                             <Grid>
                                 <Typography variant="h6" className="px-3 py-1 box_red_info">
                                     Inversión
