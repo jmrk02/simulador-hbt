@@ -118,7 +118,7 @@ function Prueba() {
         maxLength: 8
     }
 
-    const toggleAnimation = () => {
+    const toggleAnimation = async() => {
         setPositionN1(0);
         setPositionN2(0);
         setPositionN3(0);
@@ -157,7 +157,6 @@ function Prueba() {
         setRunningInv7(!runningInv7);
         setRunningInv8(!runningInv8);
         setRunningInv9(!runningInv9);
-
     };
 
 
@@ -533,36 +532,47 @@ function Prueba() {
         setAbrirCalendar(true);
     }
 
-    const handleDate = (date) => {
+    const handleDate = async(date) => {
         // console.log('date', date)   
-
-
-        if (date === null) {
-            return;
-        }
-        const mes = date["$M"];
-        const ano = date["$y"];
-        const updateFecha = { month: mes, year: ano };
-        if (updateFecha !== null) {
-            const { year, month } = updateFecha;
-            setDigitosMes(month);
-            setPositionM1(posicionMes[month]);
-            const anos = year.toString().split('').map(i => parseInt(i, 10));
-            setDigitosAno(anos);
-            setPositionN1(posicionesAno[anos[0]]);
-            setPositionN2(posicionesAno[anos[1]]);
-            setPositionN3(posicionesAno[anos[2]]);
-            setPositionN4(posicionesAno[anos[3]]);
-            if (isInversion.length > 0) {
-                setHabilitarSimulacion(true);
+        try {
+            if (date === null) {
+                return;
             }
-
+            const mes = date["$M"];
+            const ano = date["$y"];
+            const updateFecha = { month: mes, year: ano };
+            if (updateFecha !== null) {
+                const { year, month } = updateFecha;
+                setDigitosMes(month);
+                setPositionM1(posicionMes[month]);
+                const anos = year.toString().split('').map(i => parseInt(i, 10));
+                setDigitosAno(anos);
+                setPositionN1(posicionesAno[anos[0]]);
+                setPositionN2(posicionesAno[anos[1]]);
+                setPositionN3(posicionesAno[anos[2]]);
+                setPositionN4(posicionesAno[anos[3]]);
+                if (isInversion.length > 0) {
+                    setHabilitarSimulacion(true);
+                }
+    
+            }
+            if (digitosAno.length === 0) {
+                setErrorFechaText("Seleccione una fecha");
+            } else {
+                setErrorFechaText("");
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: { month: (mes + 1).toString(), year: ano } // Replace this with your actual data
+                  };
+                //   let response =  await fetch('https://serviciosweb.afphabitat.com.pe/api/privatezone/valores-cuota/date',requestOptions) 
+                  let response =  await fetch('https://200.60.145.234/api/privatezone/valores-cuota/date',requestOptions)
+                  console.log('response', response)
+            }
+        } catch (error) {
+            console.log(error)
         }
-        if (digitosAno.length === 0) {
-            setErrorFechaText("Seleccione una fecha");
-        } else {
-            setErrorFechaText("");
-        }
+       
     }
 
     const handleNumeroInversion = (num) => {
