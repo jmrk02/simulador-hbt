@@ -2,15 +2,82 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import habimodal from "../../assets/img/habi-v-new.png";
 import lottie from "lottie-web";
+import { useContext } from "react";
+import RentabilidadContext from "../../context/rentabilidad/rentabilidadContext";
+import { DotLottiePlayer } from "@dotlottie/player-component"
+
 
 const StcResultado = () => {
   const [animationPlayedFirst, setAnimationPlayedFirst] = useState(false);
   const [animationPlayedSecond, setAnimationPlayedSecond] = useState(false);
   const [animationPlayedThird, setAnimationPlayedThird] = useState(false);
-  const [step, setStep] = useState(1);
 
-  const handleFound = (step) => {
-    setStep(step);
+  const [completaDatos, setCompletaDatos] = useState(false);
+  const [step, setStep] = useState(2);
+
+  const [total, setTotal] = useState(null);
+  const [inversionIni, setInversionIni] = useState(null);
+  const [renta, setRenta] = useState(null);
+
+  const rentabilidadContext = useContext(RentabilidadContext);
+  const { mes, anio, saldoTotal, porcentaje, rentabilidad, inversionInicial, obtenerValorCuota } = rentabilidadContext;
+
+  const handleFound = async (step) => {
+    if (mes !== null && anio !== null) {
+
+      if (inversionInicial !== null) {
+        console.log("mes", mes)
+        console.log("anio", anio)
+        console.log("saldoTotal", saldoTotal)
+        console.log("porcentaje", porcentaje)
+        console.log("rentabilidad", rentabilidad)
+        setTotal(saldoTotal);
+        // setRenta(rentabilidad);
+        setStep(step);
+        setInversionIni(inversionInicial);
+        const valorCuotaLast = await obtenerValorCuota(mes, anio, false);
+        const valorCuotaActual = await obtenerValorCuota(mes, anio, true);
+        let lastValue;
+        let actualValue;
+        switch (step) {
+          case 1:
+            lastValue = valorCuotaLast.rows.pop().fund1;
+            actualValue = valorCuotaActual.rows.pop().fund1;
+            break;
+          case 2:
+            lastValue = valorCuotaLast.rows.pop().fund2;
+            actualValue = valorCuotaActual.rows.pop().fund2;
+            break;
+          case 3:
+            lastValue = valorCuotaLast.rows.pop().fund3;
+            actualValue = valorCuotaActual.rows.pop().fund3;
+            break;
+        }
+        const lastValueNumber = lastValue.replace(/^S\/\s/, "");
+        const actualValueNumber = actualValue.replace(/^S\/\s/, "");
+
+        console.log('valor cuota last', lastValue)
+        console.log('valor cuota actual', actualValue)
+
+        console.log('valor cuota last', typeof (lastValue))
+        console.log('valor cuota actual', typeof (actualValue))
+
+        const lastRent = parseFloat(lastValueNumber);
+        const nowRent = parseFloat(actualValueNumber);
+
+        let inversionUltima = inversionInicial / lastRent;
+        let inversionActual = inversionUltima * nowRent;
+
+        let rentabilidadFinal = inversionActual - inversionInicial;
+
+        setTotal(inversionActual.toFixed(2));
+        setRenta(rentabilidadFinal.toFixed(2));
+        setInversionIni(inversionInicial);
+      }
+
+
+    }
+
   };
 
   const handleStartAnimation = async () => {
@@ -44,16 +111,32 @@ const StcResultado = () => {
     handleScroll();
   }, [step]);
 
+  useEffect(() => {
+    if(step === 2){
+      console.log('stepeeeeeeeeeeeee', step)
+    }
+    if(rentabilidad !== null ){
+      console.log('diosito por favor')
+    }
+  }, []);
+
+
+  useEffect(() => {
+
+  }, [total, renta, inversionIni]);
+
   return (
-    <div className="stc-hbt-resutl-rent py-5">
+    <div className="stc-hbt-resutl-rent py-5" id="resultado">
       <div className="container">
+        {/* {completaDatos ?  : <div>Hola</div>} */}
+
         <div className="form-row">
           <div className="header-pills d-flex align-items-center mb-4">
             <h5 className="card-title me-3">Rentabilidad proyectada en: </h5>
             <ul className="nav nav-pills" id="pills-tab" role="tablist">
               <li className="nav-item" role="presentation">
                 <div
-                  className="btn nav-link me-2 active"
+                  className="btn nav-link me-2 "
                   id="home-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#fondo1"
@@ -67,8 +150,8 @@ const StcResultado = () => {
                 </div>
               </li>
               <li className="nav-item" role="presentation">
-                <div
-                  className="btn nav-link me-2"
+                <div 
+                  className="btn nav-link me-2 active"
                   id="profile-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#fondo2"
@@ -123,7 +206,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ 35,000.67
+                              S/ {total ? total : ''}
                             </span>
                           </div>
                         </div>
@@ -172,7 +255,7 @@ const StcResultado = () => {
                               Inversión inicial
                             </span>
                             <span className="card-mounth d-block">
-                              S/ 20,000
+                              S/ {inversionIni}
                             </span>
                           </div>
                         </div>
@@ -221,7 +304,7 @@ const StcResultado = () => {
                         Tu fondo hubiera generado la siguiente rentabilidad
                       </p>
                       <span className="mounth-rentabilidad">
-                        S/ 15,000.67 <span className="icon-disclaimer">*</span>
+                        S/ {renta} <span className="icon-disclaimer">*</span>
                       </span>
                       <div className="mt-n4" id="json-animation-here-1"></div>
                     </div>
@@ -274,7 +357,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ 35,000.67
+                              S/ {total ? total : '35,000.67'}
                             </span>
                           </div>
                         </div>
@@ -323,7 +406,7 @@ const StcResultado = () => {
                               Inversión inicial
                             </span>
                             <span className="card-mounth d-block">
-                              S/ 20,000
+                              S/ {inversionIni}
                             </span>
                           </div>
                         </div>
@@ -372,7 +455,7 @@ const StcResultado = () => {
                         Tu fondo hubiera generado la siguiente rentabilidad
                       </p>
                       <span className="mounth-rentabilidad">
-                        S/ 15,000.67 <span className="icon-disclaimer">*</span>
+                        S/ {renta} <span className="icon-disclaimer">*</span>
                       </span>
                       <div className="mt-n4" id="json-animation-here-2"></div>
                     </div>
@@ -425,7 +508,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ 35,000.67
+                              S/ {total ? total : '35,000.67'}
                             </span>
                           </div>
                         </div>
@@ -474,7 +557,7 @@ const StcResultado = () => {
                               Inversión inicial
                             </span>
                             <span className="card-mounth d-block">
-                              S/ 20,000
+                              S/ {inversionIni}
                             </span>
                           </div>
                         </div>
@@ -523,7 +606,7 @@ const StcResultado = () => {
                         Tu fondo hubiera generado la siguiente rentabilidad
                       </p>
                       <span className="mounth-rentabilidad">
-                        S/ 15,000.67 <span className="icon-disclaimer">*</span>
+                        S/ {renta} <span className="icon-disclaimer">*</span>
                       </span>
                       <div className="mt-n4" id="json-animation-here-3"></div>
                     </div>
@@ -640,6 +723,27 @@ const StcResultado = () => {
             </span>
           </div>
         </div>
+
+        <div class="row sin-data d-flex">
+                    <div class="col-sm-12 col-lg-6 left">
+                        <div class="card rounded-4 mb-4 p-3">
+                            <div id="lottie-animation" className="sin-resultado">
+                                <dotlottie-player src="https://lottie.host/75b59d0c-a1e7-460a-b3cf-e04c6995e90c/WM8ncYJnhw.json" background="transparent" speed="1" autoplay></dotlottie-player>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 right">
+                        <h3>Simula tu
+                            <em>Rentabilidad</em>
+                        </h3>
+                        <p>Completa los datos solicitados en la sección superior para poder mostrarte una estimación más clara de tu rentabilidad a futuro.</p>
+                        <a href="#" class="btn hbt-btn-primary mb-2">Simular ahora</a>
+                        <div class="d-block">
+                            <span class="disclaimer">*La rentabilidad es un factor que <a href="#">se evalúa anualmente y varía.</a></span>
+                        </div>
+                    </div>
+                </div>
+
       </div>
     </div>
   );
