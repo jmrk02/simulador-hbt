@@ -4,8 +4,7 @@ import habimodal from "../../assets/img/habi-v-new.png";
 import lottie from "lottie-web";
 import { useContext } from "react";
 import RentabilidadContext from "../../context/rentabilidad/rentabilidadContext";
-import { DotLottiePlayer } from "@dotlottie/player-component"
-
+import { DotLottiePlayer } from "@dotlottie/player-component";
 
 const StcResultado = () => {
   const [animationPlayedFirst, setAnimationPlayedFirst] = useState(false);
@@ -20,17 +19,24 @@ const StcResultado = () => {
   const [renta, setRenta] = useState(null);
 
   const rentabilidadContext = useContext(RentabilidadContext);
-  const { mes, anio, saldoTotal, porcentaje, rentabilidad, inversionInicial, obtenerValorCuota } = rentabilidadContext;
+  const {
+    mes,
+    anio,
+    saldoTotal,
+    porcentaje,
+    rentabilidad,
+    inversionInicial,
+    obtenerValorCuota,
+  } = rentabilidadContext;
 
   const handleFound = async (step) => {
     if (mes !== null && anio !== null) {
-
       if (inversionInicial !== null) {
-        console.log("mes", mes)
-        console.log("anio", anio)
-        console.log("saldoTotal", saldoTotal)
-        console.log("porcentaje", porcentaje)
-        console.log("rentabilidad", rentabilidad)
+        console.log("mes", mes);
+        console.log("anio", anio);
+        console.log("saldoTotal", saldoTotal);
+        console.log("porcentaje", porcentaje);
+        console.log("rentabilidad", rentabilidad);
         setTotal(saldoTotal);
         // setRenta(rentabilidad);
         setStep(step);
@@ -56,11 +62,11 @@ const StcResultado = () => {
         const lastValueNumber = lastValue.replace(/^S\/\s/, "");
         const actualValueNumber = actualValue.replace(/^S\/\s/, "");
 
-        console.log('valor cuota last', lastValue)
-        console.log('valor cuota actual', actualValue)
+        console.log("valor cuota last", lastValue);
+        console.log("valor cuota actual", actualValue);
 
-        console.log('valor cuota last', typeof (lastValue))
-        console.log('valor cuota actual', typeof (actualValue))
+        console.log("valor cuota last", typeof lastValue);
+        console.log("valor cuota actual", typeof actualValue);
 
         const lastRent = parseFloat(lastValueNumber);
         const nowRent = parseFloat(actualValueNumber);
@@ -74,10 +80,7 @@ const StcResultado = () => {
         setRenta(rentabilidadFinal.toFixed(2));
         setInversionIni(inversionInicial);
       }
-
-
     }
-
   };
 
   const handleStartAnimation = async () => {
@@ -112,18 +115,17 @@ const StcResultado = () => {
   }, [step]);
 
   useEffect(() => {
-    if(step === 2){
-      console.log('stepeeeeeeeeeeeee', step)
+    if (step === 2) {
+      console.log("stepeeeeeeeeeeeee", step);
     }
-    if(rentabilidad !== null ){
-      console.log('diosito por favor')
+    if (rentabilidad !== null) {
+      console.log("diosito por favor");
     }
   }, []);
 
-
   useEffect(() => {
-
-  }, [total, renta, inversionIni]);
+    setInversionIni(inversionInicial);
+  }, [inversionInicial]);
 
   return (
     <div className="stc-hbt-resutl-rent py-5" id="resultado">
@@ -150,7 +152,7 @@ const StcResultado = () => {
                 </div>
               </li>
               <li className="nav-item" role="presentation">
-                <div 
+                <div
                   className="btn nav-link me-2 active"
                   id="profile-tab"
                   data-bs-toggle="pill"
@@ -206,7 +208,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ {total ? total : ''}
+                              S/ {total ? total : ""}
                             </span>
                           </div>
                         </div>
@@ -327,7 +329,12 @@ const StcResultado = () => {
                   <div className="d-block d-none d-lg-block">
                     <span className="disclaimer">
                       * La rentabilidad es un factor que{" "}
-                      <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y puede variar.</a>
+                      <a
+                        href="https://www.afphabitat.com.pe/rentabilidad/"
+                        target="_blank"
+                      >
+                        se evalúa anualmente y puede variar.
+                      </a>
                     </span>
                   </div>
                 </div>
@@ -357,7 +364,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ {total ? total : '35,000.67'}
+                              S/ {total ? total : "35,000.67"}
                             </span>
                           </div>
                         </div>
@@ -478,7 +485,12 @@ const StcResultado = () => {
                   <div className="d-block d-none d-lg-block">
                     <span className="disclaimer">
                       * La rentabilidad es un factor que{" "}
-                      <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y puede variar.</a>
+                      <a
+                        href="https://www.afphabitat.com.pe/rentabilidad/"
+                        target="_blank"
+                      >
+                        se evalúa anualmente y puede variar.
+                      </a>
                     </span>
                   </div>
                 </div>
@@ -508,7 +520,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ {total ? total : '35,000.67'}
+                              S/ {total ? total : "35,000.67"}
                             </span>
                           </div>
                         </div>
@@ -629,7 +641,12 @@ const StcResultado = () => {
                   <div className="d-block d-none d-lg-block">
                     <span className="disclaimer">
                       * La rentabilidad es un factor que{" "}
-                      <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y puede variar.</a>
+                      <a
+                        href="https://www.afphabitat.com.pe/rentabilidad/"
+                        target="_blank"
+                      >
+                        se evalúa anualmente y puede variar.
+                      </a>
                     </span>
                   </div>
                 </div>
@@ -640,7 +657,7 @@ const StcResultado = () => {
           <div
             className="modal fade modal-sm"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
@@ -719,31 +736,49 @@ const StcResultado = () => {
           <div className="d-lg-none text-center">
             <span className="disclaimer">
               * La rentabilidad es un factor que{" "}
-              <a href="https://www.afphabitat.com.pe/rentabilidad/" target="_blank">se evalúa anualmente y varía.</a>
+              <a
+                href="https://www.afphabitat.com.pe/rentabilidad/"
+                target="_blank"
+              >
+                se evalúa anualmente y varía.
+              </a>
             </span>
           </div>
         </div>
 
-        <div class="row sin-data d-flex">
-                    <div class="col-sm-12 col-lg-6 left">
-                        <div class="card rounded-4 mb-4 p-3">
-                            <div id="lottie-animation" className="sin-resultado">
-                                <dotlottie-player src="https://lottie.host/75b59d0c-a1e7-460a-b3cf-e04c6995e90c/WM8ncYJnhw.json" background="transparent" speed="1" autoplay></dotlottie-player>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 right">
-                        <h3>Simula tu
-                            <em>Rentabilidad</em>
-                        </h3>
-                        <p>Completa los datos solicitados en la sección superior para poder mostrarte una estimación más clara de tu rentabilidad a futuro.</p>
-                        <a href="#" class="btn hbt-btn-primary mb-2">Simular ahora</a>
-                        <div class="d-block">
-                            <span class="disclaimer">*La rentabilidad es un factor que <a href="#">se evalúa anualmente y varía.</a></span>
-                        </div>
-                    </div>
-                </div>
-
+        <div className="row sin-data d-flex">
+          <div className="col-sm-12 col-lg-6 left">
+            <div className="card rounded-4 mb-4 p-3">
+              <div id="lottie-animation" className="sin-resultado">
+                <dotlottie-player
+                  src="https://lottie.host/75b59d0c-a1e7-460a-b3cf-e04c6995e90c/WM8ncYJnhw.json"
+                  background="transparent"
+                  speed="1"
+                  autoplay
+                ></dotlottie-player>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm-12 col-lg-6 right">
+            <h3>
+              Simula tu
+              <em>Rentabilidad</em>
+            </h3>
+            <p>
+              Completa los datos solicitados en la sección superior para poder
+              mostrarte una estimación más clara de tu rentabilidad a futuro.
+            </p>
+            <a href="#" className="btn hbt-btn-primary mb-2">
+              Simular ahora
+            </a>
+            <div className="d-block">
+              <span className="disclaimer">
+                *La rentabilidad es un factor que{" "}
+                <a href="#">se evalúa anualmente y varía.</a>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
