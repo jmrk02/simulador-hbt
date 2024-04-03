@@ -45,7 +45,7 @@ const StcResultado = () => {
   }, [step]);
 
   return (
-    <div className="stc-hbt-resutl-rent py-5">
+    <div className="stc-hbt-resutl-rent py-5" id="resultado">
       <div className="container">
         <div className="form-row">
           <div className="header-pills d-flex align-items-center mb-4">
