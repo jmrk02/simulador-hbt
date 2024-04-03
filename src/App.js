@@ -17,25 +17,28 @@ import imagenNuevaMobile from "./assets/img/mobile-habi.png";
 import StcResultado from "./components/stcResultado";
 import StcFormulario from "./components/stcFormulario";
 import Footer from "./components/footer";
+import RentabilidadState from "./context/rentabilidad/rentabilidadState";
 
 function App() {
   const theme = useTheme();
   const screenMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div className="App">
-      <Header />
-      <BeforeAfter
-        // pointerMove
-        beforeImage={screenMobile ? imagenAntiguaMobile : imagenAntigua}
-        afterImage={screenMobile ? imagenNuevaMobile : imagenNueva}
-      />
-      {/* <Simulator /> */}
-      <Prueba />
-      <StcResultado />
-      <StcFormulario />
-      <Footer />
-    </div>
+    <RentabilidadState>
+      <div className="App">
+        <Header />
+        <BeforeAfter
+          // pointerMove
+          beforeImage={screenMobile ? imagenAntiguaMobile : imagenAntigua}
+          afterImage={screenMobile ? imagenNuevaMobile : imagenNueva}
+        />
+        {/* <Simulator /> */}
+        <Prueba />
+        <StcResultado />
+        <StcFormulario />
+        <Footer />
+      </div>
+    </RentabilidadState>
   );
 }
 

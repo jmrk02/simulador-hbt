@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Prueba.scss";
+
+import RentabilidadContext from "../../context/rentabilidad/rentabilidadContext";
+
 import { Container } from "@mui/material";
 
 import { Typography, Button, Grid, TextField } from "@mui/material";
@@ -17,7 +20,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
     root: {
         "& .MuiInputBase-input": {
-            color: "white", // Cambia el color del texto
+            color: "white", 
             fontSize: "1.25rem",
             textAlign: "center",
             fontWeight: "400",
@@ -120,18 +123,29 @@ function Prueba() {
         maxLength: 8,
     };
 
+    const rentabilidadContext = useContext(RentabilidadContext);
+    const { mes,anio,setDatosInversion,setMesAnio,inversionInicial,obtenerValorCuota } = rentabilidadContext;
+
     const handleCalculate = () => {
+        console.log("mi inversion", isInversion);
+        
         let inversionUltima = isInversion / lastRent;
         let inversionActual = inversionUltima * nowRent;
-
+        console.log("total", inversionActual);
+        var entero = parseInt(inversionActual);
+        setIsInversion(entero);
+        posicionesNumerosInversion(entero.toString().length, entero);
         let resultadoFinal = inversionActual - isInversion;
-        console.log("resultadoFinal", resultadoFinal);
+        console.log("rentabilidad", resultadoFinal);
+
+        setDatosInversion(isInversion,resultadoFinal.toFixed(2),inversionActual.toFixed(2))
+        // rentabilidadFondo2(isInversion, resultadoFinal);
         return parseInt(resultadoFinal);
     };
 
     const toggleAnimation = async () => {
         let response = await handleCalculate();
-        setIsInversion(response);
+        // setIsInversion(response);
         console.log("response calculo:", response);
         setPositionN1(0);
         setPositionN2(0);
@@ -563,53 +577,56 @@ function Prueba() {
 
     const getLastValue = async (monthValue, yearValue, isActualMonth) => {
         try {
-            let mesActual;
-            let anioActual;
-            if (isActualMonth) {
-                const fechaActual = new Date();
-                const diaActual = fechaActual.getDate();
+            // let mesActual;
+            // let anioActual;
+            // if (isActualMonth) {
+            //     const fechaActual = new Date();
+            //     const diaActual = fechaActual.getDate();
 
-                let mesAnterior, anioAnterior;
+            //     let mesAnterior, anioAnterior;
 
-                if (
-                    diaActual !==
-                    new Date(
-                        fechaActual.getFullYear(),
-                        fechaActual.getMonth() + 1,
-                        0
-                    ).getDate()
-                ) {
-                    const fechaMesAnterior = new Date(fechaActual);
-                    fechaMesAnterior.setMonth(fechaActual.getMonth() - 1);
+            //     if (
+            //         diaActual !==
+            //         new Date(
+            //             fechaActual.getFullYear(),
+            //             fechaActual.getMonth() + 1,
+            //             0
+            //         ).getDate()
+            //     ) {
+            //         const fechaMesAnterior = new Date(fechaActual);
+            //         fechaMesAnterior.setMonth(fechaActual.getMonth() - 1);
 
-                    mesAnterior = fechaMesAnterior.getMonth() + 1;
-                    anioAnterior = fechaMesAnterior.getFullYear();
-                } else {
-                    mesAnterior = fechaActual.getMonth() + 1;
-                    anioAnterior = fechaActual.getFullYear();
-                }
-                mesActual = mesAnterior;
-                anioActual = anioAnterior;
-                console.log("Número del mes anterior:", mesAnterior);
-                console.log("Año del mes anterior:", anioAnterior);
-            } else {
-                mesActual = monthValue + 1;
-                anioActual = yearValue;
-            }
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ month: mesActual, year: anioActual })
-            };
-            console.log("requestOptions", requestOptions);
-            //   let response =  await fetch('https://serviciosweb.afphabitat.com.pe/api/privatezone/valores-cuota/date',requestOptions)
-            let response = await fetch(
-                "https://200.60.145.234/api/privatezone/valores-cuota/dates",
-                requestOptions
-            );
-            console.log('response', response)
-            const jsonData = await response.json();
-            let lastValue = jsonData.rows.pop().fund2;
+            //         mesAnterior = fechaMesAnterior.getMonth() + 1;
+            //         anioAnterior = fechaMesAnterior.getFullYear();
+            //     } else {
+            //         mesAnterior = fechaActual.getMonth() + 1;
+            //         anioAnterior = fechaActual.getFullYear();
+            //     }
+            //     mesActual = mesAnterior;
+            //     anioActual = anioAnterior;
+            //     console.log("Número del mes anterior:", mesAnterior);
+            //     console.log("Año del mes anterior:", anioAnterior);
+            // } else {
+            //     mesActual = monthValue + 1;
+            //     anioActual = yearValue;
+            // }
+            // const requestOptions = {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({ month: mesActual, year: anioActual })
+            // };
+            // console.log("requestOptions", requestOptions);
+            // //   let response =  await fetch('https://serviciosweb.afphabitat.com.pe/api/privatezone/valores-cuota/date',requestOptions)
+            // let response = await fetch(
+            //     "https://200.60.145.234/api/privatezone/valores-cuota/dates",
+            //     requestOptions
+            // );
+
+            const response = await obtenerValorCuota(monthValue, yearValue, isActualMonth);
+            console.log("response", response);
+            // const jsonData = await response.json();
+            
+            let lastValue = response.rows.pop().fund2;
             return lastValue;
         } catch (error) {
             console.log(error);
@@ -646,14 +663,16 @@ function Prueba() {
                 setErrorFechaText("Seleccione una fecha");
             } else {
                 setErrorFechaText("");
+                setMesAnio(mes, ano);
                 let lastValue = await getLastValue(mes, ano, false);
                 const lastValueNumber = lastValue.replace(/^S\/\s/, "");
                 setLastRent(lastValueNumber);
-                console.log("ULTIMO:", lastValueNumber);
+          
                 let actualValue = await getLastValue(mes, ano, true);
                 const actualValueNumber = actualValue.replace(/^S\/\s/, "");
+
                 setNowRent(actualValueNumber);
-                console.log("PRIMERO:", actualValueNumber);
+                console.log("rentabilidad actual:", actualValueNumber);
             }
         } catch (error) {
             console.log(error);
@@ -661,14 +680,21 @@ function Prueba() {
     };
 
     const handleNumeroInversion = (num) => {
+
         let numero = num.target.value;
-        console.log("NUMERO INVERSION:", numero);
         setIsInversion(numero);
         let longitud = numero.length;
         let grid = 2;
+        posicionesNumerosInversion(longitud, numero);
+    };
+
+
+    const posicionesNumerosInversion = (longitud, numero) => {
+        // console.log("longitud de inversion", longitud);
+        let grid =2;
         switch (longitud) {
             case 1:
-                longitud = numero.length;
+                // longitud = numero.length;
                 grid = 12 / (longitud + 1);
                 setGridMayor(5);
                 setGrid(grid);
@@ -681,7 +707,7 @@ function Prueba() {
                 setErrorInversionText("El monto mínimo de inversión es de S/ 1,000");
                 break;
             case 2:
-                longitud = numero.length;
+                // longitud = numero.length;
                 grid = 12 / (longitud + 1);
                 setGridMayor(5);
                 setGrid(grid);
@@ -693,7 +719,7 @@ function Prueba() {
                 setShowMillon2(false);
                 break;
             case 3:
-                longitud = numero.length;
+                // longitud = numero.length;
                 grid = 12 / (longitud + 1);
                 setGridMayor(5);
                 setGrid(grid);
@@ -705,7 +731,7 @@ function Prueba() {
                 setShowMillon2(false);
                 break;
             case 4:
-                longitud = numero.length;
+                // longitud = numero.length
                 grid = 12 / (longitud + 2);
                 setGridMayor(5);
                 setGrid(grid);
@@ -717,7 +743,7 @@ function Prueba() {
                 setShowMillon2(false);
                 break;
             case 5:
-                longitud = numero.length;
+                // longitud = numero.length;
                 grid = 12 / (longitud + 2);
                 setGridMayor(5);
                 setGrid(grid);
@@ -729,7 +755,7 @@ function Prueba() {
                 setShowMillon2(false);
                 break;
             case 6:
-                longitud = numero.length;
+                // longitud = numero.length;
                 grid = 12 / (longitud + 2);
                 setGridMayor(5);
                 setGrid(grid);
@@ -741,8 +767,8 @@ function Prueba() {
                 setShowMillon2(false);
                 break;
             case 7:
-                longitud = numero.length + 3;
-                grid = 12 / longitud;
+                // longitud = numero.length + 3;
+                grid = 12 / (longitud + 3);
                 setGridMayor(6);
                 setComa4Dig(true);
                 setComa5Dig(false);
@@ -751,8 +777,8 @@ function Prueba() {
                 setGrid(grid);
                 break;
             case 8:
-                longitud = numero.length + 3;
-                grid = 12 / longitud;
+                // longitud = numero.length + 3;
+                grid = 12 / (longitud + 3);
                 setGridMayor(6);
                 setGrid(grid);
                 setComa4Dig(false);
@@ -765,8 +791,8 @@ function Prueba() {
                 break;
             case 9:
                 setGridMayor(6);
-                longitud = numero.length + 3;
-                grid = 12 / longitud;
+                // longitud = numero.length + 3;
+                grid = 12 / (longitud + 3);
                 setGrid(grid);
                 setGridMayor(6);
                 setComa4Dig(false);
@@ -777,6 +803,7 @@ function Prueba() {
                 setShowMillon2(true);
                 break;
             default:
+                grid= 1.5;
                 setGrid(1.5);
                 break;
         }
@@ -819,7 +846,7 @@ function Prueba() {
         } else {
             setHabilitarSimulacion(false);
         }
-    };
+    }
 
     const openInversion = () => {
         setMostrarTextField(!mostrarTextField);
@@ -1340,7 +1367,7 @@ function Prueba() {
                             </LocalizationProvider>
                         </Grid>
                         <Grid item xs={3} sm={3}>
-                            <a href={texto?undefined:"#resultado"}>
+                            <a href={texto ? undefined : "#resultado"}>
                                 <Button
                                     className="btn hbt-btn-primary"
                                     onClick={toggleAnimation}
