@@ -153,7 +153,7 @@ export function BeforeAfter({
       >
         <div className="d-flex align-items-center wrap-before">
           <div className="description">
-            <h3>
+            <h3 className="mb-3">
               <span>HABI</span> VIAJÒ AL
               <br /> PASADO
             </h3>
@@ -184,7 +184,7 @@ export function BeforeAfter({
 
         <div className="d-flex align-items-center wrap-after">
           <div className="description">
-            <h3>
+            <h3 className="mb-3">
               <strong>Planifica tu futuro</strong> <br /> con responsabilidad
             </h3>
             <p>
