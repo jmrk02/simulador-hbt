@@ -634,6 +634,7 @@ function Prueba() {
     };
 
     const handleDate = async (date) => {
+        // console.log('date', date)
         try {
             if (date === null) {
                 return;
@@ -671,6 +672,7 @@ function Prueba() {
                 const actualValueNumber = actualValue.replace(/^S\/\s/, "");
 
                 setNowRent(actualValueNumber);
+                console.log("rentabilidad actual:", actualValueNumber);
             }
         } catch (error) {
             console.log(error);
@@ -1360,7 +1362,7 @@ function Prueba() {
                                 />
                             </LocalizationProvider>
                         </Grid>
-                        <Grid item xs={3} sm={3} className="col2">
+                        <Grid item xs={3} sm={3}>
                             <a href={texto ? undefined : "#resultado"}>
                                 <Button
                                     className="btn hbt-btn-primary"
@@ -1372,6 +1374,7 @@ function Prueba() {
                             </a>
 
                         </Grid>
+                        
                     </Grid>
                 </div>
             </Container>

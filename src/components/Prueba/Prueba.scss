@@ -278,13 +278,16 @@ p{
     line-height:50%;
 }
 
-
-.green-transition {
-    color: white; /* Color inicial */
-    transition: color 1s ease; /* Transición suave */
-}
-
 .green {
     color: #35C549; /* Color verde */
     transition: color 0.5s ease;
+}
+.errorEntra {
+    color: #CE1335; /* Color verde */
+    // transition: color 0.5s ease;
+}
+
+.errorSale {
+    color: white; /* Color verde */
+    // transition: color 0.5s ease;
 }
