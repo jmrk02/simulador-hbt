@@ -14,21 +14,17 @@ import "dayjs/locale/es";
 import dayjs from 'dayjs';
 
 import { makeStyles } from '@mui/styles';
-import { set } from 'date-fns';
-import { clear } from '@testing-library/user-event/dist/clear';
-import { position } from 'stylis';
 
 const useStyles = makeStyles({
     root: {
         '& .MuiInputBase-input': {
             color: 'white', // Cambia el color del texto
             fontSize: '1.25rem',
-            //marginRight: '1px solid #FFF',
             textAlign: 'center',
             fontWeight: '400',
             fontSize: '1.875rem',
-            // with: '-webkit-fill-available',
-            letterSpacing: '3rem',
+            letterSpacing: '2rem',
+            padding: '7px 18px',
         },
     },
     underline: {
@@ -1006,6 +1002,7 @@ function Prueba() {
                                                     onChange={handleNumeroInversion}
                                                     inputProps={{ maxLength: 8 }}
                                                     fullWidth
+                                                    fullHeight
                                                 />
                                             </Grid>
                                         </Grid>}
