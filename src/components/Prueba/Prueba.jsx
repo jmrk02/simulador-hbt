@@ -20,7 +20,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
     root: {
         "& .MuiInputBase-input": {
-            color: "white", 
+            color: "white",
             fontSize: "1.25rem",
             textAlign: "center",
             fontWeight: "400",
@@ -124,11 +124,11 @@ function Prueba() {
     };
 
     const rentabilidadContext = useContext(RentabilidadContext);
-    const { mes,anio,setDatosInversion,setMesAnio,inversionInicial,obtenerValorCuota } = rentabilidadContext;
+    const { mes, anio, setDatosInversion, setMesAnio, inversionInicial, obtenerValorCuota } = rentabilidadContext;
 
     const handleCalculate = () => {
         console.log("mi inversion", isInversion);
-        
+
         let inversionUltima = isInversion / lastRent;
         let inversionActual = inversionUltima * nowRent;
         console.log("total", inversionActual);
@@ -138,7 +138,7 @@ function Prueba() {
         let resultadoFinal = inversionActual - isInversion;
         console.log("rentabilidad", resultadoFinal);
 
-        setDatosInversion(isInversion,resultadoFinal.toFixed(2),inversionActual.toFixed(2))
+        setDatosInversion(isInversion, resultadoFinal.toFixed(2), inversionActual.toFixed(2))
         // rentabilidadFondo2(isInversion, resultadoFinal);
         return parseInt(resultadoFinal);
     };
@@ -625,7 +625,7 @@ function Prueba() {
             const response = await obtenerValorCuota(monthValue, yearValue, isActualMonth);
             console.log("response", response);
             // const jsonData = await response.json();
-            
+
             let lastValue = response.rows.pop().fund2;
             return lastValue;
         } catch (error) {
@@ -634,7 +634,6 @@ function Prueba() {
     };
 
     const handleDate = async (date) => {
-        // console.log('date', date)
         try {
             if (date === null) {
                 return;
@@ -667,12 +666,11 @@ function Prueba() {
                 let lastValue = await getLastValue(mes, ano, false);
                 const lastValueNumber = lastValue.replace(/^S\/\s/, "");
                 setLastRent(lastValueNumber);
-          
+
                 let actualValue = await getLastValue(mes, ano, true);
                 const actualValueNumber = actualValue.replace(/^S\/\s/, "");
 
                 setNowRent(actualValueNumber);
-                console.log("rentabilidad actual:", actualValueNumber);
             }
         } catch (error) {
             console.log(error);
@@ -691,7 +689,7 @@ function Prueba() {
 
     const posicionesNumerosInversion = (longitud, numero) => {
         // console.log("longitud de inversion", longitud);
-        let grid =2;
+        let grid = 2;
         switch (longitud) {
             case 1:
                 // longitud = numero.length;
@@ -803,7 +801,7 @@ function Prueba() {
                 setShowMillon2(true);
                 break;
             default:
-                grid= 1.5;
+                grid = 1.5;
                 setGrid(1.5);
                 break;
         }
@@ -856,13 +854,9 @@ function Prueba() {
         <div className="bg-paper py-5">
             <Container>
                 <div className="d-block text-center">
-                    <Typography variant="h3" component="h3">
-                        <em>Simula tu Rentabilidad</em>
-                    </Typography>
-                    <Typography variant="P" paragraph>
-                        Elige un periodo y monto de inversión para visualizar gráficamente
-                        tu rentabilidad potencial.
-                    </Typography>
+                    <h3 className="d-block"><em>Simula tu Rentabilidad</em></h3>
+                    <p>Elige un periodo y monto de inversión para visualizar gráficamente tu rentabilidad potencial.</p>
+
                     <Grid
                         item
                         xs={12}
@@ -1366,7 +1360,7 @@ function Prueba() {
                                 />
                             </LocalizationProvider>
                         </Grid>
-                        <Grid item xs={3} sm={3}>
+                        <Grid item xs={3} sm={3} className="col2">
                             <a href={texto ? undefined : "#resultado"}>
                                 <Button
                                     className="btn hbt-btn-primary"
