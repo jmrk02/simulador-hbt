@@ -322,10 +322,10 @@ const StcResultado = () => {
                     <br />
                     <em>de tu simulación</em>
                   </h3>
-                  {rentabilidad > 0 ? (
+                  {renta > 0 ? (
                     <p className="mb-5">
                       Descubre la rentabilidad que podrías haber logrado si hace{" "}
-                      <strong>9 años</strong> hubieras invertido en{" "}
+                      <strong>{invertidoAnios} años</strong> hubieras invertido en{" "}
                       <strong>AFP Habitat.</strong>
                     </p>
                   ) : (
