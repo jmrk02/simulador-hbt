@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
 import "./Prueba.scss";
@@ -16,6 +17,7 @@ import "dayjs/locale/es";
 import dayjs from "dayjs";
 
 import { makeStyles } from "@mui/styles";
+import { set } from "date-fns";
 
 const useStyles = makeStyles({
     root: {
@@ -57,7 +59,7 @@ function Prueba() {
     const [positionN3, setPositionN3] = useState(0);
     const [positionN4, setPositionN4] = useState(0);
     const [terminado, setTerminado] = useState(false);
-    const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88.5];
+    const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88];
 
     const [mostrarTextField, setMostrarTextField] = useState(false);
     const [positionINV1, setPositionINV1] = useState(0);
@@ -112,19 +114,17 @@ function Prueba() {
 
     const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
     const [texto, setTexto] = useState(true);
-
+    const [href, setHref] = useState("");
     const [errorInversionText, setErrorInversionText] = useState(
         "Por favor, ingresa un monto superior a S/1,00"
     );
     const [errorFechaText, setErrorFechaText] = useState(
         "Por favor, ingresa una fecha"
     );
-    const inputPropsInversion = {
-        maxLength: 8,
-    };
+
 
     const rentabilidadContext = useContext(RentabilidadContext);
-    const { mes, anio, setDatosInversion, setMesAnio, inversionInicial, obtenerValorCuota } = rentabilidadContext;
+    const { setDatosInversion, setMesAnio, obtenerValorCuota } = rentabilidadContext;
 
     const handleCalculate = () => {
         console.log("mi inversion", isInversion);
@@ -147,43 +147,69 @@ function Prueba() {
         let response = await handleCalculate();
         // setIsInversion(response);
         console.log("response calculo:", response);
-        setPositionN1(0);
-        setPositionN2(0);
-        setPositionN3(0);
-        setPositionN4(0);
+        if (!texto) {
+            setTerminado(false);
+          
+            setPositionN1(0);
+            setPositionN2(0);
+            setPositionN3(0);
+            setPositionN4(0);
 
-        setPositionM1(0);
-        setPositionM2(0);
-        setPositionM3(0);
+            setPositionM1(0);
+            setPositionM2(0);
+            setPositionM3(0);
 
-        setPositionINV1(0);
-        setPositionINV2(0);
-        setPositionINV3(0);
-        setPositionINV4(0);
-        setPositionINV5(0);
-        setPositionINV6(0);
-        setPositionINV7(0);
-        setPositionINV8(0);
-        setPositionINV9(0);
+            setPositionINV1(0);
+            setPositionINV2(0);
+            setPositionINV3(0);
+            setPositionINV4(0);
+            setPositionINV5(0);
+            setPositionINV6(0);
+            setPositionINV7(0);
+            setPositionINV8(0);
+            setPositionINV9(0);
+            setHref('#simulador');
+            setTexto(!texto);
+        } else {
+            setPositionN1(0);
+            setPositionN2(0);
+            setPositionN3(0);
+            setPositionN4(0);
 
-        setRunningN1(!runningN1);
-        setRunningN2(!runningN2);
-        setRunningN3(!runningN3);
-        setRunningN4(!runningN4);
+            setPositionM1(0);
+            setPositionM2(0);
+            setPositionM3(0);
 
-        setRunningM1(!runningM1);
-        setRunningM2(!runningM2);
-        setRunningM3(!runningM3);
+            setPositionINV1(0);
+            setPositionINV2(0);
+            setPositionINV3(0);
+            setPositionINV4(0);
+            setPositionINV5(0);
+            setPositionINV6(0);
+            setPositionINV7(0);
+            setPositionINV8(0);
+            setPositionINV9(0);
 
-        setRunningInv1(!runningInv1);
-        setRunningInv2(!runningInv2);
-        setRunningInv3(!runningInv3);
-        setRunningInv4(!runningInv4);
-        setRunningInv5(!runningInv5);
-        setRunningInv6(!runningInv6);
-        setRunningInv7(!runningInv7);
-        setRunningInv8(!runningInv8);
-        setRunningInv9(!runningInv9);
+            setRunningN1(!runningN1);
+            setRunningN2(!runningN2);
+            setRunningN3(!runningN3);
+            setRunningN4(!runningN4);
+
+            setRunningM1(!runningM1);
+            setRunningM2(!runningM2);
+            setRunningM3(!runningM3);
+
+            setRunningInv1(!runningInv1);
+            setRunningInv2(!runningInv2);
+            setRunningInv3(!runningInv3);
+            setRunningInv4(!runningInv4);
+            setRunningInv5(!runningInv5);
+            setRunningInv6(!runningInv6);
+            setRunningInv7(!runningInv7);
+            setRunningInv8(!runningInv8);
+            setRunningInv9(!runningInv9);
+        }
+
     };
 
     //EFECTO AÑO
@@ -306,56 +332,22 @@ function Prueba() {
                         setRunningM1(false);
                         clearInterval(animationIntervalM1);
                     } else {
-                        // console.log('prevPosition M1', prevPosition)
                         if (currentIndex1 === 11) {
                             currentIndex1 = 0;
                         }
                         const nextPosition = posicionMes[currentIndex1];
-                        // console.log('nextPosition M1', nextPosition)
-
                         currentIndex1++;
                         return nextPosition;
                     }
                 });
             }, velocidad);
 
-            let currentIndex2 = 0;
-            animationIntervalM2 = setInterval(() => {
-                setPositionM2((prevPosition) => {
-                    if (posicionMes.indexOf(prevPosition) === digitosMes) {
-                        setRunningM2(false);
-                        clearInterval(animationIntervalM2);
-                    } else {
-                        const nextPosition = posicionMes[currentIndex2];
-
-                        currentIndex2++;
-                        return nextPosition;
-                    }
-                });
-            }, velocidad);
-
-            let currentIndex = 0;
-            animationIntervalM3 = setInterval(() => {
-                setPositionM3((prevPosition) => {
-                    if (posicionMes.indexOf(prevPosition) === digitosMes) {
-                        setRunningM2(false);
-                        clearInterval(animationIntervalM3);
-                    } else {
-                        // console.log('prevPosition M1', prevPosition)
-                        const nextPosition = posicionMes[currentIndex];
-                        // console.log('nextPosition M1', nextPosition)
-
-                        currentIndex++;
-                        return nextPosition;
-                    }
-                });
-            }, velocidad);
         }
 
         return () => {
             clearInterval(animationIntervalM1);
-            clearInterval(animationIntervalM2);
-            clearInterval(animationIntervalM3);
+            // clearInterval(animationIntervalM2);
+            // clearInterval(animationIntervalM3);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [runningM1, runningM2, runningM3]);
@@ -577,55 +569,7 @@ function Prueba() {
 
     const getLastValue = async (monthValue, yearValue, isActualMonth) => {
         try {
-            // let mesActual;
-            // let anioActual;
-            // if (isActualMonth) {
-            //     const fechaActual = new Date();
-            //     const diaActual = fechaActual.getDate();
-
-            //     let mesAnterior, anioAnterior;
-
-            //     if (
-            //         diaActual !==
-            //         new Date(
-            //             fechaActual.getFullYear(),
-            //             fechaActual.getMonth() + 1,
-            //             0
-            //         ).getDate()
-            //     ) {
-            //         const fechaMesAnterior = new Date(fechaActual);
-            //         fechaMesAnterior.setMonth(fechaActual.getMonth() - 1);
-
-            //         mesAnterior = fechaMesAnterior.getMonth() + 1;
-            //         anioAnterior = fechaMesAnterior.getFullYear();
-            //     } else {
-            //         mesAnterior = fechaActual.getMonth() + 1;
-            //         anioAnterior = fechaActual.getFullYear();
-            //     }
-            //     mesActual = mesAnterior;
-            //     anioActual = anioAnterior;
-            //     console.log("Número del mes anterior:", mesAnterior);
-            //     console.log("Año del mes anterior:", anioAnterior);
-            // } else {
-            //     mesActual = monthValue + 1;
-            //     anioActual = yearValue;
-            // }
-            // const requestOptions = {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({ month: mesActual, year: anioActual })
-            // };
-            // console.log("requestOptions", requestOptions);
-            // //   let response =  await fetch('https://serviciosweb.afphabitat.com.pe/api/privatezone/valores-cuota/date',requestOptions)
-            // let response = await fetch(
-            //     "https://200.60.145.234/api/privatezone/valores-cuota/dates",
-            //     requestOptions
-            // );
-
             const response = await obtenerValorCuota(monthValue, yearValue, isActualMonth);
-            console.log("response", response);
-            // const jsonData = await response.json();
-
             let lastValue = response.rows.pop().fund2;
             return lastValue;
         } catch (error) {
@@ -867,12 +811,12 @@ function Prueba() {
                     >
                         {/* MES */}
 
-                        <Grid
+                        <Grid 
                             item
                             xs={12}
                             sm={2}
                             onClick={openCalendar}
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer",marginTop:'1rem' }}
                         >
                             <Tooltip
                                 title={errorFechaText}
@@ -899,7 +843,7 @@ function Prueba() {
                                     item
                                     xs={12}
                                     sm={12}
-                                    className="box_digits number-container"
+                                    className="box_digits number-container" 
                                 >
                                     <Grid container spacing={1} alignItems="center">
                                         <Grid item xs={4}>
@@ -962,7 +906,7 @@ function Prueba() {
                             xs={12}
                             sm={2.5}
                             onClick={openCalendar}
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer", marginTop:'1rem'}}
                         >
                             <Grid
                                 item
@@ -1036,7 +980,7 @@ function Prueba() {
                             </Grid>
                         </Grid>
                         {/* INVERSION */}
-                        <Grid item xs={12} sm={gridMayor}>
+                        <Grid item xs={12} sm={gridMayor} style={{marginTop:'1rem'}}>
                             <Tooltip
                                 title={errorInversionText}
                                 placement="bottom"
@@ -1326,7 +1270,6 @@ function Prueba() {
                                                     onChange={handleNumeroInversion}
                                                     inputProps={{ maxLength: 8 }}
                                                     fullWidth
-                                                    fullHeight
                                                 />
                                             </Grid>
                                         </Grid>
@@ -1360,8 +1303,8 @@ function Prueba() {
                                 />
                             </LocalizationProvider>
                         </Grid>
-                        <Grid item xs={3} sm={3} className="col2">
-                            <a href={texto ? undefined : "#resultado"}>
+                        <Grid item xs={3} sm={3} className="col2" style={{margin:'1rem'}}>
+                            <a href={href === ''? undefined : "#resultado"}>
                                 <Button
                                     className="btn hbt-btn-primary"
                                     onClick={toggleAnimation}
