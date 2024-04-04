@@ -138,11 +138,13 @@ function Prueba() {
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
     console.log("rentabilidad", resultadoFinal);
-
+    const porcentaje = (resultadoFinal / isInversion) * 100;
+    console.log("porcentaje final", parseInt(porcentaje));
     setDatosInversion(
       isInversion,
       resultadoFinal.toFixed(2),
-      inversionActual.toFixed(2)
+      inversionActual.toFixed(2),
+      parseInt(porcentaje)
     );
     // rentabilidadFondo2(isInversion, resultadoFinal);
     return parseInt(resultadoFinal);

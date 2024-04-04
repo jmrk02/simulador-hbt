@@ -36,13 +36,14 @@ const RentabilidadState = (props) => {
     });
   };
 
-  const setDatosInversion = (inversionInicial, rentabilidad, saldoTotal) => {
+  const setDatosInversion = (inversionInicial, rentabilidad, saldoTotal,porcentaje) => {
     dispatch({
       type: "OBTENER_DATOS",
       payload: {
         saldoTotal: saldoTotal,
         inversionInicial: inversionInicial,
         rentabilidad: rentabilidad,
+        porcentaje: porcentaje,
       },
     });
   };
