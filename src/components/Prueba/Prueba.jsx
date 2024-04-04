@@ -114,7 +114,7 @@ function Prueba() {
 
   const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
   const [texto, setTexto] = useState(true);
-  const [href, setHref] = useState(""); 
+  const [href, setHref] = useState(''); 
   const [errorInversionText, setErrorInversionText] = useState(
     "Por favor, ingresa un monto superior a S/1,00"
   );
@@ -125,11 +125,8 @@ function Prueba() {
 
   const rentabilidadContext = useContext(RentabilidadContext);
   const {
-    mes,
-    anio,
     setDatosInversion,
     setMesAnio,
-    inversionInicial,
     obtenerValorCuota,
   } = rentabilidadContext;
 
@@ -829,7 +826,7 @@ function Prueba() {
               xs={12}
               sm={2}
               onClick={openCalendar}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer",marginTop:'1rem' }}
             >
               <Tooltip
                 title={errorFechaText}
@@ -919,7 +916,7 @@ function Prueba() {
               xs={12}
               sm={2.5}
               onClick={openCalendar}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer",marginTop:'1rem' }}
             >
               <Grid
                 item
@@ -993,7 +990,7 @@ function Prueba() {
               </Grid>
             </Grid>
             {/* INVERSION */}
-            <Grid item xs={12} sm={gridMayor}>
+            <Grid item xs={12} sm={gridMayor} style={{marginTop:'1rem'}}>
               <Tooltip
                 title={errorInversionText}
                 placement="bottom"
@@ -1317,8 +1314,8 @@ function Prueba() {
                 />
               </LocalizationProvider>
             </Grid>
-            <Grid item xs={3} sm={3} className="col2">
-              <a href={texto ? undefined : "#resultado"}>
+            <Grid item xs={3} sm={3} className="col2" style={{marginTop:'1.5rem'}}>
+              <a href={href ==='' ? undefined : "#resultado"}>
                 <Button
                   className="btn hbt-btn-primary"
                   onClick={toggleAnimation}

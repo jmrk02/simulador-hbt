@@ -5,6 +5,7 @@ import lottie from "lottie-web";
 import { useContext } from "react";
 import RentabilidadContext from "../../context/rentabilidad/rentabilidadContext";
 import { DotLottiePlayer } from "@dotlottie/player-component";
+import { set } from "date-fns";
 
 const StcResultado = () => {
   const [animationPlayedFirst, setAnimationPlayedFirst] = useState(false);
@@ -17,6 +18,8 @@ const StcResultado = () => {
   const [total, setTotal] = useState(null);
   const [inversionIni, setInversionIni] = useState(null);
   const [renta, setRenta] = useState(null);
+  const [porcentajeGana, setPorcentajeGana] = useState(null);
+  const [invertidoAnios, setInvertidoAnios] = useState(null);
 
   const rentabilidadContext = useContext(RentabilidadContext);
   const {
@@ -79,6 +82,16 @@ const StcResultado = () => {
         setTotal(inversionActual.toFixed(2));
         setRenta(rentabilidadFinal.toFixed(2));
         setInversionIni(inversionInicial);
+
+        const porcentajetotal = (rentabilidadFinal / inversionInicial) * 100;
+        setPorcentajeGana(parseInt(porcentajetotal));
+        console.log("porcentaje", porcentajetotal.toFixed(2));
+        const fecha = new Date();
+        const anioActual = fecha.getFullYear();
+        console.log("anioActual", anioActual);
+        const invertidoAnios = anioActual - anio;
+        setInvertidoAnios(invertidoAnios);
+        console.log("invertidoAnios", invertidoAnios);
       }
     }
   };
@@ -131,10 +144,22 @@ const StcResultado = () => {
     setInversionIni(inversionInicial);
     setTotal(saldoTotal);
     setRenta(rentabilidad);
-    if (total !== null) {
+    
+
+    const porcentajetotal = (renta / inversionInicial) * 100;
+    setPorcentajeGana(parseInt(porcentajetotal));
+    console.log("porcentaje", porcentajetotal.toFixed(2));
+    const fecha = new Date();
+    const anioActual = fecha.getFullYear();
+    console.log("anioActual", anioActual);
+    const invertidoAnios = anioActual - anio;
+    setInvertidoAnios(invertidoAnios);
+    console.log("invertidoAnios", invertidoAnios);
+    if (porcentajeGana !== null && invertidoAnios!==null) {
       setCompletaDatos(true);
     }
-  }, [inversionInicial, saldoTotal]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inversionInicial, saldoTotal,rentabilidad,porcentajeGana,invertidoAnios]);
 
   return (
     <div className="stc-hbt-resutl-rent py-5">
@@ -178,145 +203,153 @@ const StcResultado = () => {
                               </span>
                             </div>
                           </div>
-                        </div>
-                        <hr className="hr"></hr>
-                        <div className="card-ft px-3">
-                          <div className="d-flex align-item-center justify-content-between">
-                            <div className="col-auto d-flex align-items-center">
-                              <strong className="ft-txt">
-                                Porcentaje de ganancia:
-                              </strong>{" "}
-                              <span className="ps-2 ft-number">43%</span>
-                            </div>
-                            <div className="col-auto">
-                              <button
-                                type="button"
-                                className="btn btn-tooltip-icon p-1 d-flex align-items-center"
-                              >
-                                <span
-                                  className="material-symbols-rounded"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#exampleModal"
-                                >
-                                  info_i
-                                </span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="card rounded-4 mb-4">
-                      <div className="card-body px-0">
-                        <div className="card-hd px-3">
-                          <div className="d-flex">
-                            <div className="col-auto">
-                              <div className="card-icon d-flex align-items-center rounded-4 p-2">
-                                <span className="icon material-symbols-rounded">
-                                  business_center
-                                </span>
-                              </div>
-                            </div>
-                            <div className="col ps-3">
-                              <span className="card-caption body2">
-                                Inversión inicial
-                              </span>
-                              <span className="card-mounth d-block">
-                                S/ {inversionIni}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <hr className="hr"></hr>
-                        <div className="card-ft px-3">
-                          <div className="d-flex align-item-center justify-content-between">
-                            <div className="col-auto d-flex align-items-center">
-                              <strong className="ft-txt">Invertido en:</strong>{" "}
-                              <span className="ps-2 ft-number">9 años</span>
-                            </div>
-                            <div className="col-auto">
-                              <button
-                                type="button"
-                                className="btn btn-tooltip-icon p-1 d-flex align-items-center"
-                              >
-                                <span
-                                  className="material-symbols-rounded"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#exampleModal"
-                                >
-                                  info_i
-                                </span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-xs-12 col2-tab">
-                    <div className="card card-rent rounded-4 mb-4 text-center">
-                      <div className="card-body">
-                        <div className="d-flex justify-content-center">
-                          <div className="card-icon d-flex align-items-center rounded-4 p-2">
-                            <span className="icon material-symbols-rounded">
-                              savings
+                          <div className="col ps-3">
+                            <span className="card-caption body2">
+                              Saldo total
+                            </span>
+                            <span className="card-mounth d-block">
+                              S/ {total ? total : "35,000.67"}
                             </span>
                           </div>
                         </div>
-                        <div className="caption mt-2">Fondo 3</div>
-                        <h5 className="card-title m-0">
-                          Rentabilidad proyectada
-                        </h5>
-                        <p className="card-text">
-                          Tu fondo hubiera generado la siguiente rentabilidad
-                        </p>
-                        <span className="mounth-rentabilidad">
-                          S/ {renta} <span className="icon-disclaimer">*</span>
-                        </span>
-                        <div className="mt-n4" id="json-animation-here-3"></div>
+                      </div>
+                      <hr className="hr"></hr>
+                      <div className="card-ft px-3">
+                        <div className="d-flex align-item-center justify-content-between">
+                          <div className="col-auto d-flex align-items-center">
+                            <strong className="ft-txt">
+                              Porcentaje de ganancia:
+                            </strong>{" "}
+                            <span className="ps-2 ft-number">
+                              {porcentajeGana}%
+                            </span>
+                          </div>
+                          <div className="col-auto">
+                            <button
+                              type="button"
+                              className="btn btn-tooltip-icon p-1 d-flex align-items-center"
+                            >
+                              <span
+                                className="material-symbols-rounded"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                              >
+                                info_i
+                              </span>
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-4 col-xs-12 col3-tab">
-                    <h3 className="mb-2">
-                      Más detalles
-                      <br />
-                      <em>de tu simulación</em>
-                    </h3>
-                    {rentabilidad > 0 ? (
-                      <p className="mb-5">
-                        Descubre la rentabilidad que podrías haber logrado si
-                        hace <strong>9 años</strong> hubieras invertido en{" "}
-                        <strong>AFP Habitat.</strong>
-                      </p>
-                    ) : (
-                      <p className="mb-5">
-                        ¡Oh no!, parece que los datos que ingresaste no
-                        proporcionaron una buena estimación.
-                        <strong>Recuerda que la rentabilidad es volátil</strong>
-                        por lo tanto puede ser positiva o negativa a corto
-                        plazo, intenta seleccionando un periodo de tiempo
-                        distinto.
-                      </p>
-                    )}
-                    <a
-                      href="#stc-invertir"
-                      className="btn hbt-btn-primary mb-2"
-                    >
-                      Invierte ahora
-                    </a>
-                    <div className="d-block d-none d-lg-block">
-                      <span className="disclaimer">
-                        * La rentabilidad es un factor que{" "}
-                        <a
-                          href="https://www.afphabitat.com.pe/rentabilidad/"
-                          target="_blank"
-                        >
-                          se evalúa anualmente y puede variar.
-                        </a>
-                      </span>
+
+                  <div className="card rounded-4 mb-4">
+                    <div className="card-body px-0">
+                      <div className="card-hd px-3">
+                        <div className="d-flex">
+                          <div className="col-auto">
+                            <div className="card-icon d-flex align-items-center rounded-4 p-2">
+                              <span className="icon material-symbols-rounded">
+                                business_center
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col ps-3">
+                            <span className="card-caption body2">
+                              Inversión inicial
+                            </span>
+                            <span className="card-mounth d-block">
+                              S/ {inversionIni}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <hr className="hr"></hr>
+                      <div className="card-ft px-3">
+                        <div className="d-flex align-item-center justify-content-between">
+                          <div className="col-auto d-flex align-items-center">
+                            <strong className="ft-txt">Invertido en:</strong>{" "}
+                            <span className="ps-2 ft-number">
+                              {invertidoAnios} años
+                            </span>
+                          </div>
+                          <div className="col-auto">
+                            <button
+                              type="button"
+                              className="btn btn-tooltip-icon p-1 d-flex align-items-center"
+                            >
+                              <span
+                                className="material-symbols-rounded"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                              >
+                                info_i
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <div className="col-lg-5 col-xs-12 col2-tab">
+                  <div className="card card-rent rounded-4 mb-4 text-center">
+                    <div className="card-body">
+                      <div className="d-flex justify-content-center">
+                        <div className="card-icon d-flex align-items-center rounded-4 p-2">
+                          <span className="icon material-symbols-rounded">
+                            savings
+                          </span>
+                        </div>
+                      </div>
+                      <div className="caption mt-2">Fondo 3</div>
+                      <h5 className="card-title m-0">
+                        Rentabilidad proyectada
+                      </h5>
+                      <p className="card-text">
+                        Tu fondo hubiera generado la siguiente rentabilidad
+                      </p>
+                      <span className="mounth-rentabilidad">
+                        S/ {renta} <span className="icon-disclaimer">*</span>
+                      </span>
+                      <div className="mt-n4" id="json-animation-here-3"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-xs-12 col3-tab">
+                  <h3 className="mb-2">
+                    Más detalles
+                    <br />
+                    <em>de tu simulación</em>
+                  </h3>
+                  {rentabilidad > 0 ? (
+                    <p className="mb-5">
+                      Descubre la rentabilidad que podrías haber logrado si hace{" "}
+                      <strong>9 años</strong> hubieras invertido en{" "}
+                      <strong>AFP Habitat.</strong>
+                    </p>
+                  ) : (
+                    <p className="mb-5">
+                      ¡Oh no!, parece que los datos que ingresaste no
+                      proporcionaron una buena estimación.
+                      <strong>Recuerda que la rentabilidad es volátil</strong>
+                      por lo tanto puede ser positiva o negativa a corto plazo,
+                      intenta seleccionando un periodo de tiempo distinto.
+                    </p>
+                  )}
+                  <a href="#stc-invertir" className="btn hbt-btn-primary mb-2">
+                    Invierte ahora
+                  </a>
+                  <div className="d-block d-none d-lg-block">
+                    <span className="disclaimer">
+                      * La rentabilidad es un factor que{" "}
+                      <a
+                        href="https://www.afphabitat.com.pe/rentabilidad/"
+                        target="_blank"
+                      >
+                        se evalúa anualmente y puede variar.
+                      </a>
+                    </span>
                   </div>
                 </div>
               </div>
