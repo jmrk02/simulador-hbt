@@ -23,11 +23,11 @@ const useStyles = makeStyles({
   root: {
     "& .MuiInputBase-input": {
       color: "white",
-      fontSize: "1.25rem",
+      fontSize: "1.875rem",
       textAlign: "center",
       fontWeight: "400",
       letterSpacing: "2rem",
-      padding: "7px 18px",
+      padding: "8px 17px",
     },
   },
 });
@@ -56,7 +56,7 @@ function Prueba() {
   const [positionN3, setPositionN3] = useState(0);
   const [positionN4, setPositionN4] = useState(0);
   const [terminado, setTerminado] = useState(false);
-  const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88];
+  const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78, 88];
 
   const [mostrarTextField, setMostrarTextField] = useState(false);
   const [positionINV1, setPositionINV1] = useState(0);
@@ -559,7 +559,7 @@ function Prueba() {
             setRunningInv9(false);
             clearInterval(animationIntervalInv9);
           } else {
-            if (contador9 === 9) {
+            if (contador9 === 10) {
               contador9 = 0;
             }
             const nextPosition = posicionesAno[contador9];
