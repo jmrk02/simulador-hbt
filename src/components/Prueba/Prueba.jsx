@@ -26,7 +26,6 @@ const useStyles = makeStyles({
       fontSize: "1.25rem",
       textAlign: "center",
       fontWeight: "400",
-      fontSize: "1.875rem",
       letterSpacing: "2rem",
       padding: "7px 18px",
     },
