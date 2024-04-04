@@ -312,7 +312,15 @@ const StcResultado = () => {
                       <span className="mounth-rentabilidad">
                         S/ {renta} <span className="icon-disclaimer">*</span>
                       </span>
-                      <div className="mt-n4" id="json-animation-here-3"></div>
+                      {step === 1 && (
+                        <div className="mt-n4" id="json-animation-here-1"></div>
+                      )}
+                      {step === 2 && (
+                        <div className="mt-n4" id="json-animation-here-2"></div>
+                      )}
+                      {step === 3 && (
+                        <div className="mt-n4" id="json-animation-here-3"></div>
+                      )}
                     </div>
                   </div>
                 </div>
