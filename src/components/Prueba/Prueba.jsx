@@ -129,7 +129,7 @@ function Prueba() {
 
   const handleCalculate = () => {
     console.log("mi inversion", isInversion);
-
+    console.log("mi rentabilidad", lastRent);
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
     console.log("total", inversionActual);
@@ -154,93 +154,97 @@ function Prueba() {
   const toggleAnimation = async () => {
     let response = await handleCalculate();
     // setIsInversion(response);
-    console.log("response calculo:", response);
-    if (!texto) {
-      setTerminado(false);
-      setPositionN1(0);
-      setPositionN2(0);
-      setPositionN3(0);
-      setPositionN4(0);
 
-      setPositionM1(0);
+    if (lastRent !== null && nowRent !== null) {
+      console.log("response calculo:", response);
+      if (!texto) {
+        setTerminado(false);
+        setPositionN1(0);
+        setPositionN2(0);
+        setPositionN3(0);
+        setPositionN4(0);
+
+        setPositionM1(0);
 
 
-      setPositionINV1(0);
-      setPositionINV2(0);
-      setPositionINV3(0);
-      setPositionINV4(0);
-      setPositionINV5(0);
-      setPositionINV6(0);
-      setPositionINV7(0);
-      setPositionINV8(0);
-      setPositionINV9(0);
-      setDirigirHref(true);
-      setTexto(!texto);
-      setIsInversion("");
-    } else {
-      setPositionN1(0);
-      setPositionN2(0);
-      setPositionN3(0);
-      setPositionN4(0);
+        setPositionINV1(0);
+        setPositionINV2(0);
+        setPositionINV3(0);
+        setPositionINV4(0);
+        setPositionINV5(0);
+        setPositionINV6(0);
+        setPositionINV7(0);
+        setPositionINV8(0);
+        setPositionINV9(0);
+        setDirigirHref(true);
+        setTexto(!texto);
+        setIsInversion("");
+      } else {
+        setPositionN1(0);
+        setPositionN2(0);
+        setPositionN3(0);
+        setPositionN4(0);
 
-      setPositionM1(0);
+        setPositionM1(0);
 
-      setPositionINV1(0);
-      setPositionINV2(0);
-      setPositionINV3(0);
-      setPositionINV4(0);
-      setPositionINV5(0);
-      setPositionINV6(0);
-      setPositionINV7(0);
-      setPositionINV8(0);
-      setPositionINV9(0);
+        setPositionINV1(0);
+        setPositionINV2(0);
+        setPositionINV3(0);
+        setPositionINV4(0);
+        setPositionINV5(0);
+        setPositionINV6(0);
+        setPositionINV7(0);
+        setPositionINV8(0);
+        setPositionINV9(0);
 
-      setRunningN1(!runningN1);
-      setRunningN2(!runningN2);
-      setRunningN3(!runningN3);
-      setRunningN4(!runningN4);
+        setRunningN1(!runningN1);
+        setRunningN2(!runningN2);
+        setRunningN3(!runningN3);
+        setRunningN4(!runningN4);
 
-      setRunningM1(!runningM1);
-      setRunningM2(!runningM2);
-      setRunningM3(!runningM3);
+        setRunningM1(!runningM1);
+        setRunningM2(!runningM2);
+        setRunningM3(!runningM3);
 
-      const longitud = isInversion.toString().length;
-      for (let i = 0; i < longitud; i++) {
-        switch (i) {
-          case 0:
-            setRunningInv1(!runningInv1);
-            break;
-          case 1:
-            setRunningInv2(!runningInv2);
-            break;
-          case 2:
-            setRunningInv3(!runningInv3);
-            break;
-          case 3:
-            setRunningInv4(!runningInv4);
-            break;
-          case 4:
-            setRunningInv5(!runningInv5);
-            break;
-          case 5:
-            setRunningInv6(!runningInv6);
-            break;
-          case 6:
-            setRunningInv7(!runningInv7);
-            break;
-          case 7:
-            setRunningInv8(!runningInv8);
-            break;
-          case 8:
-            setRunningInv9(!runningInv9);
-            break;
-          // Puedes agregar más casos según sea necesario para más dígitos
-          default:
-            break;
+        const longitud = isInversion.toString().length;
+        for (let i = 0; i < longitud; i++) {
+          switch (i) {
+            case 0:
+              setRunningInv1(!runningInv1);
+              break;
+            case 1:
+              setRunningInv2(!runningInv2);
+              break;
+            case 2:
+              setRunningInv3(!runningInv3);
+              break;
+            case 3:
+              setRunningInv4(!runningInv4);
+              break;
+            case 4:
+              setRunningInv5(!runningInv5);
+              break;
+            case 5:
+              setRunningInv6(!runningInv6);
+              break;
+            case 6:
+              setRunningInv7(!runningInv7);
+              break;
+            case 7:
+              setRunningInv8(!runningInv8);
+              break;
+            case 8:
+              setRunningInv9(!runningInv9);
+              break;
+            // Puedes agregar más casos según sea necesario para más dígitos
+            default:
+              break;
+          }
         }
-      }
 
+      }
     }
+
 
   };
 
@@ -649,11 +653,12 @@ function Prueba() {
         setMesAnio(mes, ano);
         let lastValue = await getLastValue(mes, ano, false);
         const lastValueNumber = lastValue.replace(/^S\/\s/, "");
+        console.log("lastValueNumber", lastValueNumber);
         setLastRent(lastValueNumber);
 
         let actualValue = await getLastValue(mes, ano, true);
         const actualValueNumber = actualValue.replace(/^S\/\s/, "");
-
+        console.log("actualValueNumber", actualValueNumber)
         setNowRent(actualValueNumber);
       }
     } catch (error) {
