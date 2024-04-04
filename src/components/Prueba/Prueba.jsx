@@ -132,135 +132,8 @@ function Prueba() {
     obtenerValorCuota,
   } = rentabilidadContext;
 
-  const handleCalculate = () => {
-    console.log("mi inversion", isInversion);
-    console.log("mi rentabilidad", lastRent);
-    let inversionUltima = isInversion / lastRent;
-    let inversionActual = inversionUltima * nowRent;
-    console.log("total", inversionActual);
-    var entero = parseInt(inversionActual);
-    setIsInversion(entero);
-    posicionesNumerosInversion(entero.toString().length, entero);
-    let resultadoFinal = inversionActual - isInversion;
-    console.log("rentabilidad", resultadoFinal);
-    const porcentaje = (resultadoFinal / isInversion) * 100;
-    console.log("porcentaje final", parseInt(porcentaje));
-    setDatosInversion(
-      isInversion,
-      resultadoFinal.toFixed(2),
-      inversionActual.toFixed(2),
-      parseInt(porcentaje)
-    );
-    // rentabilidadFondo2(isInversion, resultadoFinal);
-    return parseInt(resultadoFinal);
-  };
-
-
-  const toggleAnimation = async () => {
-
-    // setIsInversion(response);
-    // if(!texto){
-    //   setHabilitarSimulacion(false);
-    // }
-    //if (lastRent !== null && nowRent !== null) {
-
-
-    if (!texto) {
-      setDirigirHref("si");
-      // setTerminado(false);
-      // setPositionN1(0);
-      // setPositionN2(0);
-      // setPositionN3(0);
-      // setPositionN4(0);
-
-      // setPositionM1(0);
-
-
-      // setPositionINV1(0);
-      // setPositionINV2(0);
-      // setPositionINV3(0);
-      // setPositionINV4(0);
-      // setPositionINV5(0);
-      // setPositionINV6(0);
-      // setPositionINV7(0);
-      // setPositionINV8(0);
-      // setPositionINV9(0);
-      // setDirigirHref(true);
-      // setTexto(!texto);
-      // setIsInversion("");
-    } else {
-      let response = await handleCalculate();
-      console.log("response calculo:", response);
-      setPositionN1(0);
-      setPositionN2(0);
-      setPositionN3(0);
-      setPositionN4(0);
-
-      setPositionM1(0);
-
-      setPositionINV1(0);
-      setPositionINV2(0);
-      setPositionINV3(0);
-      setPositionINV4(0);
-      setPositionINV5(0);
-      setPositionINV6(0);
-      setPositionINV7(0);
-      setPositionINV8(0);
-      setPositionINV9(0);
-
-      setRunningN1(!runningN1);
-      setRunningN2(!runningN2);
-      setRunningN3(!runningN3);
-      setRunningN4(!runningN4);
-
-      setRunningM1(!runningM1);
-      setRunningM2(!runningM2);
-      setRunningM3(!runningM3);
-
-      const longitud = isInversion.toString().length;
-      for (let i = 0; i < longitud; i++) {
-        switch (i) {
-          case 0:
-            setRunningInv1(!runningInv1);
-            break;
-          case 1:
-            setRunningInv2(!runningInv2);
-            break;
-          case 2:
-            setRunningInv3(!runningInv3);
-            break;
-          case 3:
-            setRunningInv4(!runningInv4);
-            break;
-          case 4:
-            setRunningInv5(!runningInv5);
-            break;
-          case 5:
-            setRunningInv6(!runningInv6);
-            break;
-          case 6:
-            setRunningInv7(!runningInv7);
-            break;
-          case 7:
-            setRunningInv8(!runningInv8);
-            break;
-          case 8:
-            setRunningInv9(!runningInv9);
-            break;
-          // Puedes agregar más casos según sea necesario para más dígitos
-          default:
-            break;
-        }
-      }
-
-    }
-    //}
-
-
-  };
-
-  //EFECTO AÑO
-  useEffect(() => {
+   //EFECTO AÑO
+   useEffect(() => {
     let animationIntervalN1,
       animationIntervalN2,
       animationIntervalN3,
@@ -613,6 +486,135 @@ function Prueba() {
     runningInv9,
   ]);
 
+
+  const handleCalculate = () => {
+    console.log("mi inversion", isInversion);
+    console.log("mi rentabilidad", lastRent);
+    let inversionUltima = isInversion / lastRent;
+    let inversionActual = inversionUltima * nowRent;
+    console.log("total", inversionActual);
+    var entero = parseInt(inversionActual);
+    setIsInversion(entero);
+    posicionesNumerosInversion(entero.toString().length, entero);
+    let resultadoFinal = inversionActual - isInversion;
+    console.log("rentabilidad", resultadoFinal);
+    const porcentaje = (resultadoFinal / isInversion) * 100;
+    console.log("porcentaje final", parseInt(porcentaje));
+    setDatosInversion(
+      isInversion,
+      resultadoFinal.toFixed(2),
+      inversionActual.toFixed(2),
+      parseInt(porcentaje)
+    );
+    // rentabilidadFondo2(isInversion, resultadoFinal);
+    return parseInt(resultadoFinal);
+  };
+
+
+  const toggleAnimation = async () => {
+
+    // setIsInversion(response);
+    // if(!texto){
+    //   setHabilitarSimulacion(false);
+    // }
+    //if (lastRent !== null && nowRent !== null) {
+
+
+    if (!texto) {
+      setDirigirHref("si");
+      // setTerminado(false);
+      // setPositionN1(0);
+      // setPositionN2(0);
+      // setPositionN3(0);
+      // setPositionN4(0);
+
+      // setPositionM1(0);
+
+
+      // setPositionINV1(0);
+      // setPositionINV2(0);
+      // setPositionINV3(0);
+      // setPositionINV4(0);
+      // setPositionINV5(0);
+      // setPositionINV6(0);
+      // setPositionINV7(0);
+      // setPositionINV8(0);
+      // setPositionINV9(0);
+      // setDirigirHref(true);
+      // setTexto(!texto);
+      // setIsInversion("");
+    } else {
+      let response = await handleCalculate();
+      console.log("response calculo:", response);
+      setPositionN1(0);
+      setPositionN2(0);
+      setPositionN3(0);
+      setPositionN4(0);
+
+      setPositionM1(0);
+
+      setPositionINV1(0);
+      setPositionINV2(0);
+      setPositionINV3(0);
+      setPositionINV4(0);
+      setPositionINV5(0);
+      setPositionINV6(0);
+      setPositionINV7(0);
+      setPositionINV8(0);
+      setPositionINV9(0);
+
+      setRunningN1(!runningN1);
+      setRunningN2(!runningN2);
+      setRunningN3(!runningN3);
+      setRunningN4(!runningN4);
+
+      setRunningM1(!runningM1);
+      setRunningM2(!runningM2);
+      setRunningM3(!runningM3);
+
+      const longitud = isInversion.toString().length;
+      for (let i = 0; i < longitud; i++) {
+        switch (i) {
+          case 0:
+            setRunningInv1(!runningInv1);
+            break;
+          case 1:
+            setRunningInv2(!runningInv2);
+            break;
+          case 2:
+            setRunningInv3(!runningInv3);
+            break;
+          case 3:
+            setRunningInv4(!runningInv4);
+            break;
+          case 4:
+            setRunningInv5(!runningInv5);
+            break;
+          case 5:
+            setRunningInv6(!runningInv6);
+            break;
+          case 6:
+            setRunningInv7(!runningInv7);
+            break;
+          case 7:
+            setRunningInv8(!runningInv8);
+            break;
+          case 8:
+            setRunningInv9(!runningInv9);
+            break;
+          // Puedes agregar más casos según sea necesario para más dígitos
+          default:
+            break;
+        }
+      }
+
+    }
+    //}
+
+
+  };
+
+ 
   const openCalendar = () => {
     if (texto) {
       setAbrirCalendar(true);
