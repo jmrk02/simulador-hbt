@@ -433,7 +433,9 @@ const StcResultado = () => {
               </a>
             </span>
           </div>
-        </div> : <div className="row sin-data d-flex">
+        </div> : 
+        
+        <div className="row sin-data d-flex">
           <div className="col-sm-12 col-lg-6 left">
             <div className="card rounded-4 mb-4 p-3">
               <div id="lottie-animation" className="sin-resultado">
@@ -465,7 +467,9 @@ const StcResultado = () => {
               </span>
             </div>
           </div>
-        </div>}
+        </div>
+        
+        }
 
 
 
