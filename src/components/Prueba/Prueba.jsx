@@ -1400,6 +1400,7 @@ function Prueba() {
                           vertical: 'top',
                           horizontal: 'right',
                         }}
+                        style={{marginTop: '3rem'}}
                       >
                         <MuiAlert onClose={handleCloseSnackbar} severity="warning">
                           Ingrese solo números enteros, sin puntos o comas. Por ejemplo: 45678.
