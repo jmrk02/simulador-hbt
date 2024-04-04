@@ -96,15 +96,20 @@ const StcResultado = () => {
       "animationPlayedSecondanimationPlayedSecond",
       animationPlayedSecond
     );
-    if (!animationStep) {
-      const animation = lottie.loadAnimation({
-        container: document.getElementById(`json-animation-here-${step}`),
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        path: "https://lottie.host/1b1df540-207e-49e1-819b-042ee1dd1d69/te8cgJPNGC.json",
-      });
+
+    const animation = lottie.loadAnimation({
+      container: document.getElementById(`json-animation-here-${step}`),
+      renderer: "svg",
+      loop: false,
+      autoplay: false,
+      path: "https://lottie.host/1b1df540-207e-49e1-819b-042ee1dd1d69/te8cgJPNGC.json",
+    });
+
+    if (!animationStep && inversionInicial) {
       animation.play();
+    } else {
+      console.log("REPLAY");
+      animation.goToAndPlay(0, true);
     }
   };
 
@@ -113,7 +118,11 @@ const StcResultado = () => {
       handleStartAnimation();
     };
     handleScroll();
-  }, [step]);
+  }, [step, inversionInicial]);
+
+  useEffect(() => {
+    setAnimationPlayedSecond(false);
+  }, []);
 
   useEffect(() => {
     setInversionIni(inversionInicial);

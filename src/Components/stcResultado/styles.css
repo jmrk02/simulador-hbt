@@ -110,6 +110,7 @@ dotlottie-player {
 .card-icon {
   background-color: #ffebf0;
   color: #ce1335;
+  max-width: -moz-fit-content;
   max-width: fit-content;
   transition: 0.5s;
 }
