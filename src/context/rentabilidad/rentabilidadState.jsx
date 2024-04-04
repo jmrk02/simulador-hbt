@@ -36,7 +36,12 @@ const RentabilidadState = (props) => {
     });
   };
 
-  const setDatosInversion = (inversionInicial, rentabilidad, saldoTotal,porcentaje) => {
+  const setDatosInversion = (
+    inversionInicial,
+    rentabilidad,
+    saldoTotal,
+    porcentaje
+  ) => {
     dispatch({
       type: "OBTENER_DATOS",
       payload: {
@@ -89,7 +94,8 @@ const RentabilidadState = (props) => {
         body: JSON.stringify({ month: mesActual, year: anioActual }),
       };
 
-      const url = "https://200.60.145.234/api/privatezone/valores-cuota/dates";
+      const url =
+        "https://zeusqa02.afphabitat.com.pe/api/privatezone/valores-cuota/dates";
       const response = await fetch(url, requestOptions);
       const resultado = await response.json();
 

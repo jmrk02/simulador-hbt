@@ -80,7 +80,7 @@ const Header = () => {
       bodyFormData.set("document", data.documentNumber);
       bodyFormData.set("g-recaptcha-response", captcha);
       let response = await fetch(
-        "https://200.60.145.234/api/services/traspaso-habitat/validar-documento-habitat",
+        "https://zeusqa02.afphabitat.com.pe/api/services/traspaso-habitat/validar-documento-habitat",
         {
           method: "POST",
           body: bodyFormData,
