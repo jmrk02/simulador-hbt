@@ -84,6 +84,7 @@ function Prueba() {
   const [showMillon, setShowMillon] = useState(false);
   const [showMillon1, setShowMillon1] = useState(false);
   const [showMillon2, setShowMillon2] = useState(false);
+  const [comilla,setComilla] = useState(",");
 
   const classes = useStyles();
   const [isInversion, setIsInversion] = useState("");
@@ -152,34 +153,40 @@ function Prueba() {
 
 
   const toggleAnimation = async () => {
-    let response = await handleCalculate();
+   
     // setIsInversion(response);
-
-    if (lastRent !== null && nowRent !== null) {
-      console.log("response calculo:", response);
+    // if(!texto){
+    //   setHabilitarSimulacion(false);
+    // }
+    //if (lastRent !== null && nowRent !== null) {
+     
+    
       if (!texto) {
-        setTerminado(false);
-        setPositionN1(0);
-        setPositionN2(0);
-        setPositionN3(0);
-        setPositionN4(0);
+        setDirigirHref("si");
+        // setTerminado(false);
+        // setPositionN1(0);
+        // setPositionN2(0);
+        // setPositionN3(0);
+        // setPositionN4(0);
 
-        setPositionM1(0);
+        // setPositionM1(0);
 
 
-        setPositionINV1(0);
-        setPositionINV2(0);
-        setPositionINV3(0);
-        setPositionINV4(0);
-        setPositionINV5(0);
-        setPositionINV6(0);
-        setPositionINV7(0);
-        setPositionINV8(0);
-        setPositionINV9(0);
-        setDirigirHref(true);
-        setTexto(!texto);
-        setIsInversion("");
+        // setPositionINV1(0);
+        // setPositionINV2(0);
+        // setPositionINV3(0);
+        // setPositionINV4(0);
+        // setPositionINV5(0);
+        // setPositionINV6(0);
+        // setPositionINV7(0);
+        // setPositionINV8(0);
+        // setPositionINV9(0);
+        // setDirigirHref(true);
+        // setTexto(!texto);
+        // setIsInversion("");
       } else {
+        let response = await handleCalculate();
+        console.log("response calculo:", response);
         setPositionN1(0);
         setPositionN2(0);
         setPositionN3(0);
@@ -243,7 +250,7 @@ function Prueba() {
         }
 
       }
-    }
+    //}
 
 
   };
@@ -670,12 +677,17 @@ function Prueba() {
 
     // let numero = num.target.value;
     let numero = eliminarCeros(num.target.value);
-    setIsInversion(numero);
-    let longitud = numero.length;
-    console.log("numero inver", numero)
-    console.log("longitud inver", longitud);
+    if (numero.startsWith("0")) {
+      setIsInversion("")
+    } else {
+      setIsInversion(numero);
+      let longitud = numero.length;
+      console.log("numero inver", numero)
+      console.log("longitud inver", longitud);
 
-    posicionesNumerosInversion(longitud, numero);
+      posicionesNumerosInversion(longitud, numero);
+    }
+
   };
 
   const eliminarCeros = (numero) => {
@@ -697,6 +709,7 @@ function Prueba() {
         setGridMayor(5);
         setGrid(grid);
         setComa5Dig(true);
+        setComilla(",");
         setComa4Dig(false);
         setComa6Dig(false);
         setShowMillon(false);
@@ -746,6 +759,7 @@ function Prueba() {
         setGridMayor(5);
         setGrid(grid);
         setComa4Dig(true);
+        setComilla(",");
         setComa5Dig(false);
         setComa6Dig(false);
         setShowMillon(false);
@@ -758,6 +772,7 @@ function Prueba() {
         setGridMayor(5);
         setGrid(grid);
         setComa5Dig(true);
+        setComilla(",");
         setComa4Dig(false);
         setComa6Dig(false);
         setShowMillon(false);
@@ -772,6 +787,7 @@ function Prueba() {
         setComa6Dig(true);
         setComa5Dig(false);
         setComa4Dig(false);
+        setComilla(",");
         setShowMillon(false);
         setShowMillon1(false);
         setShowMillon2(false);
@@ -781,6 +797,7 @@ function Prueba() {
         grid = 12 / (longitud + 3);
         setGridMayor(6);
         setComa4Dig(true);
+        setComilla("'");
         setComa5Dig(false);
         setComa6Dig(false);
         setShowMillon(true);
@@ -793,6 +810,7 @@ function Prueba() {
         setGrid(grid);
         setComa4Dig(false);
         setComa5Dig(true);
+        setComilla("'");
         setComa6Dig(false);
         setShowMillon(false);
         setShowMillon1(true);
@@ -808,6 +826,7 @@ function Prueba() {
         setComa4Dig(false);
         setComa5Dig(false);
         setComa6Dig(true);
+        setComilla("'");
         setShowMillon(false);
         setShowMillon1(false);
         setShowMillon2(true);
@@ -1133,7 +1152,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>,</div>
+                              <div key={index}>{comilla}</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1164,7 +1183,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>,</div>
+                              <div key={index}>{comilla}</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1195,7 +1214,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>,</div>
+                              <div key={index}>{comilla}</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1226,7 +1245,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>.</div>
+                              <div key={index}>,</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1257,7 +1276,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>.</div>
+                              <div key={index}>,</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1288,7 +1307,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>.</div>
+                              <div key={index}>,</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1359,7 +1378,7 @@ function Prueba() {
               </Tooltip>
               <Grid>
                 <Typography variant="h6" className="px-3 py-1 box_red_info">
-                  Inversión
+                  {terminado ? "Monto total" : "Inversión"}
                 </Typography>
               </Grid>
             </Grid>
@@ -1382,7 +1401,7 @@ function Prueba() {
                   style={{ display: "none" }}
                   maxDate={dayjs(`2023-03-31`)}
                   minDate={dayjs(`2014-01-01`)}
-                // disabled={!texto}
+
                 />
               </LocalizationProvider>
             </Grid>
@@ -1391,7 +1410,7 @@ function Prueba() {
                 <Button
                   className="btn hbt-btn-primary"
                   onClick={toggleAnimation}
-                  disabled={!habiliarSimulacion}
+                  // disabled={!habiliarSimulacion}
                 >
                   {texto ? "Simular ahora" : "Ver más"}
                 </Button>
