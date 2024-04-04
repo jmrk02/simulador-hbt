@@ -340,15 +340,16 @@ const StcResultado = () => {
                   </h3>
                   {renta > 0 ? (
                     <p className="mb-5">
-                      Descubre la rentabilidad que podrías haber logrado si hace{" "}
+                      Descubre la rentabilidad que podrías haber logrado si hace {" "}
                       <strong>{invertidoAnios} años</strong> hubieras invertido en{" "}
-                      <strong>AFP Habitat.</strong>
+                      <strong>AFP Habitat.</strong> {" "}
+                      Recuerda que a mayor tiempo de inversión podrías tener mayor ganancia.
                     </p>
                   ) : (
                     <p className="mb-5">
                       ¡Oh no!, parece que los datos que ingresaste no
                       proporcionaron una buena estimación. {" "}
-                      <strong>Recuerda que la rentabilidad es volátil</strong>
+                      <strong>Recuerda que la rentabilidad es volátil</strong> {" "}
                       por lo tanto puede ser positiva o negativa a corto plazo,
                       intenta seleccionando un periodo de tiempo distinto.
                     </p>

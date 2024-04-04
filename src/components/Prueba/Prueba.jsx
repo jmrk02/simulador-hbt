@@ -113,7 +113,7 @@ function Prueba() {
   const [texto, setTexto] = useState(true);
   const [dirigirHref, setDirigirHref] = useState(false);
   const [errorInversionText, setErrorInversionText] = useState(
-    "Por favor, ingresa un monto superior a S/1,00"
+    "Por favor, ingresa un monto de inversión"
   );
   const [errorFechaText, setErrorFechaText] = useState(
     "Por favor, ingresa una fecha"
@@ -599,12 +599,12 @@ function Prueba() {
   ]);
 
   const openCalendar = () => {
-    if(texto){
+    if (texto) {
       setAbrirCalendar(true);
-    }else{
+    } else {
       setAbrirCalendar(false);
     }
-    
+
   };
 
   const getLastValue = async (monthValue, yearValue, isActualMonth) => {
@@ -662,16 +662,43 @@ function Prueba() {
   };
 
   const handleNumeroInversion = (num) => {
-    let numero = num.target.value;
+
+    // let numero = num.target.value;
+    let numero = eliminarCeros(num.target.value);
     setIsInversion(numero);
     let longitud = numero.length;
+    console.log("numero inver", numero)
+    console.log("longitud inver", longitud);
 
     posicionesNumerosInversion(longitud, numero);
   };
 
+  const eliminarCeros = (numero) => {
+    let numeroSinCeros = numero;
+    if (numero.length > 0) {
+      numeroSinCeros = parseInt(numero, 10);
+    }
+
+
+    // Convertir de nuevo a cadena para evitar la eliminación de los ceros después del punto decimal
+    return numeroSinCeros.toString();
+  }
+
   const posicionesNumerosInversion = (longitud, numero) => {
     let grid = 2;
     switch (longitud) {
+      case 0:
+        grid = 12 / (5 + 2);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa5Dig(true);
+        setComa4Dig(false);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        break;
+
       case 1:
         grid = 12 / (longitud + 1);
         setGridMayor(5);
@@ -827,12 +854,12 @@ function Prueba() {
   };
 
   const openInversion = () => {
-    if(!texto){
+    if (!texto) {
       setMostrarTextField(false);
-    }else{
+    } else {
       setMostrarTextField(true);
     }
-    
+
   };
 
   return (
@@ -879,6 +906,7 @@ function Prueba() {
                       {
                         marginTop: "0px",
                         backgroundColor: "#CE1335",
+                        fontSize: "0.80rem",
                       },
                     },
                   },
@@ -1043,6 +1071,7 @@ function Prueba() {
                       {
                         marginTop: "0px",
                         backgroundColor: "#CE1335",
+                        fontSize: "0.80rem",
                       },
                     },
                   },
@@ -1055,7 +1084,7 @@ function Prueba() {
                   className="box_digits number-container"
                   style={{ cursor: "pointer" }}
                 >
-                  {!mostrarTextField &&(
+                  {!mostrarTextField && (
                     <Grid
                       container
                       spacing={1}
@@ -1311,12 +1340,12 @@ function Prueba() {
                           autoComplete="off"
                           className={classes.root}
                           onMouseLeave={() => setMostrarTextField(false)}
-                          onBlur={() =>  setMostrarTextField(true)}
+                          onBlur={() => setMostrarTextField(true)}
                           value={isInversion}
                           onChange={handleNumeroInversion}
                           inputProps={{ maxLength: 8 }}
                           fullWidth
-                          // disabled={!texto}
+                        // disabled={!texto}
                         />
                       </Grid>
                     </Grid>
@@ -1348,7 +1377,7 @@ function Prueba() {
                   style={{ display: "none" }}
                   maxDate={dayjs(`2023-03-31`)}
                   minDate={dayjs(`2014-01-01`)}
-                  // disabled={!texto}
+                // disabled={!texto}
                 />
               </LocalizationProvider>
             </Grid>
