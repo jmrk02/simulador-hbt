@@ -35,14 +35,14 @@ const StcResultado = () => {
   const handleFound = async (step) => {
     if (mes !== null && anio !== null) {
       if (inversionInicial !== null) {
-        console.log("mes", mes);
-        console.log("anio", anio);
-        console.log("saldoTotal", saldoTotal);
-        console.log("porcentaje", porcentaje);
-        console.log("rentabilidad", rentabilidad);
-        console.log("inversionInicial", inversionInicial);
+        // console.log("mes", mes);
+        // console.log("anio", anio);
+        // console.log("saldoTotal", saldoTotal);
+        // console.log("porcentaje", porcentaje);
+        // console.log("rentabilidad", rentabilidad);
+        // console.log("inversionInicial", inversionInicial);
+        
         setTotal(saldoTotal);
-        // setRenta(rentabilidad);
         setStep(step);
         setInversionIni(inversionInicial);
         const valorCuotaLast = await obtenerValorCuota(mes, anio, false);
@@ -68,9 +68,6 @@ const StcResultado = () => {
         const lastValueNumber = lastValue.replace(/^S\/\s/, "");
         const actualValueNumber = actualValue.replace(/^S\/\s/, "");
 
-        console.log("valor cuota last", lastValue);
-        console.log("valor cuota actual", actualValue);
-
         const lastRent = parseFloat(lastValueNumber);
         const nowRent = parseFloat(actualValueNumber);
 
@@ -85,13 +82,13 @@ const StcResultado = () => {
 
         const porcentajetotal = (rentabilidadFinal / inversionInicial) * 100;
         setPorcentajeGana(parseInt(porcentajetotal));
-        console.log("porcentaje", porcentajetotal.toFixed(2));
+
         const fecha = new Date();
         const anioActual = fecha.getFullYear();
-        console.log("anioActual", anioActual);
+
         const invertidoAnios = anioActual - anio;
         setInvertidoAnios(invertidoAnios);
-        console.log("invertidoAnios", invertidoAnios);
+   
       }
     }
   };
@@ -129,6 +126,15 @@ const StcResultado = () => {
     }
   };
 
+  const formatearNumero = (numero) => {
+    if(numero === null) return null;
+    let partes = numero.toString().split(".");
+    
+    partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    return partes.join(".");
+  }
+
   useEffect(() => {
     const handleScroll = async () => {
       handleStartAnimation();
@@ -151,7 +157,7 @@ const StcResultado = () => {
     console.log("porcentaje", porcentajetotal.toFixed(2));
     const fecha = new Date();
     const anioActual = fecha.getFullYear();
-    console.log("anioActual", anioActual);
+
     const invertidoAnios = anioActual - anio;
     setInvertidoAnios(invertidoAnios);
     console.log("invertidoAnios", invertidoAnios);
@@ -159,13 +165,13 @@ const StcResultado = () => {
       setCompletaDatos(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inversionInicial, saldoTotal,rentabilidad,porcentajeGana,invertidoAnios]);
+  }, [inversionInicial, saldoTotal,rentabilidad]);
 
   return (
-    <div className="stc-hbt-resutl-rent py-5">
+    <div className="stc-hbt-resutl-rent py-5" id="resultado">
       <div className="container">
         {saldoTotal ? (
-          <div className="form-row">
+          <div className={`transicion-renta ${saldoTotal ? 'mostrar' : ''}`}>
             <div className="header-pills d-flex align-items-center mb-4">
               <h5 className="card-title me-3">Rentabilidad proyectada en: </h5>
               <div className="d-flex">
@@ -208,7 +214,7 @@ const StcResultado = () => {
                               Saldo total
                             </span>
                             <span className="card-mounth d-block">
-                              S/ {total ? total : "35,000.67"}
+                              S/ {total ? formatearNumero(total) : "35,000.67"}
                             </span>
                           </div>
                         </div>
@@ -259,7 +265,7 @@ const StcResultado = () => {
                               Inversión inicial
                             </span>
                             <span className="card-mounth d-block">
-                              S/ {inversionIni}
+                              S/ { formatearNumero(inversionIni) }
                             </span>
                           </div>
                         </div>
@@ -310,7 +316,7 @@ const StcResultado = () => {
                         Tu fondo hubiera generado la siguiente rentabilidad
                       </p>
                       <span className="mounth-rentabilidad">
-                        S/ {renta} <span className="icon-disclaimer">*</span>
+                        S/ {formatearNumero(renta)} <span className="icon-disclaimer">*</span>
                       </span>
                       {step === 1 && (
                         <div className="mt-n4" id="json-animation-here-1"></div>

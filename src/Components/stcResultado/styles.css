@@ -227,3 +227,14 @@ dotlottie-player {
   cursor: pointer;
   margin-right: 0.5rem !important;
 }
+
+
+
+.transicion-renta {
+  transition: opacity 2s ease-in-out; /* Puedes ajustar la duración y el efecto según tus preferencias */
+  opacity: 0; /* Empieza oculto */
+}
+
+.transicion-renta.mostrar {
+  opacity: 1; /* Se muestra cuando la clase mostrar está presente */
+}
