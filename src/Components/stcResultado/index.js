@@ -127,11 +127,22 @@ const StcResultado = () => {
   };
 
   const formatearNumero = (numero) => {
-    if(numero === null) return null;
-    let partes = numero.toString().split(".");
-    
-    partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
+    if (numero === null) return null;
+
+    const numeroRedondeado = Math.round(numero * 100) / 100;
+    console.log("numeroRedondeado", numeroRedondeado)
+
+    let partes = numeroRedondeado.toString().split(".");
+    console.log("partes antes", partes)
+    if (parseInt(partes[0]) >= 1000000) {
+      partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/, "'");
+
+      partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } else {
+      partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+    console.log("partes despues", partes)
+
     return partes.join(".");
   }
 
@@ -151,7 +162,7 @@ const StcResultado = () => {
     setTotal(saldoTotal);
     setRenta(rentabilidad);
 
-    console.log('porcentaje aa',porcentaje)
+    // console.log('porcentaje aa',porcentaje)
     
 
     // const porcentajetotal = (renta / inversionInicial) * 100;

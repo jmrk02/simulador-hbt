@@ -19,6 +19,9 @@ import dayjs from "dayjs";
 import { makeStyles } from "@mui/styles";
 import { set } from "date-fns";
 
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 const useStyles = makeStyles({
   root: {
     "& .MuiInputBase-input": {
@@ -84,7 +87,7 @@ function Prueba() {
   const [showMillon, setShowMillon] = useState(false);
   const [showMillon1, setShowMillon1] = useState(false);
   const [showMillon2, setShowMillon2] = useState(false);
-  const [comilla,setComilla] = useState(",");
+  const [comilla, setComilla] = useState(",");
 
   const classes = useStyles();
   const [isInversion, setIsInversion] = useState("");
@@ -120,6 +123,7 @@ function Prueba() {
     "Por favor, ingresa una fecha"
   );
 
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const rentabilidadContext = useContext(RentabilidadContext);
   const {
@@ -153,103 +157,103 @@ function Prueba() {
 
 
   const toggleAnimation = async () => {
-   
+
     // setIsInversion(response);
     // if(!texto){
     //   setHabilitarSimulacion(false);
     // }
     //if (lastRent !== null && nowRent !== null) {
-     
-    
-      if (!texto) {
-        setDirigirHref("si");
-        // setTerminado(false);
-        // setPositionN1(0);
-        // setPositionN2(0);
-        // setPositionN3(0);
-        // setPositionN4(0);
-
-        // setPositionM1(0);
 
 
-        // setPositionINV1(0);
-        // setPositionINV2(0);
-        // setPositionINV3(0);
-        // setPositionINV4(0);
-        // setPositionINV5(0);
-        // setPositionINV6(0);
-        // setPositionINV7(0);
-        // setPositionINV8(0);
-        // setPositionINV9(0);
-        // setDirigirHref(true);
-        // setTexto(!texto);
-        // setIsInversion("");
-      } else {
-        let response = await handleCalculate();
-        console.log("response calculo:", response);
-        setPositionN1(0);
-        setPositionN2(0);
-        setPositionN3(0);
-        setPositionN4(0);
+    if (!texto) {
+      setDirigirHref("si");
+      // setTerminado(false);
+      // setPositionN1(0);
+      // setPositionN2(0);
+      // setPositionN3(0);
+      // setPositionN4(0);
 
-        setPositionM1(0);
+      // setPositionM1(0);
 
-        setPositionINV1(0);
-        setPositionINV2(0);
-        setPositionINV3(0);
-        setPositionINV4(0);
-        setPositionINV5(0);
-        setPositionINV6(0);
-        setPositionINV7(0);
-        setPositionINV8(0);
-        setPositionINV9(0);
 
-        setRunningN1(!runningN1);
-        setRunningN2(!runningN2);
-        setRunningN3(!runningN3);
-        setRunningN4(!runningN4);
+      // setPositionINV1(0);
+      // setPositionINV2(0);
+      // setPositionINV3(0);
+      // setPositionINV4(0);
+      // setPositionINV5(0);
+      // setPositionINV6(0);
+      // setPositionINV7(0);
+      // setPositionINV8(0);
+      // setPositionINV9(0);
+      // setDirigirHref(true);
+      // setTexto(!texto);
+      // setIsInversion("");
+    } else {
+      let response = await handleCalculate();
+      console.log("response calculo:", response);
+      setPositionN1(0);
+      setPositionN2(0);
+      setPositionN3(0);
+      setPositionN4(0);
 
-        setRunningM1(!runningM1);
-        setRunningM2(!runningM2);
-        setRunningM3(!runningM3);
+      setPositionM1(0);
 
-        const longitud = isInversion.toString().length;
-        for (let i = 0; i < longitud; i++) {
-          switch (i) {
-            case 0:
-              setRunningInv1(!runningInv1);
-              break;
-            case 1:
-              setRunningInv2(!runningInv2);
-              break;
-            case 2:
-              setRunningInv3(!runningInv3);
-              break;
-            case 3:
-              setRunningInv4(!runningInv4);
-              break;
-            case 4:
-              setRunningInv5(!runningInv5);
-              break;
-            case 5:
-              setRunningInv6(!runningInv6);
-              break;
-            case 6:
-              setRunningInv7(!runningInv7);
-              break;
-            case 7:
-              setRunningInv8(!runningInv8);
-              break;
-            case 8:
-              setRunningInv9(!runningInv9);
-              break;
-            // Puedes agregar más casos según sea necesario para más dígitos
-            default:
-              break;
-          }
+      setPositionINV1(0);
+      setPositionINV2(0);
+      setPositionINV3(0);
+      setPositionINV4(0);
+      setPositionINV5(0);
+      setPositionINV6(0);
+      setPositionINV7(0);
+      setPositionINV8(0);
+      setPositionINV9(0);
+
+      setRunningN1(!runningN1);
+      setRunningN2(!runningN2);
+      setRunningN3(!runningN3);
+      setRunningN4(!runningN4);
+
+      setRunningM1(!runningM1);
+      setRunningM2(!runningM2);
+      setRunningM3(!runningM3);
+
+      const longitud = isInversion.toString().length;
+      for (let i = 0; i < longitud; i++) {
+        switch (i) {
+          case 0:
+            setRunningInv1(!runningInv1);
+            break;
+          case 1:
+            setRunningInv2(!runningInv2);
+            break;
+          case 2:
+            setRunningInv3(!runningInv3);
+            break;
+          case 3:
+            setRunningInv4(!runningInv4);
+            break;
+          case 4:
+            setRunningInv5(!runningInv5);
+            break;
+          case 5:
+            setRunningInv6(!runningInv6);
+            break;
+          case 6:
+            setRunningInv7(!runningInv7);
+            break;
+          case 7:
+            setRunningInv8(!runningInv8);
+            break;
+          case 8:
+            setRunningInv9(!runningInv9);
+            break;
+          // Puedes agregar más casos según sea necesario para más dígitos
+          default:
+            break;
         }
-
       }
+
+    }
     //}
 
 
@@ -674,7 +678,17 @@ function Prueba() {
   };
 
   const handleNumeroInversion = (num) => {
-
+    console.log('numero finaaaall',num.target.value)
+    if(num.target.value === undefined){
+      console.log('entro ahora si')
+      setIsInversion("");
+    }
+    
+    if (num.target.value.includes(".")) {
+      setSnackbarOpen(true);
+    }else{
+      setSnackbarOpen(false);
+    }
     // let numero = num.target.value;
     let numero = eliminarCeros(num.target.value);
     if (numero.startsWith("0")) {
@@ -884,6 +898,14 @@ function Prueba() {
       setMostrarTextField(true);
     }
 
+  };
+
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   return (
@@ -1372,6 +1394,17 @@ function Prueba() {
                         // disabled={!texto}
                         />
                       </Grid>
+                      <Snackbar open={snackbarOpen} autoHideDuration={5000}
+                        onClose={handleCloseSnackbar}
+                        anchorOrigin={{
+                          vertical: 'top',
+                          horizontal: 'right',
+                        }}
+                      >
+                        <MuiAlert onClose={handleCloseSnackbar} severity="warning">
+                          Ingrese solo números enteros, sin puntos o comas. Por ejemplo: 45678.
+                        </MuiAlert>
+                      </Snackbar>
                     </Grid>
                   )}
                 </Grid>
@@ -1410,7 +1443,7 @@ function Prueba() {
                 <Button
                   className="btn hbt-btn-primary"
                   onClick={toggleAnimation}
-                  // disabled={!habiliarSimulacion}
+                // disabled={!habiliarSimulacion}
                 >
                   {texto ? "Simular ahora" : "Ver más"}
                 </Button>
