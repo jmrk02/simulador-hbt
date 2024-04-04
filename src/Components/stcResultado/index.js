@@ -150,11 +150,13 @@ const StcResultado = () => {
     setInversionIni(inversionInicial);
     setTotal(saldoTotal);
     setRenta(rentabilidad);
+
+    console.log('porcentaje aa',porcentaje)
     
 
-    const porcentajetotal = (renta / inversionInicial) * 100;
-    setPorcentajeGana(parseInt(porcentajetotal));
-    console.log("porcentaje", porcentajetotal.toFixed(2));
+    // const porcentajetotal = (renta / inversionInicial) * 100;
+    setPorcentajeGana(porcentaje);
+    // console.log("porcentaje", porcentajetotal.toFixed(2));
     const fecha = new Date();
     const anioActual = fecha.getFullYear();
 
@@ -165,7 +167,7 @@ const StcResultado = () => {
       setCompletaDatos(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inversionInicial, saldoTotal,rentabilidad]);
+  }, [inversionInicial, saldoTotal]);
 
   return (
     <div className="stc-hbt-resutl-rent py-5" id="resultado">
@@ -308,7 +310,7 @@ const StcResultado = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="caption mt-2">Fondo 3</div>
+                      <div className="caption mt-2">Fondo {step}</div>
                       <h5 className="card-title m-0">
                         Rentabilidad proyectada
                       </h5>
@@ -345,7 +347,7 @@ const StcResultado = () => {
                   ) : (
                     <p className="mb-5">
                       ¡Oh no!, parece que los datos que ingresaste no
-                      proporcionaron una buena estimación.
+                      proporcionaron una buena estimación. {" "}
                       <strong>Recuerda que la rentabilidad es volátil</strong>
                       por lo tanto puede ser positiva o negativa a corto plazo,
                       intenta seleccionando un periodo de tiempo distinto.

@@ -22,6 +22,7 @@ export default (state, action) => {
                 inversionInicial: action.payload.inversionInicial,
                 rentabilidad: action.payload.rentabilidad,
                 saldoTotal: action.payload.saldoTotal,
+                porcentaje: action.payload.porcentaje
                 
             }
             break;

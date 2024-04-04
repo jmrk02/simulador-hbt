@@ -138,11 +138,13 @@ function Prueba() {
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
     console.log("rentabilidad", resultadoFinal);
-
+    const porcentaje = (resultadoFinal / isInversion) * 100;
+    console.log("porcentaje final", parseInt(porcentaje));
     setDatosInversion(
       isInversion,
       resultadoFinal.toFixed(2),
-      inversionActual.toFixed(2)
+      inversionActual.toFixed(2),
+      parseInt(porcentaje)
     );
     // rentabilidadFondo2(isInversion, resultadoFinal);
     return parseInt(resultadoFinal);
@@ -1344,7 +1346,7 @@ function Prueba() {
                   label="Selecciona una fecha"
                   views={["year", "month"]}
                   style={{ display: "none" }}
-                  maxDate={dayjs(`2024-03-31`)}
+                  maxDate={dayjs(`2023-03-31`)}
                   minDate={dayjs(`2014-01-01`)}
                   // disabled={!texto}
                 />
