@@ -95,15 +95,24 @@ const StcResultado = () => {
       await setAnimationPlayedThird(true);
       animationStep = animationPlayedThird;
     }
-    if (!animationStep) {
-      const animation = lottie.loadAnimation({
-        container: document.getElementById(`json-animation-here-${step}`),
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        path: "https://lottie.host/1b1df540-207e-49e1-819b-042ee1dd1d69/te8cgJPNGC.json",
-      });
+    console.log(
+      "animationPlayedSecondanimationPlayedSecond",
+      animationPlayedSecond
+    );
+
+    const animation = lottie.loadAnimation({
+      container: document.getElementById(`json-animation-here-${step}`),
+      renderer: "svg",
+      loop: false,
+      autoplay: false,
+      path: "https://lottie.host/1b1df540-207e-49e1-819b-042ee1dd1d69/te8cgJPNGC.json",
+    });
+
+    if (!animationStep && inversionInicial) {
       animation.play();
+    } else {
+      console.log("REPLAY");
+      animation.goToAndPlay(0, true);
     }
   };
 
@@ -112,7 +121,11 @@ const StcResultado = () => {
       handleStartAnimation();
     };
     handleScroll();
-  }, [step]);
+  }, [step, inversionInicial]);
+
+  useEffect(() => {
+    setAnimationPlayedSecond(false);
+  }, []);
 
   useEffect(() => {
     setInversionIni(inversionInicial);
@@ -124,89 +137,44 @@ const StcResultado = () => {
   }, [inversionInicial, saldoTotal]);
 
   return (
-    <div className="stc-hbt-resutl-rent py-5" id="resultado">
+    <div className="stc-hbt-resutl-rent py-5">
       <div className="container">
         {saldoTotal ? (
           <div className="form-row">
             <div className="header-pills d-flex align-items-center mb-4">
               <h5 className="card-title me-3">Rentabilidad proyectada en: </h5>
-              <ul className="nav nav-pills" id="pills-tab" role="tablist">
-                {/* FONDO 1 */}
-                <li className="nav-item" role="presentation">
-                  <div
-                    className="btn nav-link me-2 "
-                    id="home-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#fondo3"
-                    type="button"
-                    role="tab"
-                    aria-controls="fondo3"
-                    aria-selected="false"
-                    onClick={() => handleFound(1)}
-                  >
-                    Fondo 1
-                  </div>
-                </li>
-                {/* FONDO 2 */}
-                <li className="nav-item" role="presentation">
-                  <div
-                    className="btn nav-link me-2 active"
-                    id="profile-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#fondo3"
-                    type="button"
-                    role="tab"
-                    aria-controls="fondo3"
-                    aria-selected="true"
-                    onClick={() => handleFound(2)}
-                  >
-                    Fondo 2
-                  </div>
-                </li>
-                {/* FONDO 3 */}
-                <li className="nav-item" role="presentation">
-                  <div
-                    className="btn nav-link me-2"
-                    id="contact-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#fondo3"
-                    type="button"
-                    role="tab"
-                    aria-controls="fondo3"
-                    aria-selected="false"
-                    onClick={() => handleFound(3)}
-                  >
-                    Fondo 3
-                  </div>
-                </li>
-              </ul>
+              <div className="d-flex">
+                <div
+                  className={step === 1 ? "btn-active" : "btn-inactive"}
+                  onClick={() => handleFound(1)}
+                >
+                  Fondo 1
+                </div>
+                <div
+                  className={step === 2 ? "btn-active" : "btn-inactive"}
+                  onClick={() => handleFound(2)}
+                >
+                  Fondo 2
+                </div>
+                <div
+                  className={step === 3 ? "btn-active" : "btn-inactive"}
+                  onClick={() => handleFound(3)}
+                >
+                  Fondo 3
+                </div>
+              </div>
             </div>
-            <div className="tab-content" id="pills-tabContent">
-              <div
-                className="tab-pane fade"
-                id="fondo3"
-                role="fondo3"
-                aria-labelledby="fondo3"
-              >
-                <div className="row">
-                  <div className="col-lg-3 col-xs-12 col1-tab">
-                    <div className="card rounded-4 mb-4">
-                      <div className="card-body px-0">
-                        <div className="card-hd px-3">
-                          <div className="d-flex">
-                            <div className="col-auto">
-                              <div className="card-icon d-flex align-items-center rounded-4 p-2">
-                                <span className="icon material-symbols-rounded">
-                                  trending_up
-                                </span>
-                              </div>
-                            </div>
-                            <div className="col ps-3">
-                              <span className="card-caption body2">
-                                Saldo total
-                              </span>
-                              <span className="card-mounth d-block">
-                                S/ {total ? total : "35,000.67"}
+            <div className="tab-content">
+              <div className="row">
+                <div className="col-lg-3 col-xs-12 col1-tab">
+                  <div className="card rounded-4 mb-4">
+                    <div className="card-body px-0">
+                      <div className="card-hd px-3">
+                        <div className="d-flex">
+                          <div className="col-auto">
+                            <div className="card-icon d-flex align-items-center rounded-4 p-2">
+                              <span className="icon material-symbols-rounded">
+                                trending_up
                               </span>
                             </div>
                           </div>

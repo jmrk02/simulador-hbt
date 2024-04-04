@@ -20,38 +20,38 @@ import { makeStyles } from "@mui/styles";
 import { set } from "date-fns";
 
 const useStyles = makeStyles({
-    root: {
-        "& .MuiInputBase-input": {
-            color: "white",
-            fontSize: "1.25rem",
-            textAlign: "center",
-            fontWeight: "400",
-            fontSize: "1.875rem",
-            letterSpacing: "2rem",
-            padding: "7px 18px",
-        },
+  root: {
+    "& .MuiInputBase-input": {
+      color: "white",
+      fontSize: "1.25rem",
+      textAlign: "center",
+      fontWeight: "400",
+      fontSize: "1.875rem",
+      letterSpacing: "2rem",
+      padding: "7px 18px",
     },
+  },
 });
 
 function Prueba() {
-    const velocidad = 100;
+  const velocidad = 100;
 
-    const [runningM1, setRunningM1] = useState(false);
-    const [runningM2, setRunningM2] = useState(false);
-    const [runningM3, setRunningM3] = useState(false);
+  const [runningM1, setRunningM1] = useState(false);
+  const [runningM2, setRunningM2] = useState(false);
+  const [runningM3, setRunningM3] = useState(false);
 
-    const [runningN1, setRunningN1] = useState(false);
-    const [runningN2, setRunningN2] = useState(false);
-    const [runningN3, setRunningN3] = useState(false);
-    const [runningN4, setRunningN4] = useState(false);
+  const [runningN1, setRunningN1] = useState(false);
+  const [runningN2, setRunningN2] = useState(false);
+  const [runningN3, setRunningN3] = useState(false);
+  const [runningN4, setRunningN4] = useState(false);
 
-    const [digitosMes, setDigitosMes] = useState(0);
-    const [positionM1, setPositionM1] = useState(0);
-    const [positionM2, setPositionM2] = useState(0);
-    const [positionM3, setPositionM3] = useState(0);
-    const posicionMes = [
-        0, 8, 16, 24.5, 32.5, 40.5, 48.5, 56.5, 65, 73, 81.5, 89.5,
-    ];
+  const [digitosMes, setDigitosMes] = useState(0);
+  const [positionM1, setPositionM1] = useState(0);
+  const [positionM2, setPositionM2] = useState(0);
+  const [positionM3, setPositionM3] = useState(0);
+  const posicionMes = [
+    0, 8, 16, 24.5, 32.5, 40.5, 48.5, 56.5, 65, 73, 81.5, 89.5,
+  ];
 
     const [digitosAno, setDigitosAno] = useState([]);
     const [positionN1, setPositionN1] = useState(0);
@@ -61,87 +61,99 @@ function Prueba() {
     const [terminado, setTerminado] = useState(false);
     const posicionesAno = [0, 10, 19.5, 29, 39, 49, 58.5, 68.5, 78.5, 88];
 
-    const [mostrarTextField, setMostrarTextField] = useState(false);
-    const [positionINV1, setPositionINV1] = useState(0);
-    const [positionINV2, setPositionINV2] = useState(0);
-    const [positionINV3, setPositionINV3] = useState(0);
-    const [positionINV4, setPositionINV4] = useState(0);
-    const [positionINV5, setPositionINV5] = useState(0);
-    const [positionINV6, setPositionINV6] = useState(0);
-    const [positionINV7, setPositionINV7] = useState(0);
-    const [positionINV8, setPositionINV8] = useState(0);
-    const [positionINV9, setPositionINV9] = useState(0);
+  const [mostrarTextField, setMostrarTextField] = useState(false);
+  const [positionINV1, setPositionINV1] = useState(0);
+  const [positionINV2, setPositionINV2] = useState(0);
+  const [positionINV3, setPositionINV3] = useState(0);
+  const [positionINV4, setPositionINV4] = useState(0);
+  const [positionINV5, setPositionINV5] = useState(0);
+  const [positionINV6, setPositionINV6] = useState(0);
+  const [positionINV7, setPositionINV7] = useState(0);
+  const [positionINV8, setPositionINV8] = useState(0);
+  const [positionINV9, setPositionINV9] = useState(0);
 
-    const [runningInv1, setRunningInv1] = useState(false);
-    const [runningInv2, setRunningInv2] = useState(false);
-    const [runningInv3, setRunningInv3] = useState(false);
+  const [runningInv1, setRunningInv1] = useState(false);
+  const [runningInv2, setRunningInv2] = useState(false);
+  const [runningInv3, setRunningInv3] = useState(false);
 
-    const [runningInv4, setRunningInv4] = useState(false);
-    const [runningInv5, setRunningInv5] = useState(false);
-    const [runningInv6, setRunningInv6] = useState(false);
+  const [runningInv4, setRunningInv4] = useState(false);
+  const [runningInv5, setRunningInv5] = useState(false);
+  const [runningInv6, setRunningInv6] = useState(false);
 
-    const [runningInv7, setRunningInv7] = useState(false);
-    const [runningInv8, setRunningInv8] = useState(false);
-    const [runningInv9, setRunningInv9] = useState(false);
+  const [runningInv7, setRunningInv7] = useState(false);
+  const [runningInv8, setRunningInv8] = useState(false);
+  const [runningInv9, setRunningInv9] = useState(false);
 
-    const [showMillon, setShowMillon] = useState(false);
-    const [showMillon1, setShowMillon1] = useState(false);
-    const [showMillon2, setShowMillon2] = useState(false);
+  const [showMillon, setShowMillon] = useState(false);
+  const [showMillon1, setShowMillon1] = useState(false);
+  const [showMillon2, setShowMillon2] = useState(false);
 
-    const classes = useStyles();
-    const [isInversion, setIsInversion] = useState("");
-    const [gridMayor, setGridMayor] = useState(5);
-    const griduno = 12 / 7;
-    const [grid, setGrid] = useState(griduno);
+  const classes = useStyles();
+  const [isInversion, setIsInversion] = useState("");
+  const [gridMayor, setGridMayor] = useState(5);
+  const griduno = 12 / 7;
+  const [grid, setGrid] = useState(griduno);
 
-    const [digitosInversion, setDigitosInversion] = useState([]);
+  const [digitosInversion, setDigitosInversion] = useState([]);
 
-    const [abrirCalendar, setAbrirCalendar] = useState(false);
-    const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const [abrirCalendar, setAbrirCalendar] = useState(false);
+  const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-    const meses = [
-        ["E", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-        ["N", "E", "A", "B", "A", "U", "U", "G", "E", "C", "O", "I"],
-        ["E", "B", "R", "R", "Y", "N", "L", "O", "P", "T", "V", "C"],
-    ];
+  const meses = [
+    ["E", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+    ["N", "E", "A", "B", "A", "U", "U", "G", "E", "C", "O", "I"],
+    ["E", "B", "R", "R", "Y", "N", "L", "O", "P", "T", "V", "C"],
+  ];
 
-    const [coma4Dig, setComa4Dig] = useState(false);
-    const [coma5Dig, setComa5Dig] = useState(true);
-    const [coma6Dig, setComa6Dig] = useState(false);
+  const [coma4Dig, setComa4Dig] = useState(false);
+  const [coma5Dig, setComa5Dig] = useState(true);
+  const [coma6Dig, setComa6Dig] = useState(false);
 
-    const [lastRent, setLastRent] = useState(null);
-    const [nowRent, setNowRent] = useState(null);
+  const [lastRent, setLastRent] = useState(null);
+  const [nowRent, setNowRent] = useState(null);
 
-    const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
-    const [texto, setTexto] = useState(true);
-    const [href, setHref] = useState("");
-    const [errorInversionText, setErrorInversionText] = useState(
-        "Por favor, ingresa un monto superior a S/1,00"
+  const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
+  const [texto, setTexto] = useState(true);
+  const [href, setHref] = useState(""); 
+  const [errorInversionText, setErrorInversionText] = useState(
+    "Por favor, ingresa un monto superior a S/1,00"
+  );
+  const [errorFechaText, setErrorFechaText] = useState(
+    "Por favor, ingresa una fecha"
+  );
+
+
+  const rentabilidadContext = useContext(RentabilidadContext);
+  const {
+    mes,
+    anio,
+    setDatosInversion,
+    setMesAnio,
+    inversionInicial,
+    obtenerValorCuota,
+  } = rentabilidadContext;
+
+  const handleCalculate = () => {
+    console.log("mi inversion", isInversion);
+
+    let inversionUltima = isInversion / lastRent;
+    let inversionActual = inversionUltima * nowRent;
+    console.log("total", inversionActual);
+    var entero = parseInt(inversionActual);
+    setIsInversion(entero);
+    posicionesNumerosInversion(entero.toString().length, entero);
+    let resultadoFinal = inversionActual - isInversion;
+    console.log("rentabilidad", resultadoFinal);
+
+    setDatosInversion(
+      isInversion,
+      resultadoFinal.toFixed(2),
+      inversionActual.toFixed(2)
     );
-    const [errorFechaText, setErrorFechaText] = useState(
-        "Por favor, ingresa una fecha"
-    );
+    // rentabilidadFondo2(isInversion, resultadoFinal);
+    return parseInt(resultadoFinal);
+  };
 
-
-    const rentabilidadContext = useContext(RentabilidadContext);
-    const { setDatosInversion, setMesAnio, obtenerValorCuota } = rentabilidadContext;
-
-    const handleCalculate = () => {
-        console.log("mi inversion", isInversion);
-
-        let inversionUltima = isInversion / lastRent;
-        let inversionActual = inversionUltima * nowRent;
-        console.log("total", inversionActual);
-        var entero = parseInt(inversionActual);
-        setIsInversion(entero);
-        posicionesNumerosInversion(entero.toString().length, entero);
-        let resultadoFinal = inversionActual - isInversion;
-        console.log("rentabilidad", resultadoFinal);
-
-        setDatosInversion(isInversion, resultadoFinal.toFixed(2), inversionActual.toFixed(2))
-        // rentabilidadFondo2(isInversion, resultadoFinal);
-        return parseInt(resultadoFinal);
-    };
 
     const toggleAnimation = async () => {
         let response = await handleCalculate();
@@ -578,748 +590,749 @@ function Prueba() {
     };
 
     const handleDate = async (date) => {
-        try {
-            if (date === null) {
-                return;
-            }
-            const mes = date["$M"];
-            const ano = date["$y"];
-            const updateFecha = { month: mes, year: ano };
-            if (updateFecha !== null) {
-                const { year, month } = updateFecha;
-                setDigitosMes(month);
-                setPositionM1(posicionMes[month]);
-                const anos = year
-                    .toString()
-                    .split("")
-                    .map((i) => parseInt(i, 10));
-                setDigitosAno(anos);
-                setPositionN1(posicionesAno[anos[0]]);
-                setPositionN2(posicionesAno[anos[1]]);
-                setPositionN3(posicionesAno[anos[2]]);
-                setPositionN4(posicionesAno[anos[3]]);
-                if (isInversion.length > 0) {
-                    setHabilitarSimulacion(true);
-                }
-            }
-            if (digitosAno.length === 0) {
-                setErrorFechaText("Seleccione una fecha");
-            } else {
-                setErrorFechaText("");
-                setMesAnio(mes, ano);
-                let lastValue = await getLastValue(mes, ano, false);
-                const lastValueNumber = lastValue.replace(/^S\/\s/, "");
-                setLastRent(lastValueNumber);
-
-                let actualValue = await getLastValue(mes, ano, true);
-                const actualValueNumber = actualValue.replace(/^S\/\s/, "");
-
-                setNowRent(actualValueNumber);
-            }
-        } catch (error) {
-            console.log(error);
+    try {
+      if (date === null) {
+        return;
+      }
+      const mes = date["$M"];
+      const ano = date["$y"];
+      const updateFecha = { month: mes, year: ano };
+      if (updateFecha !== null) {
+        const { year, month } = updateFecha;
+        setDigitosMes(month);
+        setPositionM1(posicionMes[month]);
+        const anos = year
+          .toString()
+          .split("")
+          .map((i) => parseInt(i, 10));
+        setDigitosAno(anos);
+        setPositionN1(posicionesAno[anos[0]]);
+        setPositionN2(posicionesAno[anos[1]]);
+        setPositionN3(posicionesAno[anos[2]]);
+        setPositionN4(posicionesAno[anos[3]]);
+        if (isInversion.length > 0) {
+          setHabilitarSimulacion(true);
         }
-    };
+      }
+      if (digitosAno.length === 0) {
+        setErrorFechaText("Seleccione una fecha");
+      } else {
+        setErrorFechaText("");
+        setMesAnio(mes, ano);
+        let lastValue = await getLastValue(mes, ano, false);
+        const lastValueNumber = lastValue.replace(/^S\/\s/, "");
+        setLastRent(lastValueNumber);
 
-    const handleNumeroInversion = (num) => {
+        let actualValue = await getLastValue(mes, ano, true);
+        const actualValueNumber = actualValue.replace(/^S\/\s/, "");
 
-        let numero = num.target.value;
-        setIsInversion(numero);
-        let longitud = numero.length;
-        let grid = 2;
-        posicionesNumerosInversion(longitud, numero);
-    };
+        setNowRent(actualValueNumber);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const handleNumeroInversion = (num) => {
+    let numero = num.target.value;
+    setIsInversion(numero);
+    let longitud = numero.length;
+    let grid = 2;
+    posicionesNumerosInversion(longitud, numero);
+  };
 
-    const posicionesNumerosInversion = (longitud, numero) => {
-        // console.log("longitud de inversion", longitud);
-        let grid = 2;
-        switch (longitud) {
-            case 1:
-                // longitud = numero.length;
-                grid = 12 / (longitud + 1);
-                setGridMayor(5);
-                setGrid(grid);
-                setComa4Dig(false);
-                setComa5Dig(false);
-                setComa6Dig(false);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(false);
-                setErrorInversionText("El monto mínimo de inversión es de S/ 1,000");
-                break;
-            case 2:
-                // longitud = numero.length;
-                grid = 12 / (longitud + 1);
-                setGridMayor(5);
-                setGrid(grid);
-                setComa4Dig(false);
-                setComa5Dig(false);
-                setComa6Dig(false);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(false);
-                break;
-            case 3:
-                // longitud = numero.length;
-                grid = 12 / (longitud + 1);
-                setGridMayor(5);
-                setGrid(grid);
-                setComa4Dig(false);
-                setComa5Dig(false);
-                setComa6Dig(false);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(false);
-                break;
-            case 4:
-                // longitud = numero.length
-                grid = 12 / (longitud + 2);
-                setGridMayor(5);
-                setGrid(grid);
-                setComa4Dig(true);
-                setComa5Dig(false);
-                setComa6Dig(false);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(false);
-                break;
-            case 5:
-                // longitud = numero.length;
-                grid = 12 / (longitud + 2);
-                setGridMayor(5);
-                setGrid(grid);
-                setComa5Dig(true);
-                setComa4Dig(false);
-                setComa6Dig(false);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(false);
-                break;
-            case 6:
-                // longitud = numero.length;
-                grid = 12 / (longitud + 2);
-                setGridMayor(5);
-                setGrid(grid);
-                setComa6Dig(true);
-                setComa5Dig(false);
-                setComa4Dig(false);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(false);
-                break;
-            case 7:
-                // longitud = numero.length + 3;
-                grid = 12 / (longitud + 3);
-                setGridMayor(6);
-                setComa4Dig(true);
-                setComa5Dig(false);
-                setComa6Dig(false);
-                setShowMillon(true);
-                setGrid(grid);
-                break;
-            case 8:
-                // longitud = numero.length + 3;
-                grid = 12 / (longitud + 3);
-                setGridMayor(6);
-                setGrid(grid);
-                setComa4Dig(false);
-                setComa5Dig(true);
-                setComa6Dig(false);
-                setShowMillon(false);
-                setShowMillon1(true);
-                setShowMillon2(false);
+  const posicionesNumerosInversion = (longitud, numero) => {
+    let grid = 2;
+    switch (longitud) {
+      case 1:
+        grid = 12 / (longitud + 1);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa4Dig(false);
+        setComa5Dig(false);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        setErrorInversionText("El monto mínimo de inversión es de S/ 1,000");
+        break;
+      case 2:
+        // longitud = numero.length;
+        grid = 12 / (longitud + 1);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa4Dig(false);
+        setComa5Dig(false);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        break;
+      case 3:
+        // longitud = numero.length;
+        grid = 12 / (longitud + 1);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa4Dig(false);
+        setComa5Dig(false);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        break;
+      case 4:
+        // longitud = numero.length
+        grid = 12 / (longitud + 2);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa4Dig(true);
+        setComa5Dig(false);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        break;
+      case 5:
+        // longitud = numero.length;
+        grid = 12 / (longitud + 2);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa5Dig(true);
+        setComa4Dig(false);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        break;
+      case 6:
+        // longitud = numero.length;
+        grid = 12 / (longitud + 2);
+        setGridMayor(5);
+        setGrid(grid);
+        setComa6Dig(true);
+        setComa5Dig(false);
+        setComa4Dig(false);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(false);
+        break;
+      case 7:
+        // longitud = numero.length + 3;
+        grid = 12 / (longitud + 3);
+        setGridMayor(6);
+        setComa4Dig(true);
+        setComa5Dig(false);
+        setComa6Dig(false);
+        setShowMillon(true);
+        setGrid(grid);
+        break;
+      case 8:
+        // longitud = numero.length + 3;
+        grid = 12 / (longitud + 3);
+        setGridMayor(6);
+        setGrid(grid);
+        setComa4Dig(false);
+        setComa5Dig(true);
+        setComa6Dig(false);
+        setShowMillon(false);
+        setShowMillon1(true);
+        setShowMillon2(false);
 
-                break;
-            case 9:
-                setGridMayor(6);
-                // longitud = numero.length + 3;
-                grid = 12 / (longitud + 3);
-                setGrid(grid);
-                setGridMayor(6);
-                setComa4Dig(false);
-                setComa5Dig(false);
-                setComa6Dig(true);
-                setShowMillon(false);
-                setShowMillon1(false);
-                setShowMillon2(true);
-                break;
-            default:
-                grid = 1.5;
-                setGrid(1.5);
-                break;
-        }
-
-        if (longitud === 0) {
-            setHabilitarSimulacion(false);
-            setErrorInversionText("Ingrese un monto de inversión");
-        } else {
-            setErrorInversionText("");
-        }
-
-        const digitos = numero
-            .toString()
-            .split("")
-            .map((i) => parseInt(i, 10));
-        setDigitosInversion(digitos);
-        setPositionINV1(posicionesAno[digitos[0]]);
-        setRunningInv1(false);
-        setPositionINV2(posicionesAno[digitos[1]]);
-        setRunningInv2(false);
-        setPositionINV3(posicionesAno[digitos[2]]);
-        setRunningInv3(false);
-        setPositionINV4(posicionesAno[digitos[3]]);
-        setRunningInv4(false);
-        setPositionINV5(posicionesAno[digitos[4]]);
-        setRunningInv5(false);
-        setPositionINV6(posicionesAno[digitos[5]]);
-        setRunningInv6(false);
-        if (longitud >= 7) {
-            setPositionINV7(posicionesAno[digitos[6]]);
-            setRunningInv7(false);
-            setPositionINV8(posicionesAno[digitos[7]]);
-            setRunningInv8(false);
-            setPositionINV9(posicionesAno[digitos[8]]);
-            setRunningInv9(false);
-        }
-
-        if (longitud > 0 && digitosMes > 0) {
-            setHabilitarSimulacion(true);
-        } else {
-            setHabilitarSimulacion(false);
-        }
+        break;
+      case 9:
+        setGridMayor(6);
+        // longitud = numero.length + 3;
+        grid = 12 / (longitud + 3);
+        setGrid(grid);
+        setGridMayor(6);
+        setComa4Dig(false);
+        setComa5Dig(false);
+        setComa6Dig(true);
+        setShowMillon(false);
+        setShowMillon1(false);
+        setShowMillon2(true);
+        break;
+      default:
+        grid = 1.5;
+        setGrid(1.5);
+        break;
     }
 
-    const openInversion = () => {
-        setMostrarTextField(!mostrarTextField);
-    };
+    if (longitud === 0) {
+      setHabilitarSimulacion(false);
+      setErrorInversionText("Ingrese un monto de inversión");
+    } else {
+      setErrorInversionText("");
+    }
 
-    return (
-        <div className="bg-paper py-5">
-            <Container>
-                <div className="d-block text-center">
-                    <h3 className="d-block"><em>Simula tu Rentabilidad</em></h3>
-                    <p>Elige un periodo y monto de inversión para visualizar gráficamente tu rentabilidad potencial.</p>
+    const digitos = numero
+      .toString()
+      .split("")
+      .map((i) => parseInt(i, 10));
+    setDigitosInversion(digitos);
+    setPositionINV1(posicionesAno[digitos[0]]);
+    setRunningInv1(false);
+    setPositionINV2(posicionesAno[digitos[1]]);
+    setRunningInv2(false);
+    setPositionINV3(posicionesAno[digitos[2]]);
+    setRunningInv3(false);
+    setPositionINV4(posicionesAno[digitos[3]]);
+    setRunningInv4(false);
+    setPositionINV5(posicionesAno[digitos[4]]);
+    setRunningInv5(false);
+    setPositionINV6(posicionesAno[digitos[5]]);
+    setRunningInv6(false);
+    if (longitud >= 7) {
+      setPositionINV7(posicionesAno[digitos[6]]);
+      setRunningInv7(false);
+      setPositionINV8(posicionesAno[digitos[7]]);
+      setRunningInv8(false);
+      setPositionINV9(posicionesAno[digitos[8]]);
+      setRunningInv9(false);
+    }
 
-                    <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        container
-                        justifyContent="center"
-                        className="box_simulator_time"
+    if (longitud > 0 && digitosMes > 0) {
+      setHabilitarSimulacion(true);
+    } else {
+      setHabilitarSimulacion(false);
+    }
+  };
+
+  const openInversion = () => {
+    setMostrarTextField(!mostrarTextField);
+  };
+
+  return (
+    <div className="bg-paper py-5">
+      <Container>
+        <div className="d-block text-center">
+          <h3 className="d-block">
+            <em>Simula tu Rentabilidad</em>
+          </h3>
+          <p>
+            Elige un periodo y monto de inversión para visualizar gráficamente
+            tu rentabilidad potencial.
+          </p>
+
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            container
+            justifyContent="center"
+            className="box_simulator_time"
+          >
+            {/* MES */}
+
+            <Grid
+              item
+              xs={12}
+              sm={2}
+              onClick={openCalendar}
+              style={{ cursor: "pointer" }}
+            >
+              <Tooltip
+                title={errorFechaText}
+                placement="bottom"
+                arrow
+                slotProps={{
+                  arrow: {
+                    sx: {
+                      color: "#CE1335", // Establecer el color de la flecha a rojo
+                    },
+                  },
+                  popper: {
+                    sx: {
+                      [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
+                        {
+                          marginTop: "0px",
+                          backgroundColor: "#CE1335",
+                        },
+                    },
+                  },
+                }}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  className="box_digits number-container"
+                >
+                  <Grid container spacing={1} alignItems="center">
+                    <Grid item xs={4}>
+                      <Typography
+                        //id="mes1"
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionM1}%, 0)`,
+                        }}
+                      >
+                        {meses[0].map((letter, index) => (
+                          <div key={index}>{letter}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionM1}%, 0)`,
+                        }}
+                      >
+                        {meses[1].map((letter, index) => (
+                          <div key={index}>{letter}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionM1}%, 0)`,
+                        }}
+                      >
+                        {meses[2].map((letter, index) => (
+                          <div key={index}>{letter}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Tooltip>
+
+              <Grid>
+                <Typography variant="h6" className="px-3 py-1 box_red_info">
+                  Mes
+                </Typography>
+              </Grid>
+            </Grid>
+
+            {/* AÑO */}
+            <Grid
+              item
+              xs={12}
+              sm={2.5}
+              onClick={openCalendar}
+              style={{ cursor: "pointer" }}
+            >
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                className="box_digits number-container"
+              >
+                <Grid container spacing={1} alignItems="center">
+                  <Grid item xs={3}>
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      className={`box_digit ${terminado && "green"}`}
+                      style={{
+                        transform: `translate3d(0, -${positionN1}%, 0)`,
+                      }}
                     >
-                        {/* MES */}
-
-                        <Grid 
-                            item
-                            xs={12}
-                            sm={2}
-                            onClick={openCalendar}
-                            style={{ cursor: "pointer",marginTop:'1rem' }}
+                      {numbers.map((num, index) => (
+                        <div key={index}>{num}</div>
+                      ))}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      className={`box_digit ${terminado && "green"}`}
+                      style={{
+                        transform: `translate3d(0, -${positionN2}%, 0)`,
+                      }}
+                    >
+                      {numbers.map((num, index) => (
+                        <div key={index}>{num}</div>
+                      ))}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      className={`box_digit ${terminado && "green"}`}
+                      style={{
+                        transform: `translate3d(0, -${positionN3}%, 0)`,
+                      }}
+                    >
+                      {numbers.map((num, index) => (
+                        <div key={index}>{num}</div>
+                      ))}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      className={`box_digit ${terminado && "green"}`}
+                      style={{
+                        transform: `translate3d(0, -${positionN4}%, 0)`,
+                      }}
+                    >
+                      {numbers.map((num, index) => (
+                        <div key={index}>{num}</div>
+                      ))}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid>
+                <Typography variant="h6" className="px-3 py-1 box_red_info">
+                  AÑO
+                </Typography>
+              </Grid>
+            </Grid>
+            {/* INVERSION */}
+            <Grid item xs={12} sm={gridMayor}>
+              <Tooltip
+                title={errorInversionText}
+                placement="bottom"
+                arrow
+                slotProps={{
+                  arrow: {
+                    sx: {
+                      color: "#CE1335", // Establecer el color de la flecha a rojo
+                    },
+                  },
+                  popper: {
+                    sx: {
+                      [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
+                        {
+                          marginTop: "0px",
+                          backgroundColor: "#CE1335",
+                        },
+                    },
+                  },
+                }}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  className="box_digits number-container"
+                  style={{ cursor: "pointer" }}
+                >
+                  {!mostrarTextField && (
+                    <Grid
+                      container
+                      spacing={1}
+                      alignItems="center"
+                      onClick={openInversion}
+                    >
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
                         >
-                            <Tooltip
-                                title={errorFechaText}
-                                placement="bottom"
-                                arrow
-                                slotProps={{
-                                    arrow: {
-                                        sx: {
-                                            color: "#CE1335", // Establecer el color de la flecha a rojo
-                                        },
-                                    },
-                                    popper: {
-                                        sx: {
-                                            [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
-                                            {
-                                                marginTop: "0px",
-                                                backgroundColor: "#CE1335",
-                                            },
-                                        },
-                                    },
-                                }}
-                            >
-                                <Grid
-                                    item
-                                    xs={12}
-                                    sm={12}
-                                    className="box_digits number-container" 
-                                >
-                                    <Grid container spacing={1} alignItems="center">
-                                        <Grid item xs={4}>
-                                            <Typography
-                                                //id="mes1"
-                                                variant="h6"
-                                                component="div"
-                                                className={`box_digit ${terminado && "green"}`}
-                                                style={{
-                                                    transform: `translate3d(0, -${positionM1}%, 0)`,
-                                                }}
-                                            >
-                                                {meses[0].map((letter, index) => (
-                                                    <div key={index}>{letter}</div>
-                                                ))}
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Typography
-                                                variant="h6"
-                                                component="div"
-                                                className={`box_digit ${terminado && "green"}`}
-                                                style={{
-                                                    transform: `translate3d(0, -${positionM1}%, 0)`,
-                                                }}
-                                            >
-                                                {meses[1].map((letter, index) => (
-                                                    <div key={index}>{letter}</div>
-                                                ))}
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Typography
-                                                variant="h6"
-                                                component="div"
-                                                className={`box_digit ${terminado && "green"}`}
-                                                style={{
-                                                    transform: `translate3d(0, -${positionM1}%, 0)`,
-                                                }}
-                                            >
-                                                {meses[2].map((letter, index) => (
-                                                    <div key={index}>{letter}</div>
-                                                ))}
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Tooltip>
-
-                            <Grid>
-                                <Typography variant="h6" className="px-3 py-1 box_red_info">
-                                    Mes
-                                </Typography>
-                            </Grid>
-                        </Grid>
-
-                        {/* AÑO */}
-                        <Grid
-                            item
-                            xs={12}
-                            sm={2.5}
-                            onClick={openCalendar}
-                            style={{ cursor: "pointer", marginTop:'1rem'}}
+                          {numbers.map((num, index) => (
+                            <div key={index}>S/</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {/* DIGITO UNO */}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV1}%, 0)`,
+                          }}
                         >
-                            <Grid
-                                item
-                                xs={12}
-                                sm={12}
-                                className="box_digits number-container"
-                            >
-                                <Grid container spacing={1} alignItems="center">
-                                    <Grid item xs={3}>
-                                        <Typography
-                                            variant="h6"
-                                            component="div"
-                                            className={`box_digit ${terminado && "green"}`}
-                                            style={{
-                                                transform: `translate3d(0, -${positionN1}%, 0)`,
-                                            }}
-                                        >
-                                            {numbers.map((num, index) => (
-                                                <div key={index}>{num}</div>
-                                            ))}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        <Typography
-                                            variant="h6"
-                                            component="div"
-                                            className={`box_digit ${terminado && "green"}`}
-                                            style={{
-                                                transform: `translate3d(0, -${positionN2}%, 0)`,
-                                            }}
-                                        >
-                                            {numbers.map((num, index) => (
-                                                <div key={index}>{num}</div>
-                                            ))}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        <Typography
-                                            variant="h6"
-                                            component="div"
-                                            className={`box_digit ${terminado && "green"}`}
-                                            style={{
-                                                transform: `translate3d(0, -${positionN3}%, 0)`,
-                                            }}
-                                        >
-                                            {numbers.map((num, index) => (
-                                                <div key={index}>{num}</div>
-                                            ))}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        <Typography
-                                            variant="h6"
-                                            component="div"
-                                            className={`box_digit ${terminado && "green"}`}
-                                            style={{
-                                                transform: `translate3d(0, -${positionN4}%, 0)`,
-                                            }}
-                                        >
-                                            {numbers.map((num, index) => (
-                                                <div key={index}>{num}</div>
-                                            ))}
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid>
-                                <Typography variant="h6" className="px-3 py-1 box_red_info">
-                                    AÑO
-                                </Typography>
-                            </Grid>
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {coma4Dig && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV1}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>,</div>
+                            ))}
+                          </Typography>
                         </Grid>
-                        {/* INVERSION */}
-                        <Grid item xs={12} sm={gridMayor} style={{marginTop:'1rem'}}>
-                            <Tooltip
-                                title={errorInversionText}
-                                placement="bottom"
-                                arrow
-                                slotProps={{
-                                    arrow: {
-                                        sx: {
-                                            color: "#CE1335", // Establecer el color de la flecha a rojo
-                                        },
-                                    },
-                                    popper: {
-                                        sx: {
-                                            [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
-                                            {
-                                                marginTop: "0px",
-                                                backgroundColor: "#CE1335",
-                                            },
-                                        },
-                                    },
-                                }}
-                            >
-                                <Grid
-                                    item
-                                    xs={12}
-                                    sm={12}
-                                    className="box_digits number-container"
-                                    style={{ cursor: "pointer" }}
-                                >
-                                    {!mostrarTextField && (
-                                        <Grid
-                                            container
-                                            spacing={1}
-                                            alignItems="center"
-                                            onClick={openInversion}
-                                        >
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>S/</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {/* DIGITO UNO */}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV1}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {coma4Dig && (
-                                                <Grid item sm={grid}>
-                                                    <Typography
-                                                        variant="h6"
-                                                        component="div"
-                                                        className={`box_digit ${terminado && "green"}`}
-                                                        style={{
-                                                            transform: `translate3d(0, -${positionINV1}%, 0)`,
-                                                        }}
-                                                    >
-                                                        {numbers.map((num, index) => (
-                                                            <div key={index}>,</div>
-                                                        ))}
-                                                    </Typography>
-                                                </Grid>
-                                            )}
-                                            {/* DIGITO DOS */}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV2}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {coma5Dig && (
-                                                <Grid item sm={grid}>
-                                                    <Typography
-                                                        variant="h6"
-                                                        component="div"
-                                                        className={`box_digit ${terminado && "green"}`}
-                                                        style={{
-                                                            transform: `translate3d(0, -${positionINV1}%, 0)`,
-                                                        }}
-                                                    >
-                                                        {numbers.map((num, index) => (
-                                                            <div key={index}>,</div>
-                                                        ))}
-                                                    </Typography>
-                                                </Grid>
-                                            )}
-                                            {/* DIGITO TRES */}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV3}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {coma6Dig && (
-                                                <Grid item sm={grid}>
-                                                    <Typography
-                                                        variant="h6"
-                                                        component="div"
-                                                        className={`box_digit ${terminado && "green"}`}
-                                                        style={{
-                                                            transform: `translate3d(0, -${positionINV4}%, 0)`,
-                                                        }}
-                                                    >
-                                                        {numbers.map((num, index) => (
-                                                            <div key={index}>,</div>
-                                                        ))}
-                                                    </Typography>
-                                                </Grid>
-                                            )}
-                                            {/* DIGITO CUATRO  */}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV4}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {showMillon && (
-                                                <Grid item sm={grid}>
-                                                    <Typography
-                                                        variant="h6"
-                                                        component="div"
-                                                        className={`box_digit ${terminado && "green"}`}
-                                                        style={{
-                                                            transform: `translate3d(0, -${positionINV5}%, 0)`,
-                                                        }}
-                                                    >
-                                                        {numbers.map((num, index) => (
-                                                            <div key={index}>.</div>
-                                                        ))}
-                                                    </Typography>
-                                                </Grid>
-                                            )}
-                                            {/* DIGITO CINCO */}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV5}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {showMillon1 && (
-                                                <Grid item sm={grid}>
-                                                    <Typography
-                                                        variant="h6"
-                                                        component="div"
-                                                        className={`box_digit ${terminado && "green"}`}
-                                                        style={{
-                                                            transform: `translate3d(0, -${positionINV6}%, 0)`,
-                                                        }}
-                                                    >
-                                                        {numbers.map((num, index) => (
-                                                            <div key={index}>.</div>
-                                                        ))}
-                                                    </Typography>
-                                                </Grid>
-                                            )}
-                                            {/* DIGITO SEIS */}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV6}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            {showMillon2 && (
-                                                <Grid item sm={grid}>
-                                                    <Typography
-                                                        variant="h6"
-                                                        component="div"
-                                                        className={`box_digit ${terminado && "green"}`}
-                                                        style={{
-                                                            transform: `translate3d(0, -${positionINV6}%, 0)`,
-                                                        }}
-                                                    >
-                                                        {numbers.map((num, index) => (
-                                                            <div key={index}>.</div>
-                                                        ))}
-                                                    </Typography>
-                                                </Grid>
-                                            )}
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV7}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV8}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
+                      )}
+                      {/* DIGITO DOS */}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV2}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {coma5Dig && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV1}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>,</div>
+                            ))}
+                          </Typography>
+                        </Grid>
+                      )}
+                      {/* DIGITO TRES */}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV3}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {coma6Dig && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV4}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>,</div>
+                            ))}
+                          </Typography>
+                        </Grid>
+                      )}
+                      {/* DIGITO CUATRO  */}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV4}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {showMillon && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV5}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>.</div>
+                            ))}
+                          </Typography>
+                        </Grid>
+                      )}
+                      {/* DIGITO CINCO */}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV5}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {showMillon1 && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV6}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>.</div>
+                            ))}
+                          </Typography>
+                        </Grid>
+                      )}
+                      {/* DIGITO SEIS */}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV6}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      {showMillon2 && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV6}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>.</div>
+                            ))}
+                          </Typography>
+                        </Grid>
+                      )}
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV7}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV8}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
 
-                                            <Grid item sm={grid}>
-                                                <Typography
-                                                    variant="h6"
-                                                    component="div"
-                                                    className={`box_digit ${terminado && "green"}`}
-                                                    style={{
-                                                        transform: `translate3d(0, -${positionINV9}%, 0)`,
-                                                    }}
-                                                >
-                                                    {numbers.map((num, index) => (
-                                                        <div key={index}>{num}</div>
-                                                    ))}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
-                                    )}
-                                    {mostrarTextField && (
-                                        <Grid container spacing={1} alignItems="center">
-                                            <Grid item sm={12} xs={12}>
-                                                <TextField
-                                                    autoComplete="off"
-                                                    className={classes.root}
-                                                    onMouseLeave={() => setMostrarTextField(false)}
-                                                    onBlur={() => setMostrarTextField(true)}
-                                                    value={isInversion}
-                                                    onChange={handleNumeroInversion}
-                                                    inputProps={{ maxLength: 8 }}
-                                                    fullWidth
-                                                />
-                                            </Grid>
-                                        </Grid>
-                                    )}
-                                </Grid>
-                            </Tooltip>
-                            <Grid>
-                                <Typography variant="h6" className="px-3 py-1 box_red_info">
-                                    Inversión
-                                </Typography>
-                            </Grid>
-                        </Grid>
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV9}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
                     </Grid>
-
-                    <Grid container justifyContent="center" spacing={2}>
-                        <Grid item xs={3} sm={3} style={{ display: "none" }}>
-                            <LocalizationProvider
-                                dateAdapter={AdapterDayjs}
-                                adapterLocale="es"
-                            >
-                                <MobileDatePicker
-                                    locale="es"
-                                    open={abrirCalendar}
-                                    onClose={() => setAbrirCalendar(false)}
-                                    onChange={handleDate}
-                                    label="Selecciona una fecha"
-                                    views={["year", "month"]}
-                                    style={{ display: "none" }}
-                                    maxDate={dayjs(`2024-03-31`)}
-                                    minDate={dayjs(`2014-01-01`)}
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-                        <Grid item xs={3} sm={3} className="col2" style={{margin:'1rem'}}>
-                            <a href={href === ''? undefined : "#resultado"}>
-                                <Button
-                                    className="btn hbt-btn-primary"
-                                    onClick={toggleAnimation}
-                                    disabled={!habiliarSimulacion}
-                                >
-                                    {texto ? "Simular ahora" : "Ver más"}
-                                </Button>
-                            </a>
-
-                        </Grid>
+                  )}
+                  {mostrarTextField && (
+                    <Grid container spacing={1} alignItems="center">
+                      <Grid item sm={12} xs={12}>
+                        <TextField
+                          autoComplete="off"
+                          className={classes.root}
+                          onMouseLeave={() => setMostrarTextField(false)}
+                          onBlur={() => setMostrarTextField(true)}
+                          value={isInversion}
+                          onChange={handleNumeroInversion}
+                          inputProps={{ maxLength: 8 }}
+                          fullWidth
+                          fullHeight
+                        />
+                      </Grid>
                     </Grid>
-                </div>
-            </Container>
+                  )}
+                </Grid>
+              </Tooltip>
+              <Grid>
+                <Typography variant="h6" className="px-3 py-1 box_red_info">
+                  Inversión
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid container justifyContent="center" spacing={2}>
+            <Grid item xs={3} sm={3} style={{ display: "none" }}>
+              <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                adapterLocale="es"
+              >
+                <MobileDatePicker
+                  locale="es"
+                  open={abrirCalendar}
+                  onClose={() => setAbrirCalendar(false)}
+                  onChange={handleDate}
+                  label="Selecciona una fecha"
+                  views={["year", "month"]}
+                  style={{ display: "none" }}
+                  maxDate={dayjs(`2024-03-31`)}
+                  minDate={dayjs(`2014-01-01`)}
+                />
+              </LocalizationProvider>
+            </Grid>
+            <Grid item xs={3} sm={3} className="col2">
+              <a href={texto ? undefined : "#resultado"}>
+                <Button
+                  className="btn hbt-btn-primary"
+                  onClick={toggleAnimation}
+                  disabled={!habiliarSimulacion}
+                >
+                  {texto ? "Simular ahora" : "Ver más"}
+                </Button>
+              </a>
+            </Grid>
+          </Grid>
         </div>
-    );
+      </Container>
+    </div>
+  );
 }
 
 export default Prueba;
