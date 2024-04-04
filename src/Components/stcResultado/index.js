@@ -165,7 +165,7 @@ const StcResultado = () => {
       setCompletaDatos(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inversionInicial, saldoTotal,rentabilidad]);
+  }, [inversionInicial, saldoTotal,renta]);
 
   return (
     <div className="stc-hbt-resutl-rent py-5" id="resultado">

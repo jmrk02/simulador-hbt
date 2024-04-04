@@ -1344,7 +1344,7 @@ function Prueba() {
                   label="Selecciona una fecha"
                   views={["year", "month"]}
                   style={{ display: "none" }}
-                  maxDate={dayjs(`2024-03-31`)}
+                  maxDate={dayjs(`2023-03-31`)}
                   minDate={dayjs(`2014-01-01`)}
                   // disabled={!texto}
                 />
