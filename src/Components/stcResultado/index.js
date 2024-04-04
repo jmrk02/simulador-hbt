@@ -92,6 +92,10 @@ const StcResultado = () => {
       await setAnimationPlayedThird(true);
       animationStep = animationPlayedThird;
     }
+    console.log(
+      "animationPlayedSecondanimationPlayedSecond",
+      animationPlayedSecond
+    );
     if (!animationStep) {
       const animation = lottie.loadAnimation({
         container: document.getElementById(`json-animation-here-${step}`),
@@ -121,69 +125,34 @@ const StcResultado = () => {
   }, [inversionInicial, saldoTotal]);
 
   return (
-    <div className="stc-hbt-resutl-rent py-5" id="resultado">
+    <div className="stc-hbt-resutl-rent py-5">
       <div className="container">
-        {saldoTotal ? <div className="form-row">
-          <div className="header-pills d-flex align-items-center mb-4">
-            <h5 className="card-title me-3">Rentabilidad proyectada en: </h5>
-            <ul className="nav nav-pills" id="pills-tab" role="tablist">
-              {/* FONDO 1 */}
-              <li className="nav-item" role="presentation">
+        {saldoTotal ? (
+          <div className="form-row">
+            <div className="header-pills d-flex align-items-center mb-4">
+              <h5 className="card-title me-3">Rentabilidad proyectada en: </h5>
+              <div className="d-flex">
                 <div
-                  className="btn nav-link me-2 "
-                  id="home-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#fondo3"
-                  type="button"
-                  role="tab"
-                  aria-controls="fondo3"
-                  aria-selected="false"
+                  className={step === 1 ? "btn-active" : "btn-inactive"}
                   onClick={() => handleFound(1)}
                 >
                   Fondo 1
                 </div>
-              </li>
-              {/* FONDO 2 */}
-              <li className="nav-item" role="presentation">
                 <div
-                  className="btn nav-link me-2 active"
-                  id="profile-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#fondo3"
-                  type="button"
-                  role="tab"
-                  aria-controls="fondo3"
-                  aria-selected="true"
+                  className={step === 2 ? "btn-active" : "btn-inactive"}
                   onClick={() => handleFound(2)}
                 >
                   Fondo 2
                 </div>
-              </li>
-              {/* FONDO 3 */}
-              <li className="nav-item" role="presentation">
                 <div
-                  className="btn nav-link me-2"
-                  id="contact-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#fondo3"
-                  type="button"
-                  role="tab"
-                  aria-controls="fondo3"
-                  aria-selected="false"
+                  className={step === 3 ? "btn-active" : "btn-inactive"}
                   onClick={() => handleFound(3)}
                 >
                   Fondo 3
                 </div>
-              </li>
-            </ul>
-          </div>
-          <div className="tab-content" id="pills-tabContent">
-            <div
-              className="tab-pane fade"
-              id="fondo3"
-              role="fondo3"
-              aria-labelledby="fondo3"
-            >
+              </div>
+            </div>
+            <div className="tab-content">
               <div className="row">
                 <div className="col-lg-3 col-xs-12 col1-tab">
                   <div className="card rounded-4 mb-4">
@@ -302,7 +271,15 @@ const StcResultado = () => {
                       <span className="mounth-rentabilidad">
                         S/ {renta} <span className="icon-disclaimer">*</span>
                       </span>
-                      <div className="mt-n4" id="json-animation-here-3"></div>
+                      {step === 1 && (
+                        <div className="mt-n4" id="json-animation-here-1"></div>
+                      )}
+                      {step === 2 && (
+                        <div className="mt-n4" id="json-animation-here-2"></div>
+                      )}
+                      {step === 3 && (
+                        <div className="mt-n4" id="json-animation-here-3"></div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -312,18 +289,21 @@ const StcResultado = () => {
                     <br />
                     <em>de tu simulación</em>
                   </h3>
-                  {rentabilidad > 0 ?
+                  {rentabilidad > 0 ? (
                     <p className="mb-5">
                       Descubre la rentabilidad que podrías haber logrado si hace{" "}
                       <strong>9 años</strong> hubieras invertido en{" "}
                       <strong>AFP Habitat.</strong>
                     </p>
-                    :
+                  ) : (
                     <p className="mb-5">
-                      ¡Oh no!, parece que los datos que ingresaste no proporcionaron una buena estimación. 
-                      <strong>Recuerda que la rentabilidad es volátil</strong> 
-                      por lo tanto puede ser positiva o negativa a corto plazo, intenta seleccionando un periodo de tiempo distinto.
-                    </p>}
+                      ¡Oh no!, parece que los datos que ingresaste no
+                      proporcionaron una buena estimación.
+                      <strong>Recuerda que la rentabilidad es volátil</strong>
+                      por lo tanto puede ser positiva o negativa a corto plazo,
+                      intenta seleccionando un periodo de tiempo distinto.
+                    </p>
+                  )}
                   <a href="#stc-invertir" className="btn hbt-btn-primary mb-2">
                     Invierte ahora
                   </a>
@@ -341,135 +321,133 @@ const StcResultado = () => {
                 </div>
               </div>
             </div>
-          </div>
-          {/* MODAL */}
-          <div
-            className="modal fade modal-sm"
-            id="exampleModal"
-            tabIndex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <div className="col d-flex align-items-center w-100">
-                    <img
-                      src={habimodal}
-                      alt="Habi BOT"
-                      className="img-fluid img-modal m-auto"
-                    />
+            {/* MODAL */}
+            <div
+              className="modal fade modal-sm"
+              id="exampleModal"
+              tabIndex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <div className="col d-flex align-items-center w-100">
+                      <img
+                        src={habimodal}
+                        alt="Habi BOT"
+                        className="img-fluid img-modal m-auto"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-close position-absolute top-0 end-0"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="btn-close position-absolute top-0 end-0"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body pb-1">
-                  <h5 className="mb-3">
-                    Maximiza tus Fondos con las mejores opciones de servicio que
-                    tenemos para ti.
-                  </h5>
-                  <p>
-                    En <strong>AFP Habitat</strong> nos preocupamos por tu
-                    bienestar por eso te brindamos las mejores alternativas de
-                    servicio para que puedas sacarle el mejor provecho a tus
-                    fondos.
-                  </p>
-                  <div className="">
-                    <div className="col">
-                      <div className="d-flex align-items-center pillar bg-paper rounded-3 p-2 mb-2">
-                        <span className="material-symbols-rounded icons">
-                          monitoring
-                        </span>
-                        <span className="txt-services ps-2">
-                          AFP líder en rentabilidad
-                        </span>
+                  <div className="modal-body pb-1">
+                    <h5 className="mb-3">
+                      Maximiza tus Fondos con las mejores opciones de servicio
+                      que tenemos para ti.
+                    </h5>
+                    <p>
+                      En <strong>AFP Habitat</strong> nos preocupamos por tu
+                      bienestar por eso te brindamos las mejores alternativas de
+                      servicio para que puedas sacarle el mejor provecho a tus
+                      fondos.
+                    </p>
+                    <div className="">
+                      <div className="col">
+                        <div className="d-flex align-items-center pillar bg-paper rounded-3 p-2 mb-2">
+                          <span className="material-symbols-rounded icons">
+                            monitoring
+                          </span>
+                          <span className="txt-services ps-2">
+                            AFP líder en rentabilidad
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="col">
-                      <div className="d-flex align-items-center pillar bg-paper rounded-3 p-2 mb-2">
-                        <span className="material-symbols-rounded icons">
-                          handshake
-                        </span>
-                        <span className="txt-services ps-2">
-                          Mejor experiencia al cliente
-                        </span>
+                      <div className="col">
+                        <div className="d-flex align-items-center pillar bg-paper rounded-3 p-2 mb-2">
+                          <span className="material-symbols-rounded icons">
+                            handshake
+                          </span>
+                          <span className="txt-services ps-2">
+                            Mejor experiencia al cliente
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="col">
-                      <div className="d-flex align-items-center pillar bg-paper rounded-3 p-2">
-                        <span className="material-symbols-rounded icons">
-                          support_agent
-                        </span>
-                        <span className="txt-services ps-2">
-                          Canales de atención digital
-                        </span>
+                      <div className="col">
+                        <div className="d-flex align-items-center pillar bg-paper rounded-3 p-2">
+                          <span className="material-symbols-rounded icons">
+                            support_agent
+                          </span>
+                          <span className="txt-services ps-2">
+                            Canales de atención digital
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <hr className="hr mx-3"></hr>
-                <div className="modal-footer pt-0">
-                  <button type="button" className="btn hbt-btn-primary w-100">
-                    Simular ahora
-                  </button>
+                  <hr className="hr mx-3"></hr>
+                  <div className="modal-footer pt-0">
+                    <button type="button" className="btn hbt-btn-primary w-100">
+                      Simular ahora
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="d-lg-none text-center">
-            <span className="disclaimer">
-              * La rentabilidad es un factor que{" "}
-              <a
-                href="https://www.afphabitat.com.pe/rentabilidad/"
-                target="_blank"
-              >
-                se evalúa anualmente y varía.
-              </a>
-            </span>
-          </div>
-        </div> : <div className="row sin-data d-flex">
-          <div className="col-sm-12 col-lg-6 left">
-            <div className="card rounded-4 mb-4 p-3">
-              <div id="lottie-animation" className="sin-resultado">
-                <dotlottie-player
-                  src="https://lottie.host/75b59d0c-a1e7-460a-b3cf-e04c6995e90c/WM8ncYJnhw.json"
-                  background="transparent"
-                  speed="1"
-                  autoplay
-                ></dotlottie-player>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-12 col-lg-6 right">
-            <h3>
-              Simula tu <br/>
-              <em>Rentabilidad</em>
-            </h3>
-            <p>
-              Completa los datos solicitados en la sección superior para poder
-              mostrarte una estimación más clara de tu rentabilidad a futuro.
-            </p>
-            <a href="#" className="btn hbt-btn-primary mb-2">
-              Simular ahora
-            </a>
-            <div className="d-block">
+            <div className="d-lg-none text-center">
               <span className="disclaimer">
-                *La rentabilidad es un factor que{" "}
-                <a href="#">se evalúa anualmente y varía.</a>
+                * La rentabilidad es un factor que{" "}
+                <a
+                  href="https://www.afphabitat.com.pe/rentabilidad/"
+                  target="_blank"
+                >
+                  se evalúa anualmente y varía.
+                </a>
               </span>
             </div>
           </div>
-        </div>}
-
-
-
-
+        ) : (
+          <div className="row sin-data d-flex">
+            <div className="col-sm-12 col-lg-6 left">
+              <div className="card rounded-4 mb-4 p-3">
+                <div id="lottie-animation" className="sin-resultado">
+                  <dotlottie-player
+                    src="https://lottie.host/75b59d0c-a1e7-460a-b3cf-e04c6995e90c/WM8ncYJnhw.json"
+                    background="transparent"
+                    speed="1"
+                    autoplay
+                  ></dotlottie-player>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-6 right">
+              <h3>
+                Simula tu <br />
+                <em>Rentabilidad</em>
+              </h3>
+              <p>
+                Completa los datos solicitados en la sección superior para poder
+                mostrarte una estimación más clara de tu rentabilidad a futuro.
+              </p>
+              <a href="#" className="btn hbt-btn-primary mb-2">
+                Simular ahora
+              </a>
+              <div className="d-block">
+                <span className="disclaimer">
+                  *La rentabilidad es un factor que{" "}
+                  <a href="#">se evalúa anualmente y varía.</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
