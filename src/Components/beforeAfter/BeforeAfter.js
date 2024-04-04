@@ -233,6 +233,7 @@ export function BeforeAfter({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              zIndex: "99",
               transform: `${screenMobile ? "" : "translate(-50%,-50%)"}`,
               ...buttonStyle,
             }}
