@@ -132,8 +132,8 @@ function Prueba() {
     obtenerValorCuota,
   } = rentabilidadContext;
 
-   //EFECTO AÑO
-   useEffect(() => {
+  //EFECTO AÑO
+  useEffect(() => {
     let animationIntervalN1,
       animationIntervalN2,
       animationIntervalN3,
@@ -488,8 +488,9 @@ function Prueba() {
 
 
   const handleCalculate = () => {
-    //console.log("mi inversion", isInversion);
-    //console.log("mi rentabilidad", lastRent);
+    console.log("mi inversion", isInversion);
+    console.log("valor cuota 1", lastRent);
+    console.log("valor cuota 2", nowRent);
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
     //console.log("total", inversionActual);
@@ -511,117 +512,102 @@ function Prueba() {
   };
 
 
-  const toggleAnimation = async () => {
+  const simularAnimacion = async () => {
 
     // setIsInversion(response);
     // if(!texto){
     //   setHabilitarSimulacion(false);
     // }
     //if (lastRent !== null && nowRent !== null) {
-
-
-    if (!texto) {
-      setDirigirHref("si");
-      // setTerminado(false);
-      // setPositionN1(0);
-      // setPositionN2(0);
-      // setPositionN3(0);
-      // setPositionN4(0);
-
-      // setPositionM1(0);
-
-
-      // setPositionINV1(0);
-      // setPositionINV2(0);
-      // setPositionINV3(0);
-      // setPositionINV4(0);
-      // setPositionINV5(0);
-      // setPositionINV6(0);
-      // setPositionINV7(0);
-      // setPositionINV8(0);
-      // setPositionINV9(0);
-      // setDirigirHref(true);
-      // setTexto(!texto);
-      // setIsInversion("");
-    } else {
-      let response = await handleCalculate();
-      console.log("response calculo:", response);
-      setPositionN1(0);
-      setPositionN2(0);
-      setPositionN3(0);
-      setPositionN4(0);
-
-      setPositionM1(0);
-
-      setPositionINV1(0);
-      setPositionINV2(0);
-      setPositionINV3(0);
-      setPositionINV4(0);
-      setPositionINV5(0);
-      setPositionINV6(0);
-      setPositionINV7(0);
-      setPositionINV8(0);
-      setPositionINV9(0);
-
-      setRunningN1(!runningN1);
-      setRunningN2(!runningN2);
-      setRunningN3(!runningN3);
-      setRunningN4(!runningN4);
-
-      setRunningM1(!runningM1);
-      setRunningM2(!runningM2);
-      setRunningM3(!runningM3);
-
-      const longitud = isInversion.toString().length;
-      for (let i = 0; i < longitud; i++) {
-        switch (i) {
-          case 0:
-            setRunningInv1(!runningInv1);
-            break;
-          case 1:
-            setRunningInv2(!runningInv2);
-            break;
-          case 2:
-            setRunningInv3(!runningInv3);
-            break;
-          case 3:
-            setRunningInv4(!runningInv4);
-            break;
-          case 4:
-            setRunningInv5(!runningInv5);
-            break;
-          case 5:
-            setRunningInv6(!runningInv6);
-            break;
-          case 6:
-            setRunningInv7(!runningInv7);
-            break;
-          case 7:
-            setRunningInv8(!runningInv8);
-            break;
-          case 8:
-            setRunningInv9(!runningInv9);
-            break;
-          // Puedes agregar más casos según sea necesario para más dígitos
-          default:
-            break;
+    try {
+      if (!texto) {
+        setDirigirHref("si");
+        setTerminado(false);
+        setTexto(!texto);
+      } else {
+        let response =  handleCalculate();
+        console.log("response calculo:", response);
+        setPositionN1(0);
+        setPositionN2(0);
+        setPositionN3(0);
+        setPositionN4(0);
+  
+        setPositionM1(0);
+  
+        setPositionINV1(0);
+        setPositionINV2(0);
+        setPositionINV3(0);
+        setPositionINV4(0);
+        setPositionINV5(0);
+        setPositionINV6(0);
+        setPositionINV7(0);
+        setPositionINV8(0);
+        setPositionINV9(0);
+  
+        setRunningN1(!runningN1);
+        setRunningN2(!runningN2);
+        setRunningN3(!runningN3);
+        setRunningN4(!runningN4);
+  
+        setRunningM1(!runningM1);
+        setRunningM2(!runningM2);
+        setRunningM3(!runningM3);
+  
+        const longitud = isInversion.toString().length;
+        for (let i = 0; i < longitud; i++) {
+          switch (i) {
+            case 0:
+              setRunningInv1(!runningInv1);
+              break;
+            case 1:
+              setRunningInv2(!runningInv2);
+              break;
+            case 2:
+              setRunningInv3(!runningInv3);
+              break;
+            case 3:
+              setRunningInv4(!runningInv4);
+              break;
+            case 4:
+              setRunningInv5(!runningInv5);
+              break;
+            case 5:
+              setRunningInv6(!runningInv6);
+              break;
+            case 6:
+              setRunningInv7(!runningInv7);
+              break;
+            case 7:
+              setRunningInv8(!runningInv8);
+              break;
+            case 8:
+              setRunningInv9(!runningInv9);
+              break;
+            // Puedes agregar más casos según sea necesario para más dígitos
+            default:
+              break;
+          }
         }
+  
       }
-
+    } catch (error) {
+      console.log('error',error);
     }
-    //}
+
+   
+
 
 
   };
 
- 
-  const openCalendar = () => {
-    if (texto) {
-      setAbrirCalendar(true);
-    } else {
-      setAbrirCalendar(false);
-    }
 
+  const openCalendar = () => {
+    // if (texto) {
+    //   setAbrirCalendar(true);
+    // } else {
+    //   setAbrirCalendar(false);
+    // }
+    setAbrirCalendar(true);
   };
 
   const getLastValue = async (monthValue, yearValue, isActualMonth) => {
@@ -680,14 +666,14 @@ function Prueba() {
   };
 
   const handleNumeroInversion = (num) => {
-    console.log('numero finaaaall',num.target.value)
-    if(num.target.value === undefined){
+    console.log('numero finaaaall', num.target.value)
+    if (num.target.value === undefined) {
       setIsInversion("");
     }
-    
+
     if (num.target.value.includes(".")) {
       setSnackbarOpen(true);
-    }else{
+    } else {
       setSnackbarOpen(false);
     }
     // let numero = num.target.value;
@@ -699,7 +685,7 @@ function Prueba() {
       let longitud = numero.length;
       console.log("numero inver", numero)
       console.log("longitud inver", longitud);
-      
+
       posicionesNumerosInversion(longitud, numero);
     }
 
@@ -893,12 +879,17 @@ function Prueba() {
   };
 
   const openInversion = () => {
-    if (!texto) {
-      setMostrarTextField(false);
-    } else {
-      setMostrarTextField(true);
-    }
+    // if (!texto) {
+    //   setMostrarTextField(false);
+    // } else {
+    //   setMostrarTextField(true);
+    // }
+    setMostrarTextField(true);
+    console.log('entro a inversion')
+    setIsInversion(isInversion)
 
+    setIsInversion(isInversion);
+    posicionesNumerosInversion(isInversion.toString().length, isInversion);
   };
 
 
@@ -1028,71 +1019,96 @@ function Prueba() {
               onClick={openCalendar}
               style={{ cursor: "pointer", marginTop: '1rem' }}
             >
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                className="box_digits number-container"
+
+              <Tooltip
+                title={errorFechaText}
+                placement="bottom"
+                arrow
+                slotProps={{
+                  arrow: {
+                    sx: {
+                      color: "#CE1335", // Establecer el color de la flecha a rojo
+                    },
+                  },
+                  popper: {
+                    sx: {
+                      [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
+                      {
+                        marginTop: "0px",
+                        backgroundColor: "#CE1335",
+                        fontSize: "0.80rem",
+                      },
+                    },
+                  },
+                }}
               >
-                <Grid container spacing={1} alignItems="center">
-                  <Grid item xs={3}>
-                    <Typography
-                      variant="h6"
-                      component="div"
-                      className={`box_digit ${terminado && "green"}`}
-                      style={{
-                        transform: `translate3d(0, -${positionN1}%, 0)`,
-                      }}
-                    >
-                      {numbers.map((num, index) => (
-                        <div key={index}>{num}</div>
-                      ))}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Typography
-                      variant="h6"
-                      component="div"
-                      className={`box_digit ${terminado && "green"}`}
-                      style={{
-                        transform: `translate3d(0, -${positionN2}%, 0)`,
-                      }}
-                    >
-                      {numbers.map((num, index) => (
-                        <div key={index}>{num}</div>
-                      ))}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Typography
-                      variant="h6"
-                      component="div"
-                      className={`box_digit ${terminado && "green"}`}
-                      style={{
-                        transform: `translate3d(0, -${positionN3}%, 0)`,
-                      }}
-                    >
-                      {numbers.map((num, index) => (
-                        <div key={index}>{num}</div>
-                      ))}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Typography
-                      variant="h6"
-                      component="div"
-                      className={`box_digit ${terminado && "green"}`}
-                      style={{
-                        transform: `translate3d(0, -${positionN4}%, 0)`,
-                      }}
-                    >
-                      {numbers.map((num, index) => (
-                        <div key={index}>{num}</div>
-                      ))}
-                    </Typography>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  className="box_digits number-container"
+                >
+                  <Grid container spacing={1} alignItems="center">
+                    <Grid item xs={3}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionN1}%, 0)`,
+                        }}
+                      >
+                        {numbers.map((num, index) => (
+                          <div key={index}>{num}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={3}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionN2}%, 0)`,
+                        }}
+                      >
+                        {numbers.map((num, index) => (
+                          <div key={index}>{num}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={3}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionN3}%, 0)`,
+                        }}
+                      >
+                        {numbers.map((num, index) => (
+                          <div key={index}>{num}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={3}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        className={`box_digit ${terminado && "green"}`}
+                        style={{
+                          transform: `translate3d(0, -${positionN4}%, 0)`,
+                        }}
+                      >
+                        {numbers.map((num, index) => (
+                          <div key={index}>{num}</div>
+                        ))}
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
+              </Tooltip>
+
               <Grid>
                 <Typography variant="h6" className="px-3 py-1 box_red_info">
                   AÑO
@@ -1138,7 +1154,7 @@ function Prueba() {
                       alignItems="center"
                       // onClick={openInversion}
                       onMouseEnter={openInversion}
-                      
+
                     >
                       <Grid item sm={grid}>
                         <Typography
@@ -1403,7 +1419,7 @@ function Prueba() {
                           vertical: 'top',
                           horizontal: 'right',
                         }}
-                        style={{marginTop: '3rem'}}
+                        style={{ marginTop: '3rem' }}
                       >
                         <MuiAlert onClose={handleCloseSnackbar} severity="warning">
                           Ingrese solo números enteros, sin puntos o comas. Por ejemplo: 45678.
@@ -1446,7 +1462,7 @@ function Prueba() {
               <a href={dirigirHref ? "#resultado" : undefined}>
                 <Button
                   className="btn hbt-btn-primary"
-                  onClick={toggleAnimation}
+                  onClick={simularAnimacion}
                 // disabled={!habiliarSimulacion}
                 >
                   {texto ? "Simular ahora" : "Ver más"}
