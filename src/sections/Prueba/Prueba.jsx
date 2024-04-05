@@ -367,9 +367,9 @@ function Prueba() {
           if (posicionesAno.indexOf(prevPosition) === digitosInversion[4]) {
             setRunningInv5(false);
             clearInterval(animationIntervalInv5);
-            if (digitosTotal > contador5 + 1) {
-              setTexto(!texto);
-            }
+            // if (digitosTotal > contador5 + 1) {
+            //   setTexto(!texto);
+            // }
           } else {
             if (contador5 === 10) {
               contador5 = 0;
@@ -512,7 +512,7 @@ function Prueba() {
   };
 
 
-  const simularAnimacion = async () => {
+  const simularAnimacion = () => {
 
     // setIsInversion(response);
     // if(!texto){
@@ -521,10 +521,33 @@ function Prueba() {
     //if (lastRent !== null && nowRent !== null) {
     try {
       if (!texto) {
-        setDirigirHref("si");
+        console.log('entro a ver más')
+        // setDirigirHref("si");
+        setDirigirHref(true)
         setTerminado(false);
+      
+
+        setPositionN1(0);
+        setPositionN2(0);
+        setPositionN3(0);
+        setPositionN4(0);
+  
+        setPositionM1(0);
+  
+        setPositionINV1(0);
+        setPositionINV2(0);
+        setPositionINV3(0);
+        setPositionINV4(0);
+        setPositionINV5(0);
+        setPositionINV6(0);
+        setPositionINV7(0);
+        setPositionINV8(0);
+        setPositionINV9(0);
+        setIsInversion(""); 
         setTexto(!texto);
+
       } else {
+        setDirigirHref(false)
         let response =  handleCalculate();
         console.log("response calculo:", response);
         setPositionN1(0);
@@ -593,11 +616,6 @@ function Prueba() {
     } catch (error) {
       console.log('error',error);
     }
-
-   
-
-
-
   };
 
 
@@ -623,13 +641,17 @@ function Prueba() {
   const handleDate = async (date) => {
     try {
       if (date === null) {
+        console.log('regrsa')
         return;
       }
       const mes = date["$M"];
       const ano = date["$y"];
+      console.log("mes", mes);
+      console.log("ano", ano);
       const updateFecha = { month: mes, year: ano };
       if (updateFecha !== null) {
         const { year, month } = updateFecha;
+        console.log("update fecha", updateFecha);
         setDigitosMes(month);
         setPositionM1(posicionMes[month]);
         const anos = year
@@ -645,7 +667,7 @@ function Prueba() {
           setHabilitarSimulacion(true);
         }
       }
-      if (digitosAno.length === 0) {
+      if (ano.length === 0) {
         setErrorFechaText("Seleccione una fecha");
       } else {
         setErrorFechaText("");
