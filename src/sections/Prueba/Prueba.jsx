@@ -242,7 +242,7 @@ function Prueba() {
 
   //EFECTO MES
   useEffect(() => {
-    let animationIntervalM1, animationIntervalM2, animationIntervalM3;
+    let animationIntervalM1;
 
     if (runningM1) {
       let currentIndex1 = 0;
@@ -270,7 +270,7 @@ function Prueba() {
       // clearInterval(animationIntervalM3);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [runningM1, runningM2, runningM3]);
+  }, [runningM1]);
 
   //EFECTO INVERSION
   useEffect(() => {
@@ -488,18 +488,18 @@ function Prueba() {
 
 
   const handleCalculate = () => {
-    console.log("mi inversion", isInversion);
-    console.log("mi rentabilidad", lastRent);
+    //console.log("mi inversion", isInversion);
+    //console.log("mi rentabilidad", lastRent);
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
-    console.log("total", inversionActual);
+    //console.log("total", inversionActual);
     var entero = parseInt(inversionActual);
     setIsInversion(entero);
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
-    console.log("rentabilidad", resultadoFinal);
+    //console.log("rentabilidad", resultadoFinal);
     const porcentaje = (resultadoFinal / isInversion) * 100;
-    console.log("porcentaje final", parseInt(porcentaje));
+    //console.log("porcentaje final", parseInt(porcentaje));
     setDatosInversion(
       isInversion,
       resultadoFinal.toFixed(2),
@@ -682,7 +682,6 @@ function Prueba() {
   const handleNumeroInversion = (num) => {
     console.log('numero finaaaall',num.target.value)
     if(num.target.value === undefined){
-      console.log('entro ahora si')
       setIsInversion("");
     }
     
@@ -700,7 +699,7 @@ function Prueba() {
       let longitud = numero.length;
       console.log("numero inver", numero)
       console.log("longitud inver", longitud);
-
+      
       posicionesNumerosInversion(longitud, numero);
     }
 
@@ -1137,7 +1136,9 @@ function Prueba() {
                       container
                       spacing={1}
                       alignItems="center"
-                      onClick={openInversion}
+                      // onClick={openInversion}
+                      onMouseEnter={openInversion}
+                      
                     >
                       <Grid item sm={grid}>
                         <Typography
@@ -1435,8 +1436,8 @@ function Prueba() {
                   label="Selecciona una fecha"
                   views={["year", "month"]}
                   style={{ display: "none" }}
-                  maxDate={dayjs(`2023-03-31`)}
-                  minDate={dayjs(`2014-01-01`)}
+                  maxDate={dayjs(`2024-03-31`)}
+                  minDate={dayjs(`2014-03-01`)}
 
                 />
               </LocalizationProvider>

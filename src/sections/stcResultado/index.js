@@ -368,8 +368,8 @@ const StcResultado = () => {
                   <a href="#stc-invertir" className="btn hbt-btn-primary mb-2">
                     Invierte ahora
                   </a>
-                  <div className="d-block d-none d-lg-block">
-                    <span className="disclaimer">
+                  {/* <div className="d-block d-none d-lg-block">
+                    <span >
                       * La rentabilidad es un factor que{" "}
                       <a
                         href="https://www.afphabitat.com.pe/rentabilidad/"
@@ -378,9 +378,13 @@ const StcResultado = () => {
                         se evalúa anualmente y puede variar.
                       </a>
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
+            </div>
+
+            <div className="disclaimer" style={{marginTop:'1rem'}}>
+            * Los resultados de los montos de rentabilidad se basan en una estimación que toma como referencia el valor cuota del último día del mes seleccionado. Es importante tener en cuenta que estos resultados son proyecciones y no constituyen un compromiso por parte de la AFP para garantizar un monto de rentabilidad específico.
             </div>
             {/* MODAL */}
             <div
@@ -475,7 +479,7 @@ const StcResultado = () => {
             </div>
           </div>
         ) : (
-          <div className="row sin-data d-flex">
+          <div className="row sin-data d-flex" >
             <div className="col-sm-12 col-lg-6 left">
               <div className="card rounded-4 mb-4 p-3">
                 <div id="lottie-animation" className="sin-resultado">
@@ -509,6 +513,7 @@ const StcResultado = () => {
             </div>
           </div>
         )}
+        
       </div>
     </div>
   );
