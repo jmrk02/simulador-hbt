@@ -151,7 +151,7 @@ const StcResultado = () => {
       handleStartAnimation();
     };
     handleScroll();
-  }, [step, inversionInicial]);
+  }, [step]);
 
   useEffect(() => {
     setAnimationPlayedSecond(false);
