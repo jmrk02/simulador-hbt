@@ -97,9 +97,9 @@ export function BeforeAfter({
   const handlePointerMoveMobile = (event) => {
     const { clientY, currentTarget } = event;
     const { top, bottom, height } = currentTarget.getBoundingClientRect();
-    console.log("clientY", clientY);
-    console.log("bottom", bottom);
-    console.log("top", top);
+    // console.log("clientY", clientY);
+    // console.log("bottom", bottom);
+    // console.log("top", top);
     const positionY = clientY + top;
 
     if (positionY <= 0) {
