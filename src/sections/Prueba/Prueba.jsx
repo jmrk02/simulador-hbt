@@ -21,6 +21,7 @@ import { set } from "date-fns";
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { is } from "date-fns/locale";
 
 const useStyles = makeStyles({
   root: {
@@ -71,6 +72,8 @@ function Prueba() {
   const [positionINV7, setPositionINV7] = useState(0);
   const [positionINV8, setPositionINV8] = useState(0);
   const [positionINV9, setPositionINV9] = useState(0);
+  const [positionINV10, setPositionINV10] = useState(0);
+
 
   const [runningInv1, setRunningInv1] = useState(false);
   const [runningInv2, setRunningInv2] = useState(false);
@@ -84,10 +87,15 @@ function Prueba() {
   const [runningInv8, setRunningInv8] = useState(false);
   const [runningInv9, setRunningInv9] = useState(false);
 
+  const [runningInv10, setRunningInv10] = useState(false);
+  const [digitos10, setDigitos10] = useState(false);
+
   const [showMillon, setShowMillon] = useState(false);
   const [showMillon1, setShowMillon1] = useState(false);
   const [showMillon2, setShowMillon2] = useState(false);
+  const [milMillon, setMilMillon] = useState(false);
   const [comilla, setComilla] = useState(",");
+  const  [comillaMilMillon, setComillaMilMillon] = useState("'");
 
   const classes = useStyles();
   const [isInversion, setIsInversion] = useState("");
@@ -221,16 +229,7 @@ function Prueba() {
       }, velocidad);
     }
 
-    if (
-      !runningN1 &&
-      !runningN2 &&
-      !runningN3 &&
-      !runningN4 &&
-      terminado &&
-      !runningM1
-    ) {
-      setTexto(!texto);
-    }
+    
 
     return () => {
       clearInterval(animationIntervalN1);
@@ -283,7 +282,9 @@ function Prueba() {
       animationIntervalInv7,
       animationIntervalInv8,
       animationIntervalInv9;
+    let animationIntervalInv10;
     let digitosTotal = digitosInversion.length;
+    console.log('digitosTotal', digitosTotal)
     if (runningInv1) {
       let contador1 = 0;
       animationIntervalInv1 = setInterval(() => {
@@ -460,9 +461,49 @@ function Prueba() {
       }, velocidad);
     }
 
+    if (runningInv9) {
+      let contador10 = 0;
+      animationIntervalInv10 = setInterval(() => {
+        setPositionINV10((prevPosition) => {
+          if (posicionesAno.indexOf(prevPosition) === digitosInversion[9]) {
+            setRunningInv10(false);
+            clearInterval(animationIntervalInv10);
+          } else {
+            if (contador10 === 10) {
+              contador10 = 0;
+            }
+            const nextPosition = posicionesAno[contador10];
+            contador10++;
+            return nextPosition;
+          }
+        });
+      }, velocidad);
+    }
+
     // if(positionINV1 === posicionesAno[digitosInversion[0]]){
     //   setTexto(!texto);
     // }
+
+    if (
+      !runningN1 &&
+      !runningN2 &&
+      !runningN3 &&
+      !runningN4 &&
+      terminado && 
+      !runningInv1 &&
+      !runningInv2 &&
+      !runningInv3 &&
+      !runningInv4 &&
+      !runningInv5 &&
+      !runningInv6 &&
+      !runningInv7 &&
+      !runningInv8 &&
+      !runningInv9 &&
+      !runningInv10
+    ) {
+      setTexto(!texto);
+    }
+
     return () => {
       clearInterval(animationIntervalInv1);
       clearInterval(animationIntervalInv2);
@@ -473,6 +514,7 @@ function Prueba() {
       clearInterval(animationIntervalInv7);
       clearInterval(animationIntervalInv8);
       clearInterval(animationIntervalInv9);
+      clearInterval(animationIntervalInv10);
     };
   }, [
     runningInv1,
@@ -484,6 +526,7 @@ function Prueba() {
     runningInv7,
     runningInv8,
     runningInv9,
+    runningInv10
   ]);
 
 
@@ -495,7 +538,9 @@ function Prueba() {
     let inversionActual = inversionUltima * nowRent;
     //console.log("total", inversionActual);
     var entero = parseInt(inversionActual);
+    console.log("entero final", entero);	
     setIsInversion(entero);
+    
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
     //console.log("rentabilidad", resultadoFinal);
@@ -508,32 +553,26 @@ function Prueba() {
       parseInt(porcentaje)
     );
     // rentabilidadFondo2(isInversion, resultadoFinal);
-    return parseInt(resultadoFinal);
+    return parseInt(entero);
   };
 
 
   const simularAnimacion = () => {
 
-    // setIsInversion(response);
-    // if(!texto){
-    //   setHabilitarSimulacion(false);
-    // }
-    //if (lastRent !== null && nowRent !== null) {
     try {
       if (!texto) {
-        console.log('entro a ver más')
-        // setDirigirHref("si");
+        console.log('entro cuando da a ver mas')
         setDirigirHref(true)
         setTerminado(false);
-      
+
 
         setPositionN1(0);
         setPositionN2(0);
         setPositionN3(0);
         setPositionN4(0);
-  
+
         setPositionM1(0);
-  
+
         setPositionINV1(0);
         setPositionINV2(0);
         setPositionINV3(0);
@@ -543,20 +582,22 @@ function Prueba() {
         setPositionINV7(0);
         setPositionINV8(0);
         setPositionINV9(0);
-        setIsInversion(""); 
+        setPositionINV10(0);
+        setIsInversion("");
         setTexto(!texto);
 
       } else {
         setDirigirHref(false)
-        let response =  handleCalculate();
+        let response = handleCalculate();
         console.log("response calculo:", response);
+        // setIsInversion(response);
         setPositionN1(0);
         setPositionN2(0);
         setPositionN3(0);
         setPositionN4(0);
-  
+
         setPositionM1(0);
-  
+
         setPositionINV1(0);
         setPositionINV2(0);
         setPositionINV3(0);
@@ -566,17 +607,21 @@ function Prueba() {
         setPositionINV7(0);
         setPositionINV8(0);
         setPositionINV9(0);
-  
+        setPositionINV10(0);
+
         setRunningN1(!runningN1);
         setRunningN2(!runningN2);
         setRunningN3(!runningN3);
         setRunningN4(!runningN4);
-  
+
         setRunningM1(!runningM1);
         setRunningM2(!runningM2);
         setRunningM3(!runningM3);
-  
-        const longitud = isInversion.toString().length;
+
+        const longitud = response.toString().length;
+        console.log('isInversion', isInversion)
+        console.log('longitud inversion', longitud)
+        console.log('isInversion final', isInversion)
         for (let i = 0; i < longitud; i++) {
           switch (i) {
             case 0:
@@ -606,15 +651,17 @@ function Prueba() {
             case 8:
               setRunningInv9(!runningInv9);
               break;
-            // Puedes agregar más casos según sea necesario para más dígitos
+            case 9:
+              setRunningInv10(!runningInv10);
+              break;
             default:
               break;
           }
         }
-  
+
       }
     } catch (error) {
-      console.log('error',error);
+      console.log('error', error);
     }
   };
 
@@ -854,6 +901,24 @@ function Prueba() {
         setShowMillon1(false);
         setShowMillon2(true);
         break;
+      case 10:
+        // longitud = numero.length + 3;
+        console.log('grila longitud 10', longitud)
+        grid = 12 / (longitud + 3);
+        console.log('grid', grid)
+        setGrid(grid);
+        setGridMayor(8);
+        setComa4Dig(false);
+        setComilla("'");
+        setComa5Dig(false);
+        setComa6Dig(false);
+        setShowMillon(true);
+        setShowMillon2(false)
+        setComillaMilMillon(",");
+        setMilMillon(true);
+        // setGrid(grid);
+
+        break;
       default:
         grid = 1.5;
         setGrid(1.5);
@@ -891,6 +956,8 @@ function Prueba() {
       setRunningInv8(false);
       setPositionINV9(posicionesAno[digitos[8]]);
       setRunningInv9(false);
+      setPositionINV10(posicionesAno[digitos[9]]);
+      setRunningInv10(false);
     }
 
     if (longitud > 0 && digitosMes > 0) {
@@ -1176,7 +1243,6 @@ function Prueba() {
                       alignItems="center"
                       // onClick={openInversion}
                       onMouseEnter={openInversion}
-
                     >
                       <Grid item sm={grid}>
                         <Typography
@@ -1297,6 +1363,7 @@ function Prueba() {
                           ))}
                         </Typography>
                       </Grid>
+
                       {showMillon && (
                         <Grid item sm={grid}>
                           <Typography
@@ -1308,7 +1375,7 @@ function Prueba() {
                             }}
                           >
                             {numbers.map((num, index) => (
-                              <div key={index}>,</div>
+                              <div key={index}>{comillaMilMillon}</div>
                             ))}
                           </Typography>
                         </Grid>
@@ -1389,6 +1456,22 @@ function Prueba() {
                           ))}
                         </Typography>
                       </Grid>
+                      {milMillon && (
+                        <Grid item sm={grid}>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            className={`box_digit ${terminado && "green"}`}
+                            style={{
+                              transform: `translate3d(0, -${positionINV8}%, 0)`,
+                            }}
+                          >
+                            {numbers.map((num, index) => (
+                              <div key={index}>,</div>
+                            ))}
+                          </Typography>
+                        </Grid>
+                      )}
                       <Grid item sm={grid}>
                         <Typography
                           variant="h6"
@@ -1411,6 +1494,20 @@ function Prueba() {
                           className={`box_digit ${terminado && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV9}%, 0)`,
+                          }}
+                        >
+                          {numbers.map((num, index) => (
+                            <div key={index}>{num}</div>
+                          ))}
+                        </Typography>
+                      </Grid>
+                      <Grid item sm={grid}>
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          className={`box_digit ${terminado && "green"}`}
+                          style={{
+                            transform: `translate3d(0, -${positionINV10}%, 0)`,
                           }}
                         >
                           {numbers.map((num, index) => (

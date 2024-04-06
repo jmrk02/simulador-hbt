@@ -130,10 +130,10 @@ const StcResultado = () => {
     if (numero === null) return null;
 
     const numeroRedondeado = Math.round(numero * 100) / 100;
-    console.log("numeroRedondeado", numeroRedondeado)
+    //console.log("numeroRedondeado", numeroRedondeado)
 
     let partes = numeroRedondeado.toString().split(".");
-    console.log("partes antes", partes)
+    //console.log("partes antes", partes)
     if (parseInt(partes[0]) >= 1000000) {
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/, "'");
 
@@ -141,7 +141,7 @@ const StcResultado = () => {
   } else {
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-    console.log("partes despues", partes)
+    //console.log("partes despues", partes)
 
     return partes.join(".");
   }
@@ -151,7 +151,7 @@ const StcResultado = () => {
       handleStartAnimation();
     };
     handleScroll();
-  }, [step]);
+  }, [step,inversionInicial]);
 
   useEffect(() => {
     setAnimationPlayedSecond(false);
@@ -162,10 +162,6 @@ const StcResultado = () => {
     setTotal(saldoTotal);
     setRenta(rentabilidad);
 
-    // console.log('porcentaje aa',porcentaje)
-    
-
-    // const porcentajetotal = (renta / inversionInicial) * 100;
     setPorcentajeGana(porcentaje);
     // console.log("porcentaje", porcentajetotal.toFixed(2));
     const fecha = new Date();
