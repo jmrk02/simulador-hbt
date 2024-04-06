@@ -1547,29 +1547,11 @@ function Prueba() {
                 />
               </LocalizationProvider>
             </Grid>
-            <Grid item xs={3} sm={3} className="col2" style={{ marginTop: '1.5rem' }}>
-              {/* <a href={dirigirHref ? "#resultado" : undefined}> */}
-              {/* < >
-                <Button
-                  className="btn hbt-btn-primary btn-loading"
-                  onClick={simularAnimacion}
-                //disabled={habilitarSimulacion}
-                  disabled={digitosAno && digitosMes && isInversion ? false :true}
-                >
-                  {texto ? "Simular ahora" : "Volver a simular"}
-                  {/* <dotlottie-player src="https://lottie.host/9e7c7c2d-cf8f-466d-9dac-8d2abaa552aa/QLQtVHp1sU.json" background="transparent" speed="1" loop autoplay></dotlottie-player> */}
-
-                {/* </Button> */}
-              
-
+            <Grid item xs={3} sm={3} className="col2" style={{ marginTop: '1.5rem' }}>         
               <LoadingButton className="btn hbt-btn-primary btn-loading"
-                
-                // onClick={handleClick}
                 onClick={simularAnimacion}
                 loading={loadingBtn? true : false}
                 disabled={digitosAno && digitosMes && isInversion ? false :true}
-                // loadingIndicator="Loading…"
-                // variant="outlined"
               >
                 <span>{texto ? (loadingBtn? "":"Simular ahora" ): ("Volver a simular")}</span>
               </LoadingButton>
