@@ -123,6 +123,7 @@ function Prueba() {
 
   // const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
   const [texto, setTexto] = useState(true);
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const [dirigirHref, setDirigirHref] = useState(false);
   const [errorInversionText, setErrorInversionText] = useState(
     "Por favor, ingresa un monto de inversión"
@@ -495,6 +496,7 @@ function Prueba() {
     ) {
       console.log('termina toda la simulacion')
       setTexto(!texto);
+      setLoadingBtn(false)
     }
 
     return () => {
@@ -573,6 +575,7 @@ function Prueba() {
       } else {
         setDirigirHref(false)
         let response = handleCalculate();
+        setLoadingBtn(true)
         // console.log("response calculo:", response);
         setPositionN1(0);
         setPositionN2(0);
@@ -1559,16 +1562,16 @@ function Prueba() {
                 {/* </Button> */}
               
 
-              <LoadingButton className="btn hbt-btn-primary"
-                size="small"
+              <LoadingButton className="btn hbt-btn-primary btn-loading"
+                
                 // onClick={handleClick}
                 onClick={simularAnimacion}
-                loading={runningN4 ? true : false}
+                loading={loadingBtn? true : false}
                 disabled={digitosAno && digitosMes && isInversion ? false :true}
                 // loadingIndicator="Loading…"
                 // variant="outlined"
               >
-                <span>{texto ? "Simular ahora" : "Volver a simular"}</span>
+                <span>{texto ? (loadingBtn? "":"Simular ahora" ): ("Volver a simular")}</span>
               </LoadingButton>
             </Grid>
           </Grid>
