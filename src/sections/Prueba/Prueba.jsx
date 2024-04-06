@@ -121,7 +121,7 @@ function Prueba() {
   const [lastRent, setLastRent] = useState(null);
   const [nowRent, setNowRent] = useState(null);
 
-  const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
+  // const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
   const [texto, setTexto] = useState(true);
   const [dirigirHref, setDirigirHref] = useState(false);
   const [errorInversionText, setErrorInversionText] = useState(
@@ -700,9 +700,9 @@ function Prueba() {
         setPositionN2(posicionesAno[anos[1]]);
         setPositionN3(posicionesAno[anos[2]]);
         setPositionN4(posicionesAno[anos[3]]);
-        if (isInversion.length > 0) {
-          setHabilitarSimulacion(true);
-        }
+        // if (isInversion.length > 0) {
+        //   setHabilitarSimulacion(true);
+        // }
       }
       if (ano.length === 0) {
         setErrorFechaText("Seleccione una fecha");
@@ -906,7 +906,7 @@ function Prueba() {
     }
 
     if (longitud === 0) {
-      setHabilitarSimulacion(false);
+      // setHabilitarSimulacion(false);
       setErrorInversionText("Ingrese un monto de inversión");
     } else {
       setErrorInversionText("");
@@ -940,11 +940,11 @@ function Prueba() {
       setRunningInv10(false);
     }
 
-    if (longitud > 0 && digitosMes > 0) {
-      setHabilitarSimulacion(true);
-    } else {
-      setHabilitarSimulacion(false);
-    }
+    // if (longitud > 0 && digitosMes > 0) {
+    //   setHabilitarSimulacion(true);
+    // } else {
+    //   setHabilitarSimulacion(false);
+    // }
   };
 
   const openInversion = () => {
@@ -1564,6 +1564,7 @@ function Prueba() {
                   className="btn hbt-btn-primary btn-loading"
                   onClick={simularAnimacion}
                 //disabled={habilitarSimulacion}
+                  disabled={digitosAno && digitosMes && isInversion ? false :true}
                 >
                   {texto ? "Simular ahora" : "Volver a simular"}
                   {/* <dotlottie-player src="https://lottie.host/9e7c7c2d-cf8f-466d-9dac-8d2abaa552aa/QLQtVHp1sU.json" background="transparent" speed="1" loop autoplay></dotlottie-player> */}
@@ -1575,7 +1576,8 @@ function Prueba() {
                 size="small"
                 // onClick={handleClick}
                 onClick={simularAnimacion}
-                loading={runningM1 ? true : false}
+                loading={runningN4 ? true : false}
+                disabled={digitosAno && digitosMes && isInversion ? false :true}
                 // loadingIndicator="Loading…"
                 // variant="outlined"
               >
