@@ -284,7 +284,7 @@ function Prueba() {
       animationIntervalInv9;
     let animationIntervalInv10;
     let digitosTotal = digitosInversion.length;
-    console.log('digitosTotal', digitosTotal)
+    // console.log('digitosTotal', digitosTotal)
     if (runningInv1) {
       let contador1 = 0;
       animationIntervalInv1 = setInterval(() => {
@@ -531,14 +531,14 @@ function Prueba() {
 
 
   const handleCalculate = () => {
-    console.log("mi inversion", isInversion);
-    console.log("valor cuota 1", lastRent);
-    console.log("valor cuota 2", nowRent);
+    // console.log("mi inversion", isInversion);
+    // console.log("valor cuota 1", lastRent);
+    // console.log("valor cuota 2", nowRent);
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
     //console.log("total", inversionActual);
     var entero = parseInt(inversionActual);
-    console.log("entero final", entero);	
+    // console.log("entero final", entero);	
     setIsInversion(entero);
     
     posicionesNumerosInversion(entero.toString().length, entero);
@@ -561,7 +561,7 @@ function Prueba() {
 
     try {
       if (!texto) {
-        console.log('entro cuando da a ver mas')
+        // console.log('entro cuando da a ver mas')
         setDirigirHref(true)
         setTerminado(false);
 
@@ -589,7 +589,7 @@ function Prueba() {
       } else {
         setDirigirHref(false)
         let response = handleCalculate();
-        console.log("response calculo:", response);
+        // console.log("response calculo:", response);
         // setIsInversion(response);
         setPositionN1(0);
         setPositionN2(0);
@@ -619,9 +619,9 @@ function Prueba() {
         setRunningM3(!runningM3);
 
         const longitud = response.toString().length;
-        console.log('isInversion', isInversion)
-        console.log('longitud inversion', longitud)
-        console.log('isInversion final', isInversion)
+        // console.log('isInversion', isInversion)
+        // console.log('longitud inversion', longitud)
+        // console.log('isInversion final', isInversion)
         for (let i = 0; i < longitud; i++) {
           switch (i) {
             case 0:
@@ -693,12 +693,12 @@ function Prueba() {
       }
       const mes = date["$M"];
       const ano = date["$y"];
-      console.log("mes", mes);
-      console.log("ano", ano);
+      // console.log("mes", mes);
+      // console.log("ano", ano);
       const updateFecha = { month: mes, year: ano };
       if (updateFecha !== null) {
         const { year, month } = updateFecha;
-        console.log("update fecha", updateFecha);
+        // console.log("update fecha", updateFecha);
         setDigitosMes(month);
         setPositionM1(posicionMes[month]);
         const anos = year
@@ -721,12 +721,12 @@ function Prueba() {
         setMesAnio(mes, ano);
         let lastValue = await getLastValue(mes, ano, false);
         const lastValueNumber = lastValue.replace(/^S\/\s/, "");
-        console.log("lastValueNumber", lastValueNumber);
+        // console.log("lastValueNumber", lastValueNumber);
         setLastRent(lastValueNumber);
 
         let actualValue = await getLastValue(mes, ano, true);
         const actualValueNumber = actualValue.replace(/^S\/\s/, "");
-        console.log("actualValueNumber", actualValueNumber)
+        // console.log("actualValueNumber", actualValueNumber)
         setNowRent(actualValueNumber);
       }
     } catch (error) {
@@ -735,7 +735,7 @@ function Prueba() {
   };
 
   const handleNumeroInversion = (num) => {
-    console.log('numero finaaaall', num.target.value)
+    // console.log('numero finaaaall', num.target.value)
     if (num.target.value === undefined) {
       setIsInversion("");
     }
@@ -752,8 +752,8 @@ function Prueba() {
     } else {
       setIsInversion(numero);
       let longitud = numero.length;
-      console.log("numero inver", numero)
-      console.log("longitud inver", longitud);
+      // console.log("numero inver", numero)
+      // console.log("longitud inver", longitud);
 
       posicionesNumerosInversion(longitud, numero);
     }
@@ -903,9 +903,9 @@ function Prueba() {
         break;
       case 10:
         // longitud = numero.length + 3;
-        console.log('grila longitud 10', longitud)
+        // console.log('grila longitud 10', longitud)
         grid = 12 / (longitud + 3);
-        console.log('grid', grid)
+        // console.log('grid', grid)
         setGrid(grid);
         setGridMayor(8);
         setComa4Dig(false);
@@ -974,7 +974,7 @@ function Prueba() {
       setMostrarTextField(true);
     }
     // setMostrarTextField(true);
-    console.log('entro a inversion')
+    // console.log('entro a inversion')
     setIsInversion(isInversion)
 
     setIsInversion(isInversion);
