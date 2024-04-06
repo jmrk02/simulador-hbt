@@ -151,8 +151,8 @@ function Prueba() {
       let contador1 = 0;
       animationIntervalN1 = setInterval(() => {
         setPositionN1((prevPosition) => {
-          // console.log(digitosAno[0])
-          // console.log(posicionesAno.indexOf(prevPosition))
+          // //console.log(digitosAno[0])
+          // //console.log(posicionesAno.indexOf(prevPosition))
           if (posicionesAno.indexOf(prevPosition) === 2) {
             setRunningN1(false);
             clearInterval(animationIntervalN1);
@@ -160,9 +160,9 @@ function Prueba() {
             if (contador1 === 9) {
               contador1 = 0;
             }
-            // console.log('prevPosition N1', prevPosition)
+            // //console.log('prevPosition N1', prevPosition)
             const nextPosition = posicionesAno[contador1];
-            // console.log('nextPosition N1', nextPosition)
+            // //console.log('nextPosition N1', nextPosition)
 
             contador1++;
             return nextPosition;
@@ -283,6 +283,7 @@ function Prueba() {
       animationIntervalInv8,
       animationIntervalInv9;
     let animationIntervalInv10;
+    let digitosTotal = digitosInversion.length;
     if (runningInv1) {
       let contador1 = 0;
       animationIntervalInv1 = setInterval(() => {
@@ -421,7 +422,7 @@ function Prueba() {
       animationIntervalInv8 = setInterval(() => {
         setPositionINV8((prevPosition) => {
           if (posicionesAno.indexOf(prevPosition) === digitosInversion[7]) {
-            // console.log('posicionesAno.indexOf(prevPosition)', posicionesAno.indexOf(prevPosition))
+            // //console.log('posicionesAno.indexOf(prevPosition)', posicionesAno.indexOf(prevPosition))
             setRunningInv8(false);
             clearInterval(animationIntervalInv8);
             contador8 = 0;
@@ -601,9 +602,6 @@ function Prueba() {
         setRunningM3(!runningM3);
 
         const longitud = response.toString().length;
-        // console.log('isInversion', isInversion)
-        // console.log('longitud inversion', longitud)
-        // console.log('isInversion final', isInversion)
         for (let i = 0; i < longitud; i++) {
           switch (i) {
             case 0:
@@ -643,7 +641,7 @@ function Prueba() {
 
       }
     } catch (error) {
-      console.log('error', error);
+      //console.log('error', error);
     }
   };
 
@@ -663,14 +661,14 @@ function Prueba() {
       let lastValue = response.rows.pop().fund2;
       return lastValue;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
   const handleDate = async (date) => {
     try {
       if (date === null) {
-        console.log('regrsa')
+        //console.log('regrsa')
         return;
       }
       const mes = date["$M"];
@@ -708,7 +706,7 @@ function Prueba() {
         setNowRent(actualValueNumber);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -872,10 +870,9 @@ function Prueba() {
         setShowMillon2(true);
         break;
       case 10:
-        // longitud = numero.length + 3;
-        // console.log('grila longitud 10', longitud)
+      
         grid = 12 / (longitud + 3);
-        // console.log('grid', grid)
+    
         setGrid(grid);
         setGridMayor(8);
         setComa4Dig(false);

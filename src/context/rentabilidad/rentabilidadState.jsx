@@ -120,7 +120,7 @@ const RentabilidadState = (props) => {
 
       return resultado;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   const [state, dispatch] = useReducer(RentabilidadReducer, initialState);

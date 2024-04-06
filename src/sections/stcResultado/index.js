@@ -35,12 +35,12 @@ const StcResultado = () => {
   const handleFound = async (step) => {
     if (mes !== null && anio !== null) {
       if (inversionInicial !== null) {
-        // console.log("mes", mes);
-        // console.log("anio", anio);
-        // console.log("saldoTotal", saldoTotal);
-        // console.log("porcentaje", porcentaje);
-        // console.log("rentabilidad", rentabilidad);
-        // console.log("inversionInicial", inversionInicial);
+        // //console.log("mes", mes);
+        // //console.log("anio", anio);
+        // //console.log("saldoTotal", saldoTotal);
+        // //console.log("porcentaje", porcentaje);
+        // //console.log("rentabilidad", rentabilidad);
+        // //console.log("inversionInicial", inversionInicial);
 
         setTotal(saldoTotal);
         setStep(step);
@@ -130,10 +130,10 @@ const StcResultado = () => {
     if (numero === null) return null;
 
     const numeroRedondeado = Math.round(numero * 100) / 100;
-    //console.log("numeroRedondeado", numeroRedondeado)
+    ////console.log("numeroRedondeado", numeroRedondeado)
 
     let partes = numeroRedondeado.toString().split(".");
-    //console.log("partes antes", partes)
+    ////console.log("partes antes", partes)
     if (parseInt(partes[0]) >= 1000000) {
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/, "'");
 
@@ -141,7 +141,7 @@ const StcResultado = () => {
     } else {
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    //console.log("partes despues", partes)
+    ////console.log("partes despues", partes)
 
     return partes.join(".");
   };
@@ -163,7 +163,7 @@ const StcResultado = () => {
     setRenta(rentabilidad);
 
     setPorcentajeGana(porcentaje);
-    // console.log("porcentaje", porcentajetotal.toFixed(2));
+    // //console.log("porcentaje", porcentajetotal.toFixed(2));
     const fecha = new Date();
     const anioActual = fecha.getFullYear();
 
