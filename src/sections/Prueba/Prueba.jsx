@@ -283,7 +283,6 @@ function Prueba() {
       animationIntervalInv8,
       animationIntervalInv9;
     let animationIntervalInv10;
-
     if (runningInv1) {
       let contador1 = 0;
       animationIntervalInv1 = setInterval(() => {
@@ -524,7 +523,6 @@ function Prueba() {
 
 
   const handleCalculate = () => {
-
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
     var entero = parseInt(inversionActual);
@@ -574,7 +572,7 @@ function Prueba() {
       } else {
         setDirigirHref(false)
         let response = handleCalculate();
-        console.log("response calculo:", response);
+        // console.log("response calculo:", response);
         setPositionN1(0);
         setPositionN2(0);
         setPositionN3(0);
@@ -603,9 +601,9 @@ function Prueba() {
         setRunningM3(!runningM3);
 
         const longitud = response.toString().length;
-        console.log('isInversion', isInversion)
-        console.log('longitud inversion', longitud)
-        console.log('isInversion final', isInversion)
+        // console.log('isInversion', isInversion)
+        // console.log('longitud inversion', longitud)
+        // console.log('isInversion final', isInversion)
         for (let i = 0; i < longitud; i++) {
           switch (i) {
             case 0:
@@ -875,9 +873,9 @@ function Prueba() {
         break;
       case 10:
         // longitud = numero.length + 3;
-        console.log('grila longitud 10', longitud)
+        // console.log('grila longitud 10', longitud)
         grid = 12 / (longitud + 3);
-        console.log('grid', grid)
+        // console.log('grid', grid)
         setGrid(grid);
         setGridMayor(8);
         setComa4Dig(false);
