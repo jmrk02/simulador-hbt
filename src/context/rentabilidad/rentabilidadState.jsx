@@ -13,8 +13,8 @@ const RentabilidadState = (props) => {
   };
 
   const rentabilidadFondo2 = (montoInicial, rentabilidad) => {
-    //console.log("montoInicial", montoInicial);
-    //console.log("rentabilidad", rentabilidad);
+    // console.log("montoInicial", montoInicial);
+    // console.log("rentabilidad", rentabilidad);
     dispatch({
       typeo: "RENTABILIDAD_FONDO2",
       payload: {
@@ -25,8 +25,8 @@ const RentabilidadState = (props) => {
   };
 
   const setMesAnio = (mes, anio) => {
-    //console.log("mes", mes);
-    //console.log("anio", anio);
+    // console.log("mes", mes);
+    // console.log("anio", anio);
     dispatch({
       type: "OBTENER_MES_ANIO",
       payload: {
@@ -82,8 +82,8 @@ const RentabilidadState = (props) => {
         }
         mesActual = mesAnterior;
         anioActual = anioAnterior;
-        //console.log("Número del mes anterior:", mesAnterior);
-        //console.log("Año del mes anterior:", anioAnterior);
+        // console.log("Número del mes anterior:", mesAnterior);
+        // console.log("Año del mes anterior:", anioAnterior);
       } else {
         mesActual = monthValue + 1;
         anioActual = yearValue;

@@ -119,7 +119,7 @@ const StcResultado = () => {
 
     if (!animationStep && inversionInicial) {
       console.log("PLAY");
-      animation.play();
+      animation.goToAndPlay(0, true);
     } else {
       console.log("REPLAY");
       animation.goToAndPlay(0, true);
@@ -171,7 +171,7 @@ const StcResultado = () => {
 
     const invertidoAnios = anioActual - anio;
     setInvertidoAnios(invertidoAnios);
-    //console.log("invertidoAnios", invertidoAnios);
+    // console.log("invertidoAnios", invertidoAnios);
     if (porcentajeGana !== null && invertidoAnios !== null) {
       setCompletaDatos(true);
     }

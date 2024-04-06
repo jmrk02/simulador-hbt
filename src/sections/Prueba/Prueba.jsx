@@ -22,7 +22,7 @@ import { set } from "date-fns";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { is } from "date-fns/locale";
-
+import LoadingButton from '@mui/lab/LoadingButton';
 const useStyles = makeStyles({
   root: {
     "& .MuiInputBase-input": {
@@ -95,7 +95,7 @@ function Prueba() {
   const [showMillon2, setShowMillon2] = useState(false);
   const [milMillon, setMilMillon] = useState(false);
   const [comilla, setComilla] = useState(",");
-  const  [comillaMilMillon, setComillaMilMillon] = useState("'");
+  const [comillaMilMillon, setComillaMilMillon] = useState("'");
 
   const classes = useStyles();
   const [isInversion, setIsInversion] = useState("");
@@ -123,6 +123,7 @@ function Prueba() {
 
   // const [habiliarSimulacion, setHabilitarSimulacion] = useState(false);
   const [texto, setTexto] = useState(true);
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const [dirigirHref, setDirigirHref] = useState(false);
   const [errorInversionText, setErrorInversionText] = useState(
     "Por favor, ingresa un monto de inversión"
@@ -229,7 +230,7 @@ function Prueba() {
       }, velocidad);
     }
 
-    
+
 
     return () => {
       clearInterval(animationIntervalN1);
@@ -284,7 +285,6 @@ function Prueba() {
       animationIntervalInv9;
     let animationIntervalInv10;
     let digitosTotal = digitosInversion.length;
-    // //console.log('digitosTotal', digitosTotal)
     if (runningInv1) {
       let contador1 = 0;
       animationIntervalInv1 = setInterval(() => {
@@ -368,9 +368,6 @@ function Prueba() {
           if (posicionesAno.indexOf(prevPosition) === digitosInversion[4]) {
             setRunningInv5(false);
             clearInterval(animationIntervalInv5);
-            // if (digitosTotal > contador5 + 1) {
-            //   setTexto(!texto);
-            // }
           } else {
             if (contador5 === 10) {
               contador5 = 0;
@@ -480,16 +477,11 @@ function Prueba() {
       }, velocidad);
     }
 
-    // if(positionINV1 === posicionesAno[digitosInversion[0]]){
-    //   setTexto(!texto);
-    // }
-
     if (
       !runningN1 &&
       !runningN2 &&
       !runningN3 &&
       !runningN4 &&
-      terminado && 
       !runningInv1 &&
       !runningInv2 &&
       !runningInv3 &&
@@ -499,9 +491,12 @@ function Prueba() {
       !runningInv7 &&
       !runningInv8 &&
       !runningInv9 &&
-      !runningInv10
+      !runningInv10 &&
+      terminado
     ) {
+      console.log('termina toda la simulacion')
       setTexto(!texto);
+      setLoadingBtn(false)
     }
 
     return () => {
@@ -531,21 +526,14 @@ function Prueba() {
 
 
   const handleCalculate = () => {
-    //console.log("mi inversion", isInversion);
-    //console.log("valor cuota 1", lastRent);
-    //console.log("valor cuota 2", nowRent);
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
-    ////console.log("total", inversionActual);
     var entero = parseInt(inversionActual);
-    //console.log("entero final", entero);	
     setIsInversion(entero);
-    
+
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
-    ////console.log("rentabilidad", resultadoFinal);
     const porcentaje = (resultadoFinal / isInversion) * 100;
-    ////console.log("porcentaje final", parseInt(porcentaje));
     setDatosInversion(
       isInversion,
       resultadoFinal.toFixed(2),
@@ -561,10 +549,8 @@ function Prueba() {
 
     try {
       if (!texto) {
-        //console.log('entro cuando da a ver mas')
         setDirigirHref(true)
         setTerminado(false);
-
 
         setPositionN1(0);
         setPositionN2(0);
@@ -589,8 +575,8 @@ function Prueba() {
       } else {
         setDirigirHref(false)
         let response = handleCalculate();
-        //console.log("response calculo:", response);
-        // setIsInversion(response);
+        setLoadingBtn(true)
+        // console.log("response calculo:", response);
         setPositionN1(0);
         setPositionN2(0);
         setPositionN3(0);
@@ -619,9 +605,6 @@ function Prueba() {
         setRunningM3(!runningM3);
 
         const longitud = response.toString().length;
-        //console.log('isInversion', isInversion)
-        //console.log('longitud inversion', longitud)
-        //console.log('isInversion final', isInversion)
         for (let i = 0; i < longitud; i++) {
           switch (i) {
             case 0:
@@ -693,12 +676,10 @@ function Prueba() {
       }
       const mes = date["$M"];
       const ano = date["$y"];
-      // //console.log("mes", mes);
-      // //console.log("ano", ano);
+
       const updateFecha = { month: mes, year: ano };
       if (updateFecha !== null) {
         const { year, month } = updateFecha;
-        // //console.log("update fecha", updateFecha);
         setDigitosMes(month);
         setPositionM1(posicionMes[month]);
         const anos = year
@@ -721,12 +702,10 @@ function Prueba() {
         setMesAnio(mes, ano);
         let lastValue = await getLastValue(mes, ano, false);
         const lastValueNumber = lastValue.replace(/^S\/\s/, "");
-        //console.log("lastValueNumber", lastValueNumber);
         setLastRent(lastValueNumber);
 
         let actualValue = await getLastValue(mes, ano, true);
         const actualValueNumber = actualValue.replace(/^S\/\s/, "");
-        //console.log("actualValueNumber", actualValueNumber)
         setNowRent(actualValueNumber);
       }
     } catch (error) {
@@ -735,7 +714,6 @@ function Prueba() {
   };
 
   const handleNumeroInversion = (num) => {
-    //console.log('numero finaaaall', num.target.value)
     if (num.target.value === undefined) {
       setIsInversion("");
     }
@@ -745,16 +723,12 @@ function Prueba() {
     } else {
       setSnackbarOpen(false);
     }
-    // let numero = num.target.value;
     let numero = eliminarCeros(num.target.value);
     if (numero.startsWith("0")) {
       setIsInversion("")
     } else {
       setIsInversion(numero);
       let longitud = numero.length;
-      //console.log("numero inver", numero)
-      //console.log("longitud inver", longitud);
-
       posicionesNumerosInversion(longitud, numero);
     }
 
@@ -765,9 +739,6 @@ function Prueba() {
     if (numero.length > 0) {
       numeroSinCeros = parseInt(numero, 10);
     }
-
-
-    // Convertir de nuevo a cadena para evitar la eliminación de los ceros después del punto decimal
     return numeroSinCeros.toString();
   }
 
@@ -902,10 +873,9 @@ function Prueba() {
         setShowMillon2(true);
         break;
       case 10:
-        // longitud = numero.length + 3;
-        //console.log('grila longitud 10', longitud)
+      
         grid = 12 / (longitud + 3);
-        //console.log('grid', grid)
+    
         setGrid(grid);
         setGridMayor(8);
         setComa4Dig(false);
@@ -973,8 +943,6 @@ function Prueba() {
     } else {
       setMostrarTextField(true);
     }
-    // setMostrarTextField(true);
-    //console.log('entro a inversion')
     setIsInversion(isInversion)
 
     setIsInversion(isInversion);
@@ -988,6 +956,7 @@ function Prueba() {
     }
     setSnackbarOpen(false);
   };
+
 
   return (
     <div className="bg-paper py-5">
@@ -1051,7 +1020,7 @@ function Prueba() {
                         //id="mes1"
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionM1}%, 0)`,
                         }}
@@ -1065,7 +1034,7 @@ function Prueba() {
                       <Typography
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionM1}%, 0)`,
                         }}
@@ -1079,7 +1048,7 @@ function Prueba() {
                       <Typography
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionM1}%, 0)`,
                         }}
@@ -1142,7 +1111,7 @@ function Prueba() {
                       <Typography
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionN1}%, 0)`,
                         }}
@@ -1156,7 +1125,7 @@ function Prueba() {
                       <Typography
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionN2}%, 0)`,
                         }}
@@ -1170,7 +1139,7 @@ function Prueba() {
                       <Typography
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionN3}%, 0)`,
                         }}
@@ -1184,7 +1153,7 @@ function Prueba() {
                       <Typography
                         variant="h6"
                         component="div"
-                        className={`box_digit ${terminado && "green"}`}
+                        className={`box_digit ${terminado && !texto  && "green"}`}
                         style={{
                           transform: `translate3d(0, -${positionN4}%, 0)`,
                         }}
@@ -1248,7 +1217,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto && "green"}`}
                         >
                           {numbers.map((num, index) => (
                             <div key={index}>S/</div>
@@ -1260,7 +1229,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV1}%, 0)`,
                           }}
@@ -1275,7 +1244,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV1}%, 0)`,
                             }}
@@ -1291,7 +1260,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV2}%, 0)`,
                           }}
@@ -1306,7 +1275,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto  && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV1}%, 0)`,
                             }}
@@ -1322,7 +1291,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV3}%, 0)`,
                           }}
@@ -1337,7 +1306,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto  && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV4}%, 0)`,
                             }}
@@ -1353,7 +1322,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV4}%, 0)`,
                           }}
@@ -1369,7 +1338,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto  && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV5}%, 0)`,
                             }}
@@ -1385,7 +1354,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV5}%, 0)`,
                           }}
@@ -1400,7 +1369,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto  && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV6}%, 0)`,
                             }}
@@ -1416,7 +1385,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV6}%, 0)`,
                           }}
@@ -1431,7 +1400,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto  && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV6}%, 0)`,
                             }}
@@ -1446,7 +1415,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV7}%, 0)`,
                           }}
@@ -1461,7 +1430,7 @@ function Prueba() {
                           <Typography
                             variant="h6"
                             component="div"
-                            className={`box_digit ${terminado && "green"}`}
+                            className={`box_digit ${terminado && !texto  && "green"}`}
                             style={{
                               transform: `translate3d(0, -${positionINV8}%, 0)`,
                             }}
@@ -1476,7 +1445,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV8}%, 0)`,
                           }}
@@ -1491,7 +1460,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV9}%, 0)`,
                           }}
@@ -1505,7 +1474,7 @@ function Prueba() {
                         <Typography
                           variant="h6"
                           component="div"
-                          className={`box_digit ${terminado && "green"}`}
+                          className={`box_digit ${terminado && !texto  && "green"}`}
                           style={{
                             transform: `translate3d(0, -${positionINV10}%, 0)`,
                           }}
@@ -1573,22 +1542,19 @@ function Prueba() {
                   style={{ display: "none" }}
                   maxDate={dayjs(`2024-03-31`)}
                   minDate={dayjs(`2014-03-01`)}
-                
+
 
                 />
               </LocalizationProvider>
             </Grid>
-            <Grid item xs={3} sm={3} className="col2" style={{ marginTop: '1.5rem' }}>
-              {/* <a href={dirigirHref ? "#resultado" : undefined}> */}
-              <a >
-                <Button
-                  className="btn hbt-btn-primary"
-                  onClick={simularAnimacion}
-                  disabled={digitosAno && digitosMes && isInversion ? false :true}
-                >
-                  {texto ? "Simular ahora" : "Volver a simular"}
-                </Button>
-              </a>
+            <Grid item xs={3} sm={3} className="col2" style={{ marginTop: '1.5rem' }}>         
+              <LoadingButton className="btn hbt-btn-primary btn-loading"
+                onClick={simularAnimacion}
+                loading={loadingBtn? true : false}
+                disabled={digitosAno && digitosMes && isInversion ? false :true}
+              >
+                <span>{texto ? (loadingBtn? "":"Simular ahora" ): ("Volver a simular")}</span>
+              </LoadingButton>
             </Grid>
           </Grid>
         </div>
