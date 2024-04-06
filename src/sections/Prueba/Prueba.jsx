@@ -22,7 +22,7 @@ import { set } from "date-fns";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { is } from "date-fns/locale";
-
+import LoadingButton from '@mui/lab/LoadingButton';
 const useStyles = makeStyles({
   root: {
     "& .MuiInputBase-input": {
@@ -95,7 +95,7 @@ function Prueba() {
   const [showMillon2, setShowMillon2] = useState(false);
   const [milMillon, setMilMillon] = useState(false);
   const [comilla, setComilla] = useState(",");
-  const  [comillaMilMillon, setComillaMilMillon] = useState("'");
+  const [comillaMilMillon, setComillaMilMillon] = useState("'");
 
   const classes = useStyles();
   const [isInversion, setIsInversion] = useState("");
@@ -229,7 +229,7 @@ function Prueba() {
       }, velocidad);
     }
 
-    
+
 
     return () => {
       clearInterval(animationIntervalN1);
@@ -283,8 +283,7 @@ function Prueba() {
       animationIntervalInv8,
       animationIntervalInv9;
     let animationIntervalInv10;
-    let digitosTotal = digitosInversion.length;
-    console.log('digitosTotal', digitosTotal)
+
     if (runningInv1) {
       let contador1 = 0;
       animationIntervalInv1 = setInterval(() => {
@@ -368,9 +367,6 @@ function Prueba() {
           if (posicionesAno.indexOf(prevPosition) === digitosInversion[4]) {
             setRunningInv5(false);
             clearInterval(animationIntervalInv5);
-            // if (digitosTotal > contador5 + 1) {
-            //   setTexto(!texto);
-            // }
           } else {
             if (contador5 === 10) {
               contador5 = 0;
@@ -480,16 +476,12 @@ function Prueba() {
       }, velocidad);
     }
 
-    // if(positionINV1 === posicionesAno[digitosInversion[0]]){
-    //   setTexto(!texto);
-    // }
-
     if (
       !runningN1 &&
       !runningN2 &&
       !runningN3 &&
       !runningN4 &&
-      terminado && 
+      terminado &&
       !runningInv1 &&
       !runningInv2 &&
       !runningInv3 &&
@@ -538,9 +530,9 @@ function Prueba() {
     let inversionActual = inversionUltima * nowRent;
     //console.log("total", inversionActual);
     var entero = parseInt(inversionActual);
-    console.log("entero final", entero);	
+    console.log("entero final", entero);
     setIsInversion(entero);
-    
+
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
     //console.log("rentabilidad", resultadoFinal);
@@ -693,12 +685,10 @@ function Prueba() {
       }
       const mes = date["$M"];
       const ano = date["$y"];
-      console.log("mes", mes);
-      console.log("ano", ano);
+
       const updateFecha = { month: mes, year: ano };
       if (updateFecha !== null) {
         const { year, month } = updateFecha;
-        console.log("update fecha", updateFecha);
         setDigitosMes(month);
         setPositionM1(posicionMes[month]);
         const anos = year
@@ -721,12 +711,10 @@ function Prueba() {
         setMesAnio(mes, ano);
         let lastValue = await getLastValue(mes, ano, false);
         const lastValueNumber = lastValue.replace(/^S\/\s/, "");
-        console.log("lastValueNumber", lastValueNumber);
         setLastRent(lastValueNumber);
 
         let actualValue = await getLastValue(mes, ano, true);
         const actualValueNumber = actualValue.replace(/^S\/\s/, "");
-        console.log("actualValueNumber", actualValueNumber)
         setNowRent(actualValueNumber);
       }
     } catch (error) {
@@ -735,7 +723,6 @@ function Prueba() {
   };
 
   const handleNumeroInversion = (num) => {
-    console.log('numero finaaaall', num.target.value)
     if (num.target.value === undefined) {
       setIsInversion("");
     }
@@ -745,16 +732,12 @@ function Prueba() {
     } else {
       setSnackbarOpen(false);
     }
-    // let numero = num.target.value;
     let numero = eliminarCeros(num.target.value);
     if (numero.startsWith("0")) {
       setIsInversion("")
     } else {
       setIsInversion(numero);
       let longitud = numero.length;
-      console.log("numero inver", numero)
-      console.log("longitud inver", longitud);
-
       posicionesNumerosInversion(longitud, numero);
     }
 
@@ -765,9 +748,6 @@ function Prueba() {
     if (numero.length > 0) {
       numeroSinCeros = parseInt(numero, 10);
     }
-
-
-    // Convertir de nuevo a cadena para evitar la eliminación de los ceros después del punto decimal
     return numeroSinCeros.toString();
   }
 
@@ -973,8 +953,6 @@ function Prueba() {
     } else {
       setMostrarTextField(true);
     }
-    // setMostrarTextField(true);
-    console.log('entro a inversion')
     setIsInversion(isInversion)
 
     setIsInversion(isInversion);
@@ -988,6 +966,7 @@ function Prueba() {
     }
     setSnackbarOpen(false);
   };
+
 
   return (
     <div className="bg-paper py-5">
@@ -1573,22 +1552,35 @@ function Prueba() {
                   style={{ display: "none" }}
                   maxDate={dayjs(`2024-03-31`)}
                   minDate={dayjs(`2014-03-01`)}
-                
+
 
                 />
               </LocalizationProvider>
             </Grid>
             <Grid item xs={3} sm={3} className="col2" style={{ marginTop: '1.5rem' }}>
               {/* <a href={dirigirHref ? "#resultado" : undefined}> */}
-              <a >
+              {/* < >
                 <Button
-                  className="btn hbt-btn-primary"
+                  className="btn hbt-btn-primary btn-loading"
                   onClick={simularAnimacion}
-                  // disabled={!habiliarSimulacion}
+                //disabled={habilitarSimulacion}
                 >
                   {texto ? "Simular ahora" : "Volver a simular"}
-                </Button>
-              </a>
+                  {/* <dotlottie-player src="https://lottie.host/9e7c7c2d-cf8f-466d-9dac-8d2abaa552aa/QLQtVHp1sU.json" background="transparent" speed="1" loop autoplay></dotlottie-player> */}
+
+                {/* </Button> */}
+              
+
+              <LoadingButton className="btn hbt-btn-primary"
+                size="small"
+                // onClick={handleClick}
+                onClick={simularAnimacion}
+                loading={runningM1 ? true : false}
+                // loadingIndicator="Loading…"
+                // variant="outlined"
+              >
+                <span>{texto ? "Simular ahora" : "Volver a simular"}</span>
+              </LoadingButton>
             </Grid>
           </Grid>
         </div>
