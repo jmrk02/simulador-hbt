@@ -667,12 +667,12 @@ function Prueba() {
 
 
   const openCalendar = () => {
-    // if (texto) {
-    //   setAbrirCalendar(true);
-    // } else {
-    //   setAbrirCalendar(false);
-    // }
-    setAbrirCalendar(true);
+    if (texto) {
+      setAbrirCalendar(true);
+    } else {
+      setAbrirCalendar(false);
+    }
+    // setAbrirCalendar(true);
   };
 
   const getLastValue = async (monthValue, yearValue, isActualMonth) => {
@@ -968,12 +968,12 @@ function Prueba() {
   };
 
   const openInversion = () => {
-    // if (!texto) {
-    //   setMostrarTextField(false);
-    // } else {
-    //   setMostrarTextField(true);
-    // }
-    setMostrarTextField(true);
+    if (!texto) {
+      setMostrarTextField(false);
+    } else {
+      setMostrarTextField(true);
+    }
+    // setMostrarTextField(true);
     console.log('entro a inversion')
     setIsInversion(isInversion)
 
@@ -1573,18 +1573,20 @@ function Prueba() {
                   style={{ display: "none" }}
                   maxDate={dayjs(`2024-03-31`)}
                   minDate={dayjs(`2014-03-01`)}
+                
 
                 />
               </LocalizationProvider>
             </Grid>
             <Grid item xs={3} sm={3} className="col2" style={{ marginTop: '1.5rem' }}>
-              <a href={dirigirHref ? "#resultado" : undefined}>
+              {/* <a href={dirigirHref ? "#resultado" : undefined}> */}
+              <a >
                 <Button
                   className="btn hbt-btn-primary"
                   onClick={simularAnimacion}
-                // disabled={!habiliarSimulacion}
+                  // disabled={!habiliarSimulacion}
                 >
-                  {texto ? "Simular ahora" : "Ver más"}
+                  {texto ? "Simular ahora" : "Volver a simular"}
                 </Button>
               </a>
             </Grid>
