@@ -41,7 +41,7 @@ const StcResultado = () => {
         // console.log("porcentaje", porcentaje);
         // console.log("rentabilidad", rentabilidad);
         // console.log("inversionInicial", inversionInicial);
-        
+
         setTotal(saldoTotal);
         setStep(step);
         setInversionIni(inversionInicial);
@@ -88,7 +88,6 @@ const StcResultado = () => {
 
         const invertidoAnios = anioActual - anio;
         setInvertidoAnios(invertidoAnios);
-   
       }
     }
   };
@@ -138,20 +137,20 @@ const StcResultado = () => {
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/, "'");
 
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  } else {
+    } else {
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+    }
     //console.log("partes despues", partes)
 
     return partes.join(".");
-  }
+  };
 
   useEffect(() => {
     const handleScroll = async () => {
       handleStartAnimation();
     };
     handleScroll();
-  }, [step,inversionInicial]);
+  }, [step, inversionInicial]);
 
   useEffect(() => {
     setAnimationPlayedSecond(false);
@@ -170,17 +169,17 @@ const StcResultado = () => {
     const invertidoAnios = anioActual - anio;
     setInvertidoAnios(invertidoAnios);
     console.log("invertidoAnios", invertidoAnios);
-    if (porcentajeGana !== null && invertidoAnios!==null) {
+    if (porcentajeGana !== null && invertidoAnios !== null) {
       setCompletaDatos(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inversionInicial, saldoTotal]);
 
   return (
     <div className="stc-hbt-resutl-rent py-5" id="resultado">
       <div className="container">
         {saldoTotal ? (
-          <div className={`transicion-renta ${saldoTotal ? 'mostrar' : ''}`}>
+          <div className={`transicion-renta ${saldoTotal ? "mostrar" : ""}`}>
             <div className="header-pills d-flex align-items-center mb-4">
               <h5 className="card-title me-3">Rentabilidad proyectada en: </h5>
               <div className="d-flex">
@@ -274,7 +273,7 @@ const StcResultado = () => {
                               Inversión inicial
                             </span>
                             <span className="card-mounth d-block">
-                              S/ { formatearNumero(inversionIni) }
+                              S/ {formatearNumero(inversionIni)}
                             </span>
                           </div>
                         </div>
@@ -325,7 +324,8 @@ const StcResultado = () => {
                         Tu fondo hubiera generado la siguiente rentabilidad
                       </p>
                       <span className="mounth-rentabilidad">
-                        S/ {formatearNumero(renta)} <span className="icon-disclaimer">*</span>
+                        S/ {formatearNumero(renta)}{" "}
+                        <span className="icon-disclaimer">*</span>
                       </span>
                       {step === 1 && (
                         <div className="mt-n4" id="json-animation-here-1"></div>
@@ -347,16 +347,16 @@ const StcResultado = () => {
                   </h3>
                   {renta > 0 ? (
                     <p className="mb-5">
-                      Descubre la rentabilidad que podrías haber logrado si hace {" "}
-                      <strong>{invertidoAnios} años</strong> hubieras invertido en{" "}
-                      <strong>AFP Habitat.</strong> {" "}
-                      Recuerda que a mayor tiempo de inversión podrías tener mayor ganancia.
+                      Descubre la rentabilidad que podrías haber logrado si hace{" "}
+                      <strong>{invertidoAnios} años</strong> hubieras invertido
+                      en <strong>AFP Habitat.</strong> Recuerda que a mayor
+                      tiempo de inversión podrías tener mayor ganancia.
                     </p>
                   ) : (
                     <p className="mb-5">
                       ¡Oh no!, parece que los datos que ingresaste no
-                      proporcionaron una buena estimación. {" "}
-                      <strong>Recuerda que la rentabilidad es volátil</strong> {" "}
+                      proporcionaron una buena estimación.{" "}
+                      <strong>Recuerda que la rentabilidad es volátil</strong>{" "}
                       por lo tanto puede ser positiva o negativa a corto plazo,
                       intenta seleccionando un periodo de tiempo distinto.
                     </p>
@@ -379,8 +379,13 @@ const StcResultado = () => {
               </div>
             </div>
 
-            <div className="disclaimer" style={{marginTop:'1rem'}}>
-            * Los resultados de los montos de rentabilidad se basan en una estimación que toma como referencia el valor cuota del último día del mes seleccionado. Es importante tener en cuenta que estos resultados son proyecciones y no constituyen un compromiso por parte de la AFP para garantizar un monto de rentabilidad específico.
+            <div className="disclaimer" style={{ marginTop: "1rem" }}>
+              * Los resultados de los montos de rentabilidad se basan en una
+              estimación que toma como referencia el valor cuota del último día
+              del mes seleccionado. Es importante tener en cuenta que estos
+              resultados son proyecciones y no constituyen un compromiso por
+              parte de la AFP para garantizar un monto de
+              rentabilidad específico.
             </div>
             {/* MODAL */}
             <div
@@ -475,7 +480,7 @@ const StcResultado = () => {
             </div>
           </div>
         ) : (
-          <div className="row sin-data d-flex" >
+          <div className="row sin-data d-flex">
             <div className="col-sm-12 col-lg-6 left">
               <div className="card rounded-4 mb-4 p-3">
                 <div id="lottie-animation" className="sin-resultado">
@@ -509,7 +514,6 @@ const StcResultado = () => {
             </div>
           </div>
         )}
-        
       </div>
     </div>
   );
