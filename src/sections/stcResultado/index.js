@@ -122,6 +122,11 @@ const StcResultado = () => {
       animation.goToAndPlay(0, true);
     } else {
       console.log("REPLAY");
+      const div = document.getElementById(`json-animation-here-${step}`);
+      if (div) {
+        const svgElement = div.querySelector("svg");
+        console.log("SVG: ", svgElement);
+      }
       animation.goToAndPlay(0, true);
     }
   };
@@ -148,6 +153,7 @@ const StcResultado = () => {
 
   useEffect(() => {
     const handleScroll = async () => {
+      console.log("SALDO INCIAL:", saldoTotal);
       if (saldoTotal) {
         handleStartAnimation();
       }
