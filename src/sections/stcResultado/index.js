@@ -104,11 +104,7 @@ const StcResultado = () => {
       await setAnimationPlayedThird(true);
       animationStep = animationPlayedThird;
     }
-    console.log(
-      "animationPlayedSecondanimationPlayedSecond",
-      animationPlayedSecond
-    );
-    console.log("step: ", step);
+
     const animation = lottie.loadAnimation({
       container: document.getElementById(`json-animation-here-${step}`),
       renderer: "svg",
@@ -125,7 +121,9 @@ const StcResultado = () => {
       const div = document.getElementById(`json-animation-here-${step}`);
       if (div) {
         const svgElement = div.querySelector("svg");
-        console.log("SVG: ", svgElement);
+        if (svgElement) {
+          svgElement.remove();
+        }
       }
       animation.goToAndPlay(0, true);
     }
@@ -153,7 +151,6 @@ const StcResultado = () => {
 
   useEffect(() => {
     const handleScroll = async () => {
-      console.log("SALDO INCIAL:", saldoTotal);
       if (saldoTotal) {
         handleStartAnimation();
       }
