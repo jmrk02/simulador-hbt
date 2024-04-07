@@ -230,8 +230,6 @@ function Prueba() {
       }, velocidad);
     }
 
-
-
     return () => {
       clearInterval(animationIntervalN1);
       clearInterval(animationIntervalN2);
@@ -290,6 +288,7 @@ function Prueba() {
       animationIntervalInv1 = setInterval(() => {
         setPositionINV1((prevPosition) => {
           if (posicionesAno.indexOf(prevPosition) === digitosInversion[0]) {
+            console.log('entrando a la simulacion')
             setRunningInv1(false);
             clearInterval(animationIntervalInv1);
           } else {
@@ -476,12 +475,25 @@ function Prueba() {
         });
       }, velocidad);
     }
-
+    
+    console.log('runningInv1', runningInv1)
+    console.log('runningInv2', runningInv2)
+    console.log('runningInv3', runningInv3)
+    console.log('runningInv4', runningInv4)
+    console.log('runningInv5', runningInv5)
+    console.log('runningInv6', runningInv6)
+    console.log('runningInv7', runningInv7)
+    console.log('runningInv8', runningInv8)
+    console.log('runningInv9', runningInv9)
+    console.log('runningInv10', runningInv10)
+    console.log('terminado', terminado)
+    
     if (
       !runningN1 &&
       !runningN2 &&
       !runningN3 &&
       !runningN4 &&
+      !runningM1 &&
       !runningInv1 &&
       !runningInv2 &&
       !runningInv3 &&
@@ -521,11 +533,15 @@ function Prueba() {
     runningInv7,
     runningInv8,
     runningInv9,
-    runningInv10
+    runningInv10,
+    runningN4,
+    terminado
   ]);
 
 
   const handleCalculate = () => {
+    console.log('lastRent', lastRent)
+    console.log('nowRent', nowRent)
     let inversionUltima = isInversion / lastRent;
     let inversionActual = inversionUltima * nowRent;
     var entero = parseInt(inversionActual);
@@ -534,6 +550,9 @@ function Prueba() {
     posicionesNumerosInversion(entero.toString().length, entero);
     let resultadoFinal = inversionActual - isInversion;
     const porcentaje = (resultadoFinal / isInversion) * 100;
+    console.log('resultadoFinal', resultadoFinal)
+    console.log('inversionActual', inversionActual)
+    console.log('porcentaje', porcentaje)
     setDatosInversion(
       isInversion,
       resultadoFinal.toFixed(2),
